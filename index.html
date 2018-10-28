@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Departamento de Sistemas y Computación</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style>.dropdown-content{
+    overflow: visible !important;
+}</style>
+</head>
+<body>
+	
+<div class="cabecera">
+ <!--  Scripts-->
+  
+  <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script>
+        $(document).ready(function(){
+          $('.materialboxed').materialbox();
+          $('.button-collapse').sideNav();
+          $('.dropdown-button').dropdown();
+          $('.dropdown-button2').dropdown({
+              inDuration: 300,
+              outDuration: 225,
+              constrainWidth: false, // Does not change width of dropdown to that of the activator
+              hover: true, // Activate on hover
+              gutter: 50,
+              belowOrigin: false, // Displays dropdown below the button
+              alignment: 'left' // Displays dropdown with edge aligned to the left of button
+            }
+          );
+      $('.collapsible').collapsible();
+        });
+        function listarInvestigadoresToast() {
+           var $Octavio = $('<img class="circle" src="images/docentes/Octavio-Ortiz.jpg" height="40px"><span><a href="../msc/publicaciones-recientes-octavio-ortiz.php">Dr. Octavio Ortíz Ortíz</a></span> ');
+          Materialize.toast($Octavio, 10000);
+		  var $JuanCarlos = $('<img class="circle" src="images/docentes/Juan-Carlos.jpg" height="40px"><span><a href="../msc/publicaciones-recientes-juan-carlos.php">M.C. Juan Carlos Olivares Rojas</a></span> ');
+          Materialize.toast($JuanCarlos, 10000); 
+		  var $AbelPintor = $('<img class="circle" src="images/docentes/Abel-Pintor.jpg" height="40px"><span><a href="../msc/publicaciones-recientes-abel-pintor.php">M.C. Abel Alberto Pintor Estrada</a></span> ');
+          Materialize.toast($AbelPintor, 10000);
+		  var $Heberto = $('<img class="circle" src="images/docentes/Heberto.jpg" height="40px"><span><a href="../msc/publicaciones-recientes-heberto.php">Dr. Heberto Ferreira Medina</a></span> ');
+          Materialize.toast($Heberto, 10000); 
+		  var $Antonilo = $('<img class="circle" src="images/docentes/Antolino.jpg" height="40px"><span><a href="../msc/publicaciones-recientes-antonilo.php">Dr. Anastacio Antolino Hernández</a></span> ');
+          Materialize.toast($Antonilo, 10000); 
+		  var $Christian = $('<img class="circle" src="images/docentes/Christian.jpg" height="40px"><span><a href="../msc/publicaciones-recientes-christian.php">M.C. Cristhian Torres Millarez</a></span> ');
+          Materialize.toast($Christian, 10000);
+        }
+  </script>
+  <!-- INICIO DE CABECERA -->
+  <div class="row center">
+      <a id="logo-container" href="#">
+        <picture>
+            <source srcset="images/encabezado-dsc-300x60.png" media="(max-width: 400px)">
+            <source srcset="images/encabezado-dsc-400x60.png" media="(max-width: 600px)">
+            <source srcset="images/encabezado-dsc-600x60.png" media="(max-width: 800px)">
+            <source srcset="images/encabezado-dsc-800x60.png" media="(max-width: 1000px)">
+            <source srcset="images/encabezado-dsc-1000x60.png" media="(max-width: 1200px)">
+            <img src="images/encabezado-dsc-1200x60.png" alt="TecNM">
+        </picture>
+      </a>
+  </div>
+
+  <ul id="acercadedsc" class="dropdown-content">
+    <li><a href="presentacion_DSC.php">Presentación</a></li>
+    <li><a href="plantilla-docente.php">Plantilla Docente</a></li>
+    <li><a href="mistica_DSC.php">Mística</a></li>
+    <li><a href="historia-dsc.php">Historia</a></li>
+    <li><a href="organigrama.php">Organigrama</a></li>
+    <li><a href="normateca.php">Normateca</a></li>
+  </ul>
+
+  <ul id="oficina-de-docencia" class="dropdown-content">
+    <li><a href="actividades_complementarias.php">Actividades Complementarias</a></li>
+    <li><a href="circulo_de_estudios.php">Círculos de estudio</a></li>
+    <li><a href="titulacion.php">Titulación</a></li>
+  </ul>
+
+  <ul id="oficina-de-vinculcion" class="dropdown-content">
+    <li><a href="en-construccion.php">Banco de Proyectos</a></li>
+    <li><a href="en-construccion.php">Convenios</a></li>
+	<li><a class="dropdown-button2" href="#" data-activates="residencias-profesionales" data-beloworigin="true">Residencias Profesionales<i class="material-icons right">arrow_drop_down</i></a></li>
+  </ul>
+  
+  <ul id="residencias-profesionales" class="dropdown-content">
+    <li><a href="residencias-profesionales.php">Residencias Profesionales</a></li>
+	<li><a href="platica-informativa.php">Plática Informativa de Residencias Profesionales</a></li>
+  </ul>
+  
+  <ul id="oficina-de-investigacion" class="dropdown-content">
+    <li><a class="dropdown-button2" href="#" data-activates="lgac" data-beloworigin="true">LGAC<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a href="en-construccion.php">Proyectos</a></li>
+    <li><a onclick="listarInvestigadoresToast()">Publicaciones Recientes</a></li>
+  </ul>
+  
+  <ul id="lgac" class="dropdown-content">
+    <li><a href="topicos-avanzados.php">Tópicos Avanzados de Ingeniería de Software</a></li>
+	<li><a href="seguridad-y-administracion.php">Seguridad y Administración de la Información</a></li>
+	<li><a href="aplicaciones-y-servicios.php">Aplicaciones y Servicios Sobre Internet</a></li>
+	<li><a href="ingenieria-de-software.php">Ingeniería de Software e Infraestructura Tecnológica</a></li>
+	<li><a href="desarrollo-de-sistemas.php">Desarrollo de Sistemas E-Learning y B-Learning</a></li>
+  </ul>
+
+  <ul id="quienes_somos" class="dropdown-content">
+      <li><a class="dropdown-button2" href="#" data-activates="acercadedsc">Acerca de DSC<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button2" href="#" data-activates="oficina-de-docencia">Oficina de Docencia<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button2" href="#" data-activates="oficina-de-vinculcion">Oficina de Vinculación<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button2" href="#" data-activates="oficina-de-investigacion">Oficina de Investigación<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="laboratorios.php">Infraestructura</a></li>
+      <li><a href="contacto.php">Contacto</a></li>
+  </ul>
+  
+  <ul id="isc" class="dropdown-content">
+    <li><a href="presentacion_ISC.php#presentacion">Misión y Visión</a></li>
+    <li><a href="presentacion_ISC.php#metas">Metas y Objetivos</a></li>
+    <li><a href="presentacion_ISC.php#perfil_ingreso">Perfil de Ingreso</a></li>
+    <li><a href="presentacion_ISC.php#perfil_egreso">Perfil de Egreso</a></li>
+    <li><a href="presentacion_ISC.php#campo_accion">Campo Laboral</a></li>
+    <li><a href="presentacion_ISC.php#reticula">Retícula</a></li>
+    <li><a href="presentacion_ISC.php#especialidad">Módulos de Especialidad</a></li>
+  </ul>
+   
+  <ul id="itics" class="dropdown-content">
+    <li><a href="presentacion_ITICS.php#presentacion">Misión y Visión</a></li>
+    <li><a href="presentacion_ITICS.php#metas">Metas y Objetivos</a></li>
+    <li><a href="presentacion_ITICS.php#perfil_ingreso">Perfil de Ingreso</a></li>
+    <li><a href="presentacion_ITICS.php#perfil_egreso">Perfil de Egreso</a></li>
+    <li><a href="presentacion_ITICS.php#campo_accion">Campo Laboral</a></li>
+    <li><a href="presentacion_ITICS.php#reticula">Retícula</a></li>
+    <li><a href="presentacion_ITICS.php#especialidad">Módulos de Especialidad</a></li>
+  </ul>
+
+  <ul id="carreras" class="dropdown-content">
+    <li><a class="dropdown-button2" href="#" data-activates="isc" data-beloworigin="true">Ing. en Sistemas Computacionales<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li><a class="dropdown-button2" href="#" data-activates="itics" data-beloworigin="true">Ing. en Tecnologías de la Información y Comunicaciones<i class="material-icons right">arrow_drop_down</i></a></li>
+    <li class="divider"></li>
+  </ul>
+  
+  <ul id="maestria" class="dropdown-content">
+    <li><a href="../msc/">Maestría en Sistemas Computacionales</a></li>
+  </ul>
+
+ 
+  
+  <ul id="oferta_educativa" class="dropdown-content">
+      <li><a class="dropdown-button2" href="#" data-activates="carreras" data-beloworigin="true">Licenciaturas<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-button2" href="#" data-activates="maestria" data-beloworigin="true">Posgrado<i class="material-icons right">arrow_drop_down</i></a></li>
+
+  </ul>
+
+  
+  <ul id="alumnos" class="dropdown-content">
+    <li><a href="alumnos-inscritos.php">Inscritos</a></li>
+    <li><a href="alumnos-egresados.php">Egresados</a></li>
+    <li><a href="alumnos-proceso-graduacion.php">En Proceso de Graduación</a></li>
+  </ul>
+  <ul id="comunidad" class="dropdown-content">
+    <li><a href="actividades-culturales.php">Actividades Culturales</a></li>
+    <li><a href="actividades-deportivas.php">Actividades Deportivas</a></li>
+    <li><a href="eventos.php" data-activates="alumnos">Eventos</a></li>
+  </ul>
+
+  <ul id="servicios" class="dropdown-content">
+    <li><a href="https://sge.morelia.tecnm.mx/login/alumno">SGE - Sistema de Gestión Estratégica</a></li>
+    <li><a href="http://edudistancia.itmorelia.edu.mx/moodle/">Plataforma Educativa</a></li>
+    <li><a href="http://biblioteca.itmorelia.edu.mx/pony/">Biblioteca Pony</a></li>    
+    <li><a href="http://vinculacion.itmorelia.edu.mx/moodle/course/index.php?categoryid=11">Bolsa de Trabajo</a></li>
+  </ul>
+
+  <ul id="vinculacion" class="dropdown-content">
+    <li><a href="convenios-gobierno.php">Convenios con el Sector Público</a></li>
+    <li><a href="convenios-industria.php">Convenios con el Sector Privado</a></li>
+  </ul>
+  
+  <nav class="white">
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo show-on-medium-and-down hide-on-large-only"><img src="images/logo-dsc.png" height="55px" alt="Departamento de Sistemas y Computación"></a>
+      <a href="#!" class="brand-logo show-on-large hide-on-med-and-down"><img src="images/logo-dsc-corto.png" height="55px" alt="Departamento de Sistemas y Computación"></a>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="index.php"><i class="material-icons right">home</i></a></li>
+        <li><a class='dropdown-button' href="#" data-activates="quienes_somos" data-beloworigin="true">¿Quiénes Somos?<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class='dropdown-button' href="#" data-activates="oferta_educativa" data-beloworigin="true">Oferta Educativa<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="comunidad">Comunidad Tec<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="servicios">Servicios<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+
+<!-- INICIA EL MENÚ LATERAL -->
+
+      <ul id="nav-mobile" class="side-nav">
+      	<li>
+      		<div class="background center">
+      			<img src="images/logo-Itmorelia-100x99.png">
+      		</div>	
+    	 </li>
+    	<li><a href="index.php"><i class="material-icons center">home</i>Inicio</a></li>
+    	<li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">¿Quiénes Somos?<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul class="collapsible collapsible-accordion">
+                <li>
+                  <a class="collapsible-header">Acerca de DSC<i class="material-icons">arrow_drop_down</i></a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li><a href="presentacion_DSC.php">Presentación</a></li>
+                      <li><a href="plantilla-docente.php">Plantilla Docente</a></li>
+                      <li><a href="mistica_DSC.php">Mística</a></li>
+                      <li><a href="historia-dsc.php">Historia</a></li>
+                      <li><a href="organigrama.php">Organigrama</a></li>
+                      <li><a href="normateca.php">Normateca</a></li>
+                    </ul>
+                  </div>                
+                </li>
+                <li>
+                  <a class="collapsible-header">Oficina de Docencia<i class="material-icons">arrow_drop_down</i></a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li><a href="actividades_complementarias.php">Actividades Complementarias</a></li>
+                      <li><a href="circulo_de_estudios.php">Círculos de estudio</a></li>
+                      <li><a href="titulacion.php">Titulación</a></li>
+                    </ul>
+                  </div>                
+                </li>
+                <li>
+                  <a class="collapsible-header">Oficina de Vinculación<i class="material-icons">arrow_drop_down</i></a>
+				<div class="collapsible-body">
+                    <ul class="collapsible collapsible-accordion">
+						<li><a href="en-construccion.php">Banco de Proyectos</a></li>
+						<li><a href="en-construccion.php">Convenios</a></li>
+						<li>
+							<a class="collapsible-header">Residencias Profesionales<i class="material-icons">arrow_drop_down</i></a>
+							<div class="collapsible-body">
+								<ul class="collapsible collapsible-accordion">
+									<li>
+										<li><a href="residencias-profesionales.php">Residencias Profesionales</a></li>
+										<li><a href="platica-informativa.php">Plática Informativa de Residencias Profesionales</a></li>
+										<li class="divider"></li>
+									</li>
+								</ul>
+							</div>
+						</li> 
+                    </ul>
+				</div>                
+                </li>
+                <li>
+                  <a class="collapsible-header">Oficina de Investigación<i class="material-icons">arrow_drop_down</i></a>
+                  <div class="collapsible-body">
+                    <ul class="collapsible collapsible-accordion">
+						<li>
+							<a class="collapsible-header">LGAC<i class="material-icons">arrow_drop_down</i></a>
+							<div class="collapsible-body">
+								<ul>
+									
+										<li><a href="topicos-avanzados.php"><span>Tópicos Avanzados de Ingeniería de Software</span></a></li>
+										<br>
+										<li><a href="seguridad-y-administracion.php"><span>Seguridad y Administración de la Información</span></a></li>
+										<br>
+										<li><a href="seguridad-y-administracion.php">Aplicaciones y Servicios Sobre Internet</a></li>
+										<br>
+										<li><a href="ingenieria-de-software.php">Ingeniería de Software e Infraestructura Tecnológica</a></li>
+										<br>
+										<li><a href="desarrollo-de-sistemas.php">Desarrollo de Sistemas E-Learning y B-Learning</a></li>
+										<br>
+										
+								</ul>
+							</div>
+						</li>
+						<li><a href="en-construccion.php">Proyectos</a></li>
+						<li><a onclick="listarInvestigadoresToast()">Publicaciones Recientes</a></li>
+                    </ul>
+					
+                  </div>                
+                </li>
+                <li>
+                  <a class="collapsible-header">Infraestructura<i class="material-icons">arrow_drop_down</i></a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li><a href="en-construccion.php">Aulas</a></li>
+                      <li><a href="laboratorios.php">Laboratorios</a></li>
+                    </ul>
+                  </div>                
+                </li>
+				<li class="divider"></li>
+				<li>
+                  <a href="contacto.php">Contacto</a>             
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="collapsible-header">Oferta Educativa<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul class="collapsible collapsible-accordion">
+                <li>
+                  <a class="collapsible-header">Licenciaturas<i class="material-icons">arrow_drop_down</i></a>
+                  <div class="collapsible-body">
+                    <ul class="collapsible collapsible-accordion">
+                      <li>
+                        <a class="collapsible-header">Ing. en Sistemas Comps.<i class="material-icons">arrow_drop_down</i></a>
+                        <div class="collapsible-body">
+                          <ul class="collapsible collapsible-accordion">
+                            <li><a href="presentacion_ISC.php#presentacion">Misión y Visión</a></li>
+                            <li><a href="presentacion_ISC.php#metas">Metas y Objetivos</a></li>
+                            <li><a href="presentacion_ISC.php#perfil_ingreso">Perfil de Ingreso</a></li>
+                            <li><a href="presentacion_ISC.php#perfil_egreso">Perfil de Egreso</a></li>
+                            <li><a href="presentacion_ISC.php#campo_accion">Campo Laboral</a></li>
+                            <li><a href="presentacion_ISC.php#reticula">Retícula</a></li>
+                            <li><a href="presentacion_ISC.php#especialidad">Módulos de Especialidad</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li>
+                        <a class="collapsible-header">Ing. en Tec. de la Inf. y Cs.<i class="material-icons">arrow_drop_down</i></a>
+                        <div class="collapsible-body">
+                          <ul class="collapsible collapsible-accordion">
+                            <li><a href="presentacion_ITICS.php#presentacion">Misión y Visión</a></li>
+                            <li><a href="presentacion_ITICS.php#metas">Metas y Objetivos</a></li>
+                            <li><a href="presentacion_ITICS.php#perfil_ingreso">Perfil de Ingreso</a></li>
+                            <li><a href="presentacion_ITICS.php#perfil_egreso">Perfil de Egreso</a></li>
+                            <li><a href="presentacion_ITICS.php#campo_accion">Campo Laboral</a></li>
+                            <li><a href="presentacion_ITICS.php#reticula">Retícula</a></li>
+                            <li><a href="presentacion_ITICS.php#especialidad">Módulos de Especialidad</a></li>
+                          </ul>
+                        </div>
+                      </li>
+                      <li class="divider"></li>
+                      <li><a href="#!">Diferencias entre carreras</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a class="collapsible-header">Posgrados<i class="material-icons">arrow_drop_down</i></a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li><a href="../msc/">Maestría en Sis. Comps.</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="collapsible-header">Comunidad Tec<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+      			    <li><a href="actividades-culturales.php">Actividades Culturales</a></li>
+      			    <li><a href="actividades-deportivas.php">Actividades Deportivas</a></li>
+      			    <li><a href="eventos.php" data-activates="alumnos">Eventos</a></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="collapsible-header">Servicios<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+        			<ul class="collapsible collapsible-accordion">
+  					    <li><a href="https://sge.morelia.tecnm.mx/login/alumno">SGE - Sistema de Gestión Estratégica</a></li>
+  					    <li><a href="http://edudistancia.itmorelia.edu.mx/moodle/">Plataforma Educativa</a></li>
+  					    <li><a href="http://biblioteca.itmorelia.edu.mx/pony/">Biblioteca Pony</a></li>    
+  					    <li><a href="http://vinculacion.itmorelia.edu.mx/moodle/course/index.php?categoryid=11">Bolsa de Trabajo</a></li>
+			      	</ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      </ul>
+    </div>
+  </nav>
+   <!-- FIN DE CABECERA -->
+</div>
+
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12">
+      <div class="slider">
+        <ul class="slides">
+           <li>
+            <a href="http://dsc.itmorelia.edu.mx/tekhne" target="_blank"><img src="images/tekhne.jpg" alt="Semana de Sistemas" class="responsive-img"></a>
+          </li>
+          <li>
+            <img src="images/poster-apertura-maestria.png" alt="Apertura de Maestría en Sistemas Computacionales" class="responsive-img">
+            <div class="caption row right-align">
+              <a href="http://dsc.itmorelia.edu.mx/msc/admision.php"><h5 class="btn red darken-4 grey-text text-lighten-3">¡ Convocatoria Agosto 2018 !</h5></a>
+            </div>
+          </li>
+          <li>
+            <img src="images/entrega-acreditacion-carreras.jpg" class="responsive-img">
+            <div class="caption right-align">
+              <h3>Carreras de Ingeniería Certificadas por CACEI</h3>
+              <h5 class="light grey-text text-lighten-3">Entrega de Acreditaciones de ISC, ITICS e Informática</h5>
+            </div>
+          </li>
+          <li>
+            <img src="images/visitas_industriales/Oracle-Guadalajara-2018-03-13-1.jpg" class="responsive-img">
+            <div class="caption right-align">
+              <h3>Visita Industrial a Oracle Guadalajara</h3>
+              <h5 class="light grey-text text-lighten-3">Alumnos de ISC e ITICS realizaron una visita industrial a Oracle en Guadalajara</h5>
+            </div>
+          </li>
+          <li>
+            <img src="images/eventos/Bronce_Infomatrix_2018.jpg" class="responsive-img" height="70px">
+            <div class="caption right-align">
+              <h3>Final Continental Infomatrix</h3>
+              <h5 class="light grey-text text-lighten-3">La alumna Wendy Arévalo de ITICS obtuvo medalla de bronce con el Proyecto "Aprendizaje de Vocabulario en Inglés usando Código QR".</h5>
+            </div>
+          </li>
+        </ul>
+      </div>        
+  </div>
+</div>
+</div>
+</div>
+  
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Nuevo Ingreso Agosto 2018</h5>    
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><i class="material-icons">info</i>Convocatoria para Ingeniería</div>
+                <div class="collapsible-body"><span>Consulta la <a class="waves-effect waves-teal btn-flat" href="http://itmorelia.edu.mx/2012-admin/extras/archivos/CONVOCATORIAnuevoingresoago-dic2018.pdf">convocatoria</a> de nuevo ingreso para el período Agosto-Diciembre 2018 de Ing. en Sistemas Computacionales e Ing. en Tec. de Inf. y Com.</span></div>
+              </li>
+              
+              <li>
+                <div class="collapsible-header"><i class="material-icons">info</i>Convocatoria para Maestría</div>
+                <div class="collapsible-body"><span>Consulta la <a class="waves-effect waves-teal btn-flat" href="http://dsc.itmorelia.edu.mx/msc/admision.php">convocatoria</a> de nuevo ingreso para el período Agosto-Diciembre 2018 de la Maestría en Sistemas Computacionales.</span></div>
+              </li>
+              
+              <li>
+                <div class="collapsible-header"><i class="material-icons">school</i>Becas para Licenciatura</div>
+                <div class="collapsible-body"><span>Consulta el catálogo nacional de <a href="http://www.becaseducacionsuperior.sep.gob.mx/#">becas</a> para la educación superior. Haz tus trámites en el departamento de desarrollo académico</span></div>
+              </li>
+            </ul>
+        
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Vida en Campus</h5>
+
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><i class="material-icons">directions_run</i>Deportes</div>
+                <div class="collapsible-body"><span>Consulta todas las <a href="actividades-deportivas.php">actividades deportivas</a> que tenemos para tí.</span></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">art_track</i>Difusión Cultural</div>
+                <div class="collapsible-body"><span>Consulta todas las <a href="actividades-culturales.php">actividades culturales</a> que tenemos para tí.</span></div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">group</i>Desarrollo Estudiantil</div>
+                <div class="collapsible-body"><span>Muy pronto tendremos toda la información para tí.</span></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">business</i></h2>
+            <h5 class="center">Convenios con la Industria</h5>
+
+            <p class="light">Consulta los convenios que tenemos actualmente con la industria <a href="convenios-industria.php">privada</a> y <a href="convenios-gobierno.php">gobierno</a>.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">...sé un triunfador, únete a la comunidad Pony!</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="images/background2.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4 id="contacto">Contáctanos</h4>
+          <p class="center-align light">Av. Tecnológico No. 1500.<br>
+Col. Lomas de Santiaguito. C.P. 58120.<br>
+Tel. (443) 312 15 70, ext. 233. Morelia, Michoacán. <br>
+Departamento de Sistemas y Computación, Edificio I. <br>Correo: <a href="mailto:dsc@itmorelia.edu.mx">dsc@itmorelia.edu.mx</a>, Web: <a href="http://dsc.itmorelia.edu.mx/">http://dsc.itmorelia.edu.mx</a>,<br>Jefe de Departamento: M.C. Benito Sánchez Raya, <br><a href="mailto:bsanchez@itmorelia.edu.mx">bsanchez@itmorelia.edu.mx</a>. </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">Comunidad Pony</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="images/background3.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+
+<div class="pie">
+  <footer class="page-footer red darken-4">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 m6 s12 ">
+          <h5 class="white-text">Instituto Tecnológico de Morelia</h5>
+          <p class="grey-text text-lighten-4">Av. Tecnológico No. 1500.<br>
+Col. Lomas de Santiaguito. C.P. 58120.<br>
+Tel. (443) 312 15 70, ext. 233. Morelia, Michoacán. <br>
+Departamento de Sistemas y Computación, 
+Edificio I. <a href="mailto:dsc@itmorelia.edu.mx">dsc@itmorelia.edu.mx</a>, Jefe de Departamento: M.C. Benito Sánchez Raya, <a href="mailto:bsanchez@itmorelia.edu.mx">bsanchez@itmorelia.edu.mx</a>, <a href="http://dsc.itmorelia.edu.mx/">http://dsc.itmorelia.edu.mx/</a></p>
+
+
+        </div>
+      
+        <div class="col l6 m6 s12">
+          <h5 class="white-text">Ligas de Interés</h5>
+          <ul>
+            <li><a class="white-text" href="http://www.tecnm.mx">Tecnológico Nacional de México</a></li>
+            <li><a class="white-text" href="http://itmorelia.edu.mx">Instituto Tecnológico de Morelia</a></li>
+            <li><a class="white-text" href="http://dsc.itmorelia.edu.mx/msc">Maestría en Sistemas Computacionales</a></li>
+            <li><a class="white-text" href="http://itmorelia.edu.mx/2012-admin/extras/archivos/PDF/Aviso_Privacidad.pdf">Aviso de Privacidad</a></li>
+            <li><a class="white-text" href="http://www.itmorelia.edu.mx/content.php?pagename=Directorio">Directorio Tec Morelia</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Hecho por Abel Pintor con <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>  <span class="right">Síguenos por &nbsp; <a href="https://www.facebook.com/dscitm/"><img src="images/Facebook-Logo.png" height="24px"></a></span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+
+  </body>
+</html>
