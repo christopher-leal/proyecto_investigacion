@@ -1,5 +1,6 @@
 /*Encabezado*/
 div.encabezado {
+    font-family: Verdana, Tahoma, Geneva, sans-serif;
     border-bottom: 2px solid #e1e1e1
 }
 div.encabezado h3 {
@@ -10,6 +11,9 @@ div.encabezado h3 {
 }
 
 /*Navegacion*/
+nav ul {
+    margin: 0;
+}
 div.navegacion ul li a {
     font-family: Verdana, Tahoma, Geneva, sans-serif;
     text-decoration: none;
@@ -36,6 +40,14 @@ div.navegacion ul li::after {
     content: '\f0d7';
     font-weight: 900;
     margin-left: 5px;
+}
+
+/*Carousel*/
+div.imagen img{
+    max-height: 500px;
+}
+div.imagen div h5,p {
+    text-align: left;
 }
 
 /*Footer*/
