@@ -1,0 +1,47 @@
+/*Encabezado*/
+div.encabezado {
+    border-bottom: 2px solid #e1e1e1
+}
+div.encabezado h3 {
+    text-align: center;
+    font-size: 1.2em;
+    color: #7B3537;
+    
+}
+
+/*Navegacion*/
+div.navegacion ul li a {
+    font-family: Verdana, Tahoma, Geneva, sans-serif;
+    text-decoration: none;
+    list-style: none;
+    color: black;
+}
+
+div.navegacion ul li {
+    display: inline-block;
+    padding: 10px 10px;
+    transition: all .3s ease-in-out;
+}
+
+div.navegacion ul li:hover {
+    background-color: #e1e1e1;
+}
+
+div.navegacion ul li:nth-child(1)::after {
+    content: '';
+    color: #fe4918;
+}
+div.navegacion ul li::after {
+    font-family: "Font Awesome 5 Free";
+    content: '\f0d7';
+    font-weight: 900;
+    margin-left: 5px;
+}
+
+/*Footer*/
+footer.color {
+    background-color: #7B3537;
+}
+footer.color div {
+    color: white;
+}
