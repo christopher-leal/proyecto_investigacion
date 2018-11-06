@@ -2,8 +2,8 @@
 $sqlUser="root";
 $sqlPass="";
 
-function iniciaConexion(){
-  GLOBAL $sqlUser, $sqlPass;
+function iniciaConexion($sqlUser,$sqlPass){
+  //GLOBAL $sqlUser, $sqlPass;
   $conexionMySQL = @mysqli_connect("localhost", $sqlUser, $sqlPass, "pgpi");
   if (!$conexionMySQL) {
     return null;
