@@ -50,17 +50,17 @@
                     
                 </p>
             </div>
-            <div class="col-md-4 offset-md-1 imagen">
-                <img src="img/invitado6.jpg" alt="investigador">
+            <div class="col-md-4 offset-md-1">
+                <div class="imagen">
+                    <img src="img/invitado6.jpg" alt="investigador">
+                </div>
                 <div class="contenedor-info">
                     <h3>jefe de proyecto</h3>
                     <h3>colaboradores</h3>
                     <h3>financiamiento</h3>
                 </div>
                 <div class="contenedor-info">
-                    <h3>
-                        datos de contacto jefe de proyecto
-                    </h3>
+                    <h3 id="hola">datos de contacto jefe de proyecto</h3>
                 </div>
             </div>
         </div>

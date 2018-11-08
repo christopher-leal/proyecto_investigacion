@@ -1,7 +1,7 @@
 <?php
     try {
     require_once('includes/funciones/bdconexion.php');
-    $sql = " select *from invitados ";
+    $sql = " select *from a ";
 
     $resultado = $conn->query($sql);
     } catch(Exception $e) {
