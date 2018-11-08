@@ -15,12 +15,46 @@
 </head>
 
 <body>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <a id="menu_ocultar" href="#"><i class="fas fa-times"></i></a>
+                <li class="sidebar-brand">
+                    <a class="nav-item nav-link" href="#"><i class="fas fa-home"></i></a>
+                </li>
+                <li>
+                    <a href="#">Dashboard</a>
+                </li>
+                <li>
+                    <a href="#">¿Quiénes somos?</a>
+                </li>
+                <li>
+                    <a href="#">Oferta educativa</a>
+                </li>
+                <li>
+                    <a href="#">Comunidad Tec</a>
+                </li>
+                <li>
+                    <a href="#">Servicios</a>
+                </li>
+                <li>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /sidebar-wrapper -->
+
+    <!-- Encabezado -->
     <div class="encabezado">
         <h3>Instituto Tecnológico de Morelia</h3>
         <h3>Departamento de Sistemas y Computación</h3>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation" onclick="alert('hola');">
+    <!-- /Encabezado -->
+
+    <!-- Navbar -->
+    <nav id="menu_nabvar" class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <button id="btn_menu_principal" class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse">
@@ -33,6 +67,9 @@
             </div>
         </div>
     </nav>
+    <!-- /Navbar-->
+
+    <!-- /Carousel principal -->
     <div id="carouselExampleIndicators" class="carousel slide imagen" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -44,7 +81,8 @@
                 <img class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Texto 1</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa aspernatur
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
+                        aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
                         repellat hic asperiores similique.</p>
                 </div>
@@ -53,7 +91,8 @@
                 <img class="d-block w-100 img-fluid rounded" src="img/markus-spiske-518966-unsplash.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Texto 2</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa aspernatur
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
+                        aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
                         repellat hic asperiores similique.</p>
                 </div>
@@ -62,7 +101,8 @@
                 <img class="d-block w-100 img-fluid rounded" src="img/wallhaven-165668.jpg" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Texto 3</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa aspernatur
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
+                        aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
                         repellat hic asperiores similique.</p>
                 </div>
@@ -77,17 +117,32 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <!-- /Carrousel principal -->
 
+    <!-- seccion de eventos proyectos publicaciones e investigadores  -->
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Eventos</h1>
+        <dir class="row">
+            <div class="col-lg-6">
+                <h2>Eventos</h2>
+                <img class="d-block w-100 img-fluid" src="img/wallhaven-165668.jpg">
             </div>
-            <div class="col">
-                <h1>Investigadores</h1>
+            <div class="col-lg-6">
+                <H2>Investigador</H2>
+                <img class="d-block w-100 img-fluid" src="img/wallhaven-165668.jpg">
+            </div>
+        </dir>
+        <div class="row">
+            <div class="col-lg-6">
+                <H2>Congresos</H2>
+                <img class="d-block w-100 img-fluid" src="img/markus-spiske-518966-unsplash.jpg">
+            </div>
+            <div class="col-lg-6">
+                <H2>publicaciones</H2>
+                <img class="d-block w-100 img-fluid" src="img/markus-spiske-518966-unsplash.jpg">
             </div>
         </div>
     </div>
+    <!-- /seccion de eventos proyectos publicaciones e investigadores  -->
 
     <!-- Footer -->
     <footer class="page-footer font-small pt-4 color">
@@ -95,15 +150,18 @@
             <div class="row">
                 <div class="col-md-6 mt-md-0 mt-3">
                     <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla,
+                        nihil
                         repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam
                         recusandae harum esse fugiat. Itaque, culpa?</p>
                 </div>
                 <hr class="clearfix w-100 d-md-none pb-3">
                 <div class="col-md-6 mb-md-0 mb-3">
                     <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi
-                        earum commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam,
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis
+                        modi
+                        earum commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos
+                        ipsam,
                         aspernatur id excepturi hic.</p>
 
                 </div>
@@ -120,6 +178,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/all.min.js"></script>
+    <script src="js/principal/principal.js"></script>
 </body>
 
 </html>
