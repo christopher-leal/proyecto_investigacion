@@ -47,33 +47,30 @@ div.encabezado h3 {
 }
 
 /*Navegacion*/
-nav ul {
-    margin: 0;
-}
 
-div.navegacion ul li a {
-    font-family: Verdana, Tahoma, Geneva, sans-serif;
+div.navegacion a {
+    font-family: var(--fuentePrimaria);
     text-decoration: none;
     list-style: none;
-    color: black;
-}
-
-div.navegacion ul li {
-    display: inline-block;
+    color: var(--colorPrimario) !important;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-weight: bolder;
+    font-size: .85rem;
     padding: 10px 10px;
-    transition: all .3s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+nav div.navegacion a:hover {
+    background-color: var(--colorPrimario);
+    color: #fff !important;
+    border-radius: 5px;
 }
 
-div.navegacion ul li:hover {
-    background-color: #e1e1e1;
-}
-
-div.navegacion ul li:nth-child(1)::after {
+div.navegacion a:nth-child(1)::after {
     content: '';
-    color: #fe4918;
 }
 
-div.navegacion ul li::after {
+div.navegacion a::after {
     font-family: "Font Awesome 5 Free";
     content: '\f0d7';
     font-weight: 900;
