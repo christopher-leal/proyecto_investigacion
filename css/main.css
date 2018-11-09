@@ -50,10 +50,66 @@ div.imagen div h5,p {
     text-align: left;
 }
 
-/*Footer*/
-footer.color {
-    background-color: #7B3537;
+/*Formularios*/
+button.Entrar
+{
+     background-color:#1E365E;
+     text-align: center;
+     color: #ffffff;
+     width: 90%
+
 }
-footer.color div {
+div.formulario
+{
+    height: 330px;
+    width: 450px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:linear-gradient( rgba(119, 127, 168, 0.8),rgba(36, 78, 132, .8));
+    margin: 20px;
+    border-radius: 9px; 
+    
+   
+
+    
+    
+}
+div.contfor
+{
+    height: 550px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#ffffff;
+    background-size: cover;
+    height: 100vh;
+    background-image: url("C:/Users/Froylan/Documents/Sem/GPS/ProyectoGPS/img/Fondo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+ input[type=text]
+ {
+    width: 90%;
+    padding: 6px 39px;
+    margin: 8px 0;
+    border: 2px;
+    border-radius: 10px;
+    text-align: center;
+ }
+ input[type=password]
+ {
+    width: 90%;
+    padding: 6px 39px;
+    margin: 8px 0;
+    border: 2px;
+    border-radius: 10px;
+    text-align: center;
+ }
+ a 
+ {
+    text-align: center;
     color: white;
-}
+ }
