@@ -81,11 +81,11 @@ div.navegacion ul li::after {
 }
 
 /*Carousel*/
-div.imagen img {
+div.imagenes-carousel img {
     max-height: 500px;
 }
 
-div.imagen div h5,
+div.imagenes-carousel div h5,
 p {
     text-align: left;
 }
@@ -235,10 +235,8 @@ div.info-proyecto p {
     font-family: 'Open Sans', sans-serif, Geneva, Verdana;
     color: var(--colorPrimario);
     letter-spacing: 1px;
-<<<<<<< HEAD
     text-align: justify;
-}
-=======
+
 }
 
 /*navbar*/
@@ -380,4 +378,3 @@ img.contenido {
   height: 50em;
 }
 
->>>>>>> 4b8dd29449c8fd482efafa723b1dbdcbc23b534b

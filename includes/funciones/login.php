@@ -1,6 +1,6 @@
 <?php
 $conexion = iniciaConexion("admin","ProyectosInvestigacion");
-$consulta = "select * from investigador"
+$consulta = "select * from investigador";
 consultaSQL($consulta);
 
  ?>
