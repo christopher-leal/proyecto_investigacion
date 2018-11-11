@@ -47,8 +47,9 @@
 
     <!-- Encabezado -->
     <div class="encabezado">
-        <h3>Instituto Tecnológico de Morelia</h3>
-        <h3>Departamento de Sistemas y Computación</h3>
+        <img src="img/imagenes tec/logos.png" alt="Nombre del Tec" >
+        <img src="img/imagenes tec/letras.png" alt="Nombre del Tec" >
+        <img src="img/imagenes tec/escudo.png" alt="Nombre del Tec" >
     </div>
     <!-- /Encabezado -->
 
