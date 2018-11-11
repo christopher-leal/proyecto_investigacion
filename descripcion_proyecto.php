@@ -1,4 +1,3 @@
-<?php include_once "includes/funciones/descripcion_proyecto.php";?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,49 +17,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md titulo">
-                <h2>titulo del proyecto</h2>
+                <h2></h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md fecha">
-                <h3>fecha de inicio y fecha de termino</h3>
+                <h3></h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7 contenedor">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum iusto corporis officiis
-                    magnam ea necessitatibus, nemo voluptates dolorum cum tenetur, voluptatibus autem aut non? Cum
-                    placeat iure beatae porro.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi distinctio, repellendus at illo
-                    maiores enim quas aut consequuntur tempore dolores delectus temporibus quam, culpa, unde nihil
-                    eveniet cumque laudantium. Autem.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum iusto corporis officiis
-                    magnam ea necessitatibus, nemo voluptates dolorum cum tenetur, voluptatibus autem aut non? Cum
-                    placeat iure beatae porro.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi distinctio, repellendus at illo
-                    maiores enim quas aut consequuntur tempore dolores delectus temporibus quam, culpa, unde nihil
-                    eveniet cumque laudantium. Autem.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum iusto corporis officiis
-                    magnam ea necessitatibus, nemo voluptates dolorum cum tenetur, voluptatibus autem aut non? Cum
-                    placeat iure beatae porro.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi distinctio, repellendus at illo
-                    maiores enim quas aut consequuntur tempore dolores delectus temporibus quam, culpa, unde nihil
-                    eveniet cumque laudantium. Autem.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti laborum iusto corporis officiis
-                    
-                </p>
+            <div class="col-md-7 contenedor resumen">
+                <p></p>
             </div>
             <div class="col-md-4 offset-md-1">
                 <div class="imagen">
-                    <img src="img/invitado6.jpg" alt="investigador">
+                    <img id="imagen" src="img/invitado6.jpg" alt="investigador">
                 </div>
                 <div class="contenedor-info">
-                    <h3>jefe de proyecto</h3>
-                    <h3>colaboradores</h3>
-                    <h3>financiamiento</h3>
+                    <h3 id="jefe_proyecto"></h3>
+                    <h3 id="colaboradores"></h3>
+                    <h3 id="financiamiento"></h3>
                 </div>
                 <div class="contenedor-info">
-                    <h3 id="hola">datos de contacto jefe de proyecto</h3>
+                    <h3>Datos de contacto</h3><br>
+                    <h4 id="nombre"></h4>
+                    <h4 id="correo"></h4>
+                    <h4 id="ubicacion"></h4>
                 </div>
             </div>
         </div>
@@ -70,6 +52,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/all.min.js"></script>
+    <script src="js/proyectos/descripcion_proyecto.js"></script>
 </body>
 
 </html>

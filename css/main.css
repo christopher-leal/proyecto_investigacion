@@ -32,6 +32,15 @@ h3 {
     letter-spacing: .2em;
     font-weight: bolder;
 }
+h4 {
+    font-family: var(--fuentePrimaria);
+    font-size: .7em;
+    color: var(--colorPrimario);
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-weight: bolder;
+
+}
 
 /*Encabezado*/
 div.encabezado {
@@ -146,8 +155,15 @@ div.imagen:hover img {
     -webkit-filter: grayscale(0);
     transform: scale(1.05);
 }
+div.contenedor-info h4 {
+    text-align: center;
+    overflow: initial;
+}
+div.contenedor-info h4#correo {
+    text-transform: lowercase;
+}
 
-/***Proyecto***/
+/***Proyectos***/
 div.filtro {
     margin: 20px 0;
     text-align: center;
