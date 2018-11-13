@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-4 offset-md-1">
                 <div class="imagen">
-                    <img id="imagen" src="img/invitado6.jpg" alt="investigador">
+                    <img id="imagen"alt="investigador">
                 </div>
                 <div class="contenedor-info">
                     <h3 id="jefe_proyecto"></h3>
