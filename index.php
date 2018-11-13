@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 img-fluid rounded" src="img/markus-spiske-518966-unsplash.jpg" alt="Second slide">
+                <img class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Texto 2</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 img-fluid rounded" src="img/wallhaven-165668.jpg" alt="Third slide">
+                <img class="d-block w-100 img-fluid rounded" src="img/fondo codigo.jpg" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Texto 3</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
