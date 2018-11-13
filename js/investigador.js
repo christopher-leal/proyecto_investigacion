@@ -6,15 +6,20 @@ function buscarDatos(){
   $.ajax({
           type: "POST",
           async: true,
-          url: "php/investigadores.php",
+          url: "investigadores.php",
           timeout: 12000,
           //data: $("#form").serialize(),
           dataType: "json",
           success: function(response)
           {
+            const contenedor = document.createElement('div');
+            contenedor.classList.add('container');
+            const imagen = document.createElement('img');
+            contenedor.appendChild(imagen);
             $.each(response,function(key, registro) {
+
                 //$("#dato").append('<p>'+registro.id_investigador+'<p>');
-                $("#output").append("<div class='port' style='background-image: url(http://localhost/proyecto_investigacion1/img/"+registro.url_foto+"')'>"+
+                $("#output").append("<div class='port' style='background-image: url(http://localhost/proyecto_investigacion/img/"+registro.url_foto+"')'>"+
                 "<div class='portfolioDisc'><span>"
                 +registro.nombre+"</span><span>"+registro.linea_investigacion+"<span></div></div>")
             });
