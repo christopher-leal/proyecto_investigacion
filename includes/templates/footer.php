@@ -33,7 +33,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/all.min.js"></script>
     <script src="js/principal/principal.js"></script>
-    <script src="js/proyectos/descripcion_proyecto.js"></script>
+    <script src="js/proyectos/proyectos_funciones.js"></script>
 
 </body>
 
