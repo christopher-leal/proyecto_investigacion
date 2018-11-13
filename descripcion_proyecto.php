@@ -1,4 +1,4 @@
-<?php include_once 'includes/templates/header.php';?>
+<?php include_once 'includes/templates/header.php'; ?>
     <div class="container">
         <div class="row">
             <div class="col-md titulo">
