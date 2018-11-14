@@ -11,9 +11,11 @@ function consultarInvestigador($filtro,$filtro2){
 
     if($filtro!="default" && $filtro2=="default"){
       $query = "SELECT * FROM investigador inner join linea_investigacion on investigador.linea_investigacion = linea_investigacion.id_linea where id_linea=$filtro";
-    }else if($filtro2!="default" && $filtro=="default"){
+    }
+    if($filtro2!="default" && $filtro=="default"){
       $query = "SELECT * FROM investigador inner join linea_investigacion on investigador.linea_investigacion = linea_investigacion.id_linea where nombre=$filtro2";
-    }else if($filtro!="default" && $filtro2!="default"){
+    }
+    if($filtro!="default" && $filtro2!="default"){
       $query = "SELECT * FROM investigador inner join linea_investigacion on investigador.linea_investigacion = linea_investigacion.id_linea where id_linea=$filtro and nombre=$filtro2";
     }
 
