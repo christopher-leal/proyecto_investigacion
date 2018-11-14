@@ -75,8 +75,8 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -90,8 +90,8 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
+                <img id="img_carrousel_2" class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Second slide">
+                <div id="contenido_carrousel_2" class="carousel-caption d-none d-md-block">
                     <h1>Texto 2</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
@@ -100,8 +100,8 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 img-fluid rounded" src="img/fondo codigo.jpg" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">
+                <img id="img_carrousel_3"class="d-block w-100 img-fluid rounded" src="img/fondo codigo.jpg" alt="Third slide">
+                <div id="contenido_carrousel_3" class="carousel-caption d-none d-md-block">
                     <h1>Texto 3</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur

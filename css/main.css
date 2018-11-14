@@ -103,7 +103,7 @@ div.navegacion a::after {
 /*Carousel*/
 div.imagenes-carousel img {
     max-height: 500px;
-    filter: contrast(.4);
+    filter: contrast(.8);
 }
 
 div.imagenes-carousel div h5 {
