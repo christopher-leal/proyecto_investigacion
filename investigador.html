@@ -122,21 +122,19 @@
         <div class="row">
             <div class="col-md filtro">
                 <h3>filtrar</h3>
-                <form id="form">
-                <select name="año" id="año">
-                    <option value="default">Correo</option>
-                    <option value="default">Año</option>
-                    <option value="default">Año</option>
-                    <option value="default">Año</option>
-                </select>
-                <select name="investigador" id="investigador">
-                    <option value="default">Linea de investigacion</option>
+                <form id="form" name="form">
+                  <select name="nombre" id="nombre">
+                      <option value="default">Nombre</option>
 
-                </select>
+                  </select>
+                  <select name="investigador" id="investigador">
+                      <option value="default">Linea de investigacion</option>
 
-                <button class="btn" type="button" onclick="filtrar()">aplicar</button>
-                <button class="btn" type="button" onclick="reiniciar()">reiniciar</button>
-              </form>
+                  </select>
+
+                  <button class="btn" type="button" onclick="filtrar()">aplicar</button>
+                  <button class="btn" type="button" onclick="reiniciar()">reiniciar</button>
+                </form>
             </div>
         </div>
 

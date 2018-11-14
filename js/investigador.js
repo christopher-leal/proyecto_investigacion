@@ -3,16 +3,17 @@ $( document ).ready(function() {
 });
 
 function filtrar(){
+  $("#output").empty();
   $.ajax({
     type: "POST",
     async: true,
-    url: "investigadores.php",
+    url: "filtro-investigador.php",
     timeout: 12000,
-    //data: $("#form").serialize(),
+    data: $("#form").serialize(),
     dataType: "json",
     success: function(response)
     {
-      
+
       $.each(response,function(key, registro) {
 
           $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
@@ -20,9 +21,6 @@ function filtrar(){
           "<img src='http://localhost/proyecto_investigacion/img/"+registro.url_foto+"'>"+
           "<h3>"+registro.nombre+"</span><br><span>"+registro.nombre_linea+"<span>"+
           "</h3></div></div>");
-
-          $("#investigador").append("<option value='"+registro.id_linea+"'>"+registro.nombre_linea+"</option>");
-
       });
     },
     error: function(jqXHR, textStatus, errorThrown){
@@ -58,7 +56,9 @@ function buscarDatos(){
                 "<img src='http://localhost/proyecto_investigacion/img/"+registro.url_foto+"'>"+
                 "<h3>"+registro.nombre+"</span><br><span>"+registro.nombre_linea+"<span>"+
                 "</h3></div></div>");
+
                 $("#investigador").append("<option value='"+registro.id_linea+"'>"+registro.nombre_linea+"</option>");
+                $("#nombre").append("<option value='"+registro.nombre+"'>"+registro.nombre+"</option>");
                 //"<div class=' col-md-12'><span>"+
             });
           },
