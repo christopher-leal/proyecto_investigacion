@@ -11,7 +11,7 @@ if(!empty($_POST['usuario'])&& !empty($_POST['contraseña']))
 
 
 $conexion = iniciaConexion();
-$consulta = ""
+$consulta = "";
 consultaSQL($consulta);
 
  ?>

@@ -77,9 +77,12 @@ function cargar_carousel() {
             $("#contenido_carrousel_1").empty();
             $("#contenido_carrousel_3").empty();
             $("#contenido_carrousel_5").empty();
-            $("#contenido_carrousel_1").append("<h5>"+jsonObjet[0].titulo_proyecto+"</h5><h5>Lider: "+jsonObjet[0].nombre_completo+"</h5><p>"+jsonObjet[0].resumen+"</p>");
-            $("#contenido_carrousel_3").append("<h5>"+jsonObjet[1].titulo_proyecto+"</h5><h5>Lider: "+jsonObjet[1].nombre_completo+"</h5><p>"+jsonObjet[1].resumen+"</p>");
-            $("#contenido_carrousel_5").append("<h5>"+jsonObjet[2].titulo_proyecto+"</h5><h5>Lider: "+jsonObjet[2].nombre_completo+"</h5><p>"+jsonObjet[2].resumen+"</p>");
+            $("#enlace_img1").click(function (event){
+                alert("caca"+jsonObjet[0].titulo_proyecto);
+            })
+            $("#contenido_carrousel_1").append("<h5 class='bor_texto'>Proyecto: "+jsonObjet[0].titulo_proyecto+"</h5><h4 class='bor_texto'>Lider: "+jsonObjet[0].nombre_completo+"</h4><p class='bor_texto'>"+jsonObjet[0].resumen+"</p>");
+            $("#contenido_carrousel_3").append("<h5 class='bor_texto'>Proyecto: "+jsonObjet[1].titulo_proyecto+"</h5><h4 class='bor_texto'>Lider: "+jsonObjet[1].nombre_completo+"</h4><p class='bor_texto'>"+jsonObjet[1].resumen+"</p>");
+            $("#contenido_carrousel_5").append("<h5 class='bor_texto'>Proyecto: "+jsonObjet[2].titulo_proyecto+"</h5><h4 class='bor_texto'>Lider: "+jsonObjet[2].nombre_completo+"</h4><p class='bor_texto'>"+jsonObjet[2].resumen+"</p>");
             $("#img_carrousel_1").attr("src", jsonObjet[0].link_imagen);
             $("#img_carrousel_3").attr("src", jsonObjet[1].link_imagen);
             $("#img_carrousel_5").attr("src", jsonObjet[2].link_imagen);
@@ -97,8 +100,8 @@ function cargar_carousel() {
         if (jsonObjet.length > 0) {
             $("#contenido_carrousel_2").empty();
             $("#contenido_carrousel_4").empty();
-            $("#contenido_carrousel_2").append("<h5>"+jsonObjet[0].nombre_evento+"</h5><p>"+jsonObjet[0].descripcion+"</p>");
-            $("#contenido_carrousel_4").append("<h5>"+jsonObjet[1].nombre_evento+"</h5><p>"+jsonObjet[1].descripcion+"</p>");
+            $("#contenido_carrousel_2").append("<h5 class='bor_texto'>Congreso: "+jsonObjet[0].nombre_evento+"</h5><p class='bor_texto'>"+jsonObjet[0].descripcion+"</p>");
+            $("#contenido_carrousel_4").append("<h5 class='bor_texto'>Congreso: "+jsonObjet[1].nombre_evento+"</h5><p class='bor_texto'>"+jsonObjet[1].descripcion+"</p>");
             $("#img_carrousel_2").attr("src", jsonObjet[0].link_imagen);
             $("#img_carrousel_4").attr("src", jsonObjet[1].link_imagen);
         }
