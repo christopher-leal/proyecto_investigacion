@@ -217,7 +217,7 @@ div.filtro button:hover {
 }
 
 div.imagen-proyecto img {
-    max-width: 100%;
+    width: 100%;
     overflow: hidden;
     border-radius: 5px;
     filter: gray;

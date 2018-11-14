@@ -1,12 +1,15 @@
 $(function() {
   "use strict";
 
-  const xhr = new XMLHttpRequest();
+  const id = window.location.href.split("?")[1].split('=')[1]
+  const xhr = new XMLHttpRequest()
 
-  xhr.open("POST", "includes/funciones/descripcion_proyectobd.php", true);
+  xhr.open("GET", `includes/funciones/descripcion_proyectobd.php?id=${id}`, true);
 
   xhr.onload = function() {
-    const informacion = JSON.parse(xhr.responseText);
+    console.log(xhr.responseText)
+    //console.log(JSON.parse(xhr.responseText));
+    var informacion = JSON.parse(xhr.responseText.trim());
     const tituloProyecto = document.querySelector("div.titulo h2"),
       fecha = document.querySelector("div.fecha h3"),
       financiamiento = document.querySelector(
