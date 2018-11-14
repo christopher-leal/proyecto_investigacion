@@ -80,7 +80,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img id="img_carrousel_1" class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide">
+                <a id="enlace_img1" href="#" onclick=""><img id="img_carrousel_1" class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide"></a>
                 <div id="contenido_carrousel_1" class="carousel-caption d-none d-md-block">
                     <h5>Texto 1</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
@@ -109,8 +109,8 @@
                         repellat hic asperiores similique.</p>
                 </div>
             </div>
-            <div id="img_carrousel_4" class="carousel-item">
-                <img class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Fourth slide">
+            <div class="carousel-item">
+                <img id="img_carrousel_4" class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Fourth slide">
                 <div id="contenido_carrousel_4" class="carousel-caption d-none d-md-block">
                     <h5>Texto 4</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa

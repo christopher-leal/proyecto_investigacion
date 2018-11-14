@@ -14,36 +14,24 @@
                     <h5 class="card-title">Proyectos</h5>
                     <div class="blanco_principal card text-right" style="width: 18rem;">
                         <img id="img_proyecto" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="#" class="btn btn-outline-dark">Ver mas...</a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <h5 class="card-title ">Investigadores</h5>
                     <div class="blanco_principal card text-right" style="width: 18rem;">
                         <img id="img_investigador" class="card-img-top " src="img\fondo codigo.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="#" class="btn btn-outline-dark">Ver mas...</a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <h5 class="card-title">Congresos</h5>
                     <div class="blanco_principal card text-right" style="width: 18rem;">
                         <img id="img_congreso" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="#" class="btn btn-outline-dark">Ver mas...</a>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <h5 class="card-title">publicaciones</h5>
                     <div class="blanco_principal card text-right" style="width: 18rem;">
                         <img id="img_publicacion" class="card-img-top" src="https://cdn4.educacion2.com/wp-content/uploads/libros10.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="#" class="btn btn-outline-dark">Ver mas...</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -65,39 +53,27 @@
             </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 ">
-                <div class="card blanco_principal" style="width: 18rem;">
-                    <h5 class="card-title">Ingenieria de Software</h5>
+                <h5 class="card-title">Ingenieria de Software</h5>
+                <div class="blanco_principal card text-right" style="width: 18rem;">
                     <img id="img_proyecto" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Ver mas...</a>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card blanco_principal" style="width: 18rem;">
-                    <h5 class="card-title">Seguridad Informatica</h5>
+                <h5 class="card-title">Seguridad Informatica</h5>
+                <div class="blanco_principal card text-right" style="width: 18rem;">
                     <img id="img_investigador" class="card-img-top " src="img\fondo ciudad.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Ver mas...</a>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card blanco_principal" style="width: 18rem;">
-                    <h5 class="card-title">Tecnologias Web</h5>
+                <h5 class="card-title">Tecnologias Web</h5>
+                <div class="blanco_principal card text-right" style="width: 18rem;">
                     <img id="img_congreso" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Ver mas...</a>
-                    </div>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card blanco_principal" style="width: 18rem;">
-                    <h5 class="card-title">Educativa</h5>
+                <h5 class="card-title">Educativa</h5>
+                <div class="blanco_principal card text-right" style="width: 18rem;">
                     <img id="img_publicacion" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary">Ver mas...</a>
-                    </div>
                 </div>
             </div>
         </div>
