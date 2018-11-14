@@ -273,7 +273,7 @@ div.info-proyecto p {
 }
 /*Investigadores*/
 .portfolioDisc {
-	width: 300px;
+	width: 100%;
     height: 0px;
 	padding-top: 0px;
     overflow:hidden;
@@ -295,24 +295,6 @@ div.info-proyecto p {
 	color: #fff;
 }
 
-.port {
-  display: inline-block;
-  margin-left: 20px;
-	background-color: red;
-	width:300px;
-	height: 300px;
-	position:relative;
-
-	}
-
-
-.port:hover .portfolioDisc  {
-	margin-top:221px;
-  height:69px;
-	padding-top: 10px;
-  font-family: var(--fuentePrimaria);
-
-}
 /*navbar*/
 #menu_nabvar{
     z-index: 800;
