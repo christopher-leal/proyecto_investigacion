@@ -80,7 +80,7 @@
             <div class="carousel-item active">
                 <img class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Texto 1</h5>
+                    <h1>Texto 1</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
@@ -90,7 +90,7 @@
             <div class="carousel-item">
                 <img class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Second slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Texto 2</h5>
+                    <h1>Texto 2</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
@@ -100,7 +100,7 @@
             <div class="carousel-item">
                 <img class="d-block w-100 img-fluid rounded" src="img/fondo codigo.jpg" alt="Third slide">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>Texto 3</h5>
+                    <h1>Texto 3</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,

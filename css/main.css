@@ -89,12 +89,23 @@ div.navegacion a::after {
 
 /*Carousel*/
 div.imagenes-carousel img {
-    max-height: 500px;
+    height: 80vh;
+    filter: contrast(.6);
 }
 
-div.imagenes-carousel div h5,
-p {
-    text-align: left;
+div.imagenes-carousel div h1 {
+    text-align: center;
+    font-family: var(--fuentePrimaria);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+div.imagenes-carousel div p {
+    text-align: center;
+    font-family: var(--fuentePrimaria);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: .8rem;
 }
 
 /*Formularios*/
