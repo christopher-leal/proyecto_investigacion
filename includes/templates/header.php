@@ -80,15 +80,9 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-<<<<<<< HEAD
                 <a id="enlace_img1" href="#" onclick=""><img id="img_carrousel_1" class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide"></a>
                 <div id="contenido_carrousel_1" class="carousel-caption d-none d-md-block">
                     <h5>Texto 1</h5>
-=======
-                <img class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
-                    <h1>Texto 1</h1>
->>>>>>> 36dc269790f843b4effaa0078fd22bc84422834d
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
