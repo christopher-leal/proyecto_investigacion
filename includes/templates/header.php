@@ -75,11 +75,13 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide">
-                <div class="carousel-caption d-none d-md-block">
+                <img id="img_carrousel_1" class="d-block w-100 img-fluid rounded" src="img/callum-shaw-555357-unsplash.jpg" alt="First slide">
+                <div id="contenido_carrousel_1" class="carousel-caption d-none d-md-block">
                     <h5>Texto 1</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
@@ -88,8 +90,8 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Second slide">
-                <div class="carousel-caption d-none d-md-block">
+                <img id="img_carrousel_2" class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Second slide">
+                <div id="contenido_carrousel_2" class="carousel-caption d-none d-md-block">
                     <h5>Texto 2</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
@@ -98,9 +100,29 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100 img-fluid rounded" src="img/fondo codigo.jpg" alt="Third slide">
-                <div class="carousel-caption d-none d-md-block">
+                <img id="img_carrousel_3" class="d-block w-100 img-fluid rounded" src="img/fondo codigo.jpg" alt="Third slide">
+                <div id="contenido_carrousel_3" class="carousel-caption d-none d-md-block">
                     <h5>Texto 3</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
+                        aspernatur
+                        fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
+                        repellat hic asperiores similique.</p>
+                </div>
+            </div>
+            <div id="img_carrousel_4" class="carousel-item">
+                <img class="d-block w-100 img-fluid rounded" src="img/fondo ciudad.jpg" alt="Fourth slide">
+                <div id="contenido_carrousel_4" class="carousel-caption d-none d-md-block">
+                    <h5>Texto 4</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
+                        aspernatur
+                        fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
+                        repellat hic asperiores similique.</p>
+                </div>
+            </div>
+            <div  class="carousel-item">
+                <img id="img_carrousel_5" class="d-block w-100 img-fluid rounded" src="img/fondo codigo.jpg" alt="Fifth slide">
+                <div id="contenido_carrousel_5" class="carousel-caption d-none d-md-block">
+                    <h5>Texto 5</h5>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consequuntur ipsa
                         aspernatur
                         fugit fuga magni numquam iure enim, labore sequi maxime ipsum laborum tenetur nulla fugiat,
