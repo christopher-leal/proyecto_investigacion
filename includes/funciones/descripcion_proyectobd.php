@@ -2,7 +2,7 @@
 include_once 'bdconexion.php';
 try {
         $id = $_GET['id'];
-        $sql = "select p.titulo_proyecto,p.linea_investigacion,p.fecha_inicio, p.fecha_fin, p.financiamiento, p.link_imagen, p.resumen, i.nombre, i.apellido_paterno, i.apellido_materno, i.correo, i.ubicacion from proyectos p inner join investigadores i on p.id_investigador=i.id_investigador where id_proyecto=".$id;
+        $sql = " select p.titulo_proyecto,p.linea_investigacion,p.fecha_inicio, p.fecha_fin, p.financiamiento, p.link_imagen, p.resumen, i.nombre, i.apellido_paterno, i.apellido_materno, i.correo, i.ubicacion from proyectos p inner join investigadores i on p.lider_proyecto=i.id_investigador where id_proyecto=".$id;
         $datos = $conn->query($sql);
         while($dato=$datos->fetch_assoc()){
             $informacion=array(
