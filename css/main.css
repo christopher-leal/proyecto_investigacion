@@ -441,3 +441,37 @@ footer.color {
     font-family: var(--fuentePrimaria);
     letter-spacing: 1px;
 }
+/***PUBLICACIONES DE CADA INVESTIGADOR***/
+#publicaciones{
+    margin: 0;
+    padding: 0;
+    margin-top: 25px;
+  }
+  #publicaciones li{
+    list-style: none;
+    display: block;
+    font-family: var(--fuentePrimaria);
+  }
+  #publicaciones li a{
+    text-decoration: none;
+    position: relative;
+    color: var(--colorPrimario);
+    font-family: var(--fuentePrimaria);
+    display: block;
+    overflow: hidden;
+    transition: 0.7s all;
+    padding: 10px 5px;
+    text-transform: uppercase;
+  }
+  #publicaciones li a:before{
+    content: '';
+    width: 100px;
+    position: absolute;
+    border-bottom: 5px solid var(--colorPrimario);
+    bottom: 0;
+    right: 500px;
+    transition: 0.7s all;
+  }
+  #publicaciones li a:hover:before{
+    right: 0;
+  }
