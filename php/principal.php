@@ -17,7 +17,7 @@
             echo json_encode($respuesta);
         break;
         case 'consulta_proyectos_recientes':
-            $respuesta = consultaSQL("SELECT P.titulo_proyecto, CONCAT(I.nivel_estudios, ' ', I.nombre, '' '', I.apellido_paterno, '' '', I.apellido_materno) AS nombre_completo, P.link_imagen, P.resumen FROM investigadores AS I INNER JOIN proyectos AS P ON I.id_investigador=P.lider_proyecto WHERE P.status=1 ORDER BY P.fecha_registro DESC LIMIT 3;");
+            $respuesta = consultaSQL("SELECT P.titulo_proyecto, CONCAT(I.nivel_estudios, ' ', I.nombre, ' ', I.apellido_paterno, ' ', I.apellido_materno) AS nombre_completo, P.link_imagen, P.resumen FROM investigadores AS I INNER JOIN proyectos AS P ON I.id_investigador=P.lider_proyecto WHERE P.status=1 ORDER BY P.fecha_registro DESC LIMIT 3;");
             echo json_encode($respuesta);
         break;
         case 'consulta_congresos_recientes':

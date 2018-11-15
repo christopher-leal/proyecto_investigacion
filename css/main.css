@@ -16,7 +16,6 @@ html {
 h1 {
     font-family: var(--fuentePrimaria);
     color: var(--colorPrimario);
-    text-transform: uppercase;
     letter-spacing: .1em;
     font-weight: bold;
     font-size: 2rem;
@@ -27,7 +26,6 @@ h2 {
     font-family: var(--fuentePrimaria);
     font-size: 1.3em;
     color: var(--colorPrimario);
-    text-transform: uppercase;
     text-align: center;
     letter-spacing: .2em;
     font-weight: bold;
@@ -37,7 +35,6 @@ h3 {
     font-family: var(--fuentePrimaria);
     font-size: 1em;
     color: var(--colorPrimario);
-    text-transform: uppercase;
     letter-spacing: .2em;
     font-weight: bolder;
 }
@@ -45,7 +42,6 @@ h4 {
     font-family: var(--fuentePrimaria);
     font-size: .7em;
     color: var(--colorPrimario);
-    text-transform: uppercase;
     letter-spacing: .2em;
     font-weight: bolder;
 
@@ -76,9 +72,7 @@ div.navegacion a {
     text-decoration: none;
     list-style: none;
     color: var(--colorPrimario) !important;
-    text-transform: uppercase;
     letter-spacing: .2em;
-    font-weight: bolder;
     font-size: .85rem;
     padding: 10px 10px;
     transition: all .5s ease-in-out;
@@ -95,7 +89,6 @@ div.navegacion a:nth-child(1)::after {
 
 div.navegacion a::after {
     font-family: "Font Awesome 5 Free";
-    content: '\f0d7';
     font-weight: 900;
     margin-left: 5px;
 }
@@ -110,7 +103,6 @@ div.imagenes-carousel div h5 {
     text-align: left;
     font-family: var(--fuentePrimaria);
     letter-spacing: 2px;
-    text-transform: uppercase;
     font-size: 2rem;
 }
 
@@ -118,7 +110,6 @@ div.imagenes-carousel div h4 {
     text-align: left;
     font-family: var(--fuentePrimaria);
     letter-spacing: 2px;
-    text-transform: uppercase;
     font-size: 1.4rem;
 }
 
@@ -353,7 +344,6 @@ body {
   #sidebar-wrapper {
     font-family: var(--fuentePrimaria);
     letter-spacing: .2em;
-    text-transform: uppercase;
     z-index: 1000;
     position: fixed;
     left: 300px;
