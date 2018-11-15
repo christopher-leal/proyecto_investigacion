@@ -5,9 +5,8 @@
       //importamos la conexion a la base de datos
       require_once('includes/funciones/bdconexion.php');
       //Se genera y envia la consulta
-
-      $resultado = mysqli_query($conn, "SELECT * FROM investigador inner join linea_investigacion on investigador.linea_investigacion = linea_investigacion.id_linea");
-
+      $query = "SELECT * FROM investigadores inner join lineas_investigadores on investigadores.id_investigador = lineas_investigadores.id_investigador inner join lineas_investigacion on lineas_investigadores.id_linea = lineas_investigacion.id_linea";
+      $resultado = mysqli_query($conn, $query);
 
       //los datos son almacenados en un arreglo y se retorna test
       while($row = mysqli_fetch_assoc($resultado))

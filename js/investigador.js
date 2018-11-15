@@ -13,12 +13,11 @@ function filtrar(){
     dataType: "json",
     success: function(response)
     {
-
       $.each(response,function(key, registro) {
 
           $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
           "<div class='imagen-proyecto'>"+
-          "<img src='http://localhost/proyecto_investigacion/img/"+registro.url_foto+"'>"+
+          "<img src='"+registro.url_foto+"'>"+
           "<h3>"+registro.nombre+"</span><br><span>"+registro.nombre_linea+"<span>"+
           "</h3></div></div>");
       });
@@ -32,6 +31,8 @@ function filtrar(){
 function reiniciar(){
   $("#output").empty();
   $("#investigador").empty();
+  $("#nombre").empty();
+  $("#nombre").append("<option value='default'>Nombre</option>");
   $("#investigador").append("<option value='default'>Linea de investigacion</option>");
   buscarDatos();
 }
@@ -53,7 +54,7 @@ function buscarDatos(){
 
                 $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
                 "<div class='imagen-proyecto'>"+
-                "<img src='http://localhost/proyecto_investigacion/img/"+registro.url_foto+"'>"+
+                "<img src='"+registro.url_foto+"'>"+
                 "<h3>"+registro.nombre+"</span><br><span>"+registro.nombre_linea+"<span>"+
                 "</h3></div></div>");
 
