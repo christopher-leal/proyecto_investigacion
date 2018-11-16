@@ -152,11 +152,13 @@ div.formulario
 div.titulo {
     border-bottom: 2px solid var(--colorPrimario);
     padding: 20px 0;
+    text-transform: capitalize;
 }
 
 div.fecha h3 {
     margin: 20px 0;
     text-align: left;
+    text-transform: capitalize;
 }
 
 div.contenedor {
@@ -181,6 +183,7 @@ div.contenedor-info {
     text-align: center;
     margin: 20px 0;
     padding: 20px 20px;
+    text-transform: capitalize;
 }
 
 div.imagen img {
