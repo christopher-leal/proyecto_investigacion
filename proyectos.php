@@ -18,8 +18,8 @@
                 <button class="btn" type="button">reiniciar</button>
             </div>
         </div>
-        <!-- <div class="row justify-content-between row-container">
+        <div class="row justify-content-between row-container">
             
-        </div> -->
+        </div>
     </div>
 <?php include_once "includes/templates/footer.php";?>

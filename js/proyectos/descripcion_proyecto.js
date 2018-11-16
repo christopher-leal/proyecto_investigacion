@@ -1,6 +1,5 @@
 $(function() {
   "use strict";
-  alert("hola");
   const id = window.location.href.split("?")[1].split('=')[1]
   const xhr = new XMLHttpRequest()
 
