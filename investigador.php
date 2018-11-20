@@ -10,10 +10,7 @@
             <div class="col-md filtro">
                 <h3>filtrar</h3>
                 <form id="form" name="form">
-                  <select name="name" id="nombre">
-                      <option value="default">Nombre</option>
 
-                  </select>
                   <select name="investigador" id="investigador">
                       <option value="default">Linea de investigacion</option>
                   </select>
@@ -25,7 +22,6 @@
         <div id="output" class="col-md-12" ></div>
         <br>
     </div>
-
 
 <?php include 'includes/templates/footer.php';?>
 <script src="js/investigador.js"></script>
