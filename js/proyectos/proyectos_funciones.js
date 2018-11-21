@@ -1,8 +1,10 @@
 const btnAplicar = document.querySelector("button#aplicar");
+const btnReiniciar = document.querySelector("button#reiniciar");
 eventListeners();
 
 function eventListeners() {
   btnAplicar.addEventListener("click", aplicarFiltro);
+  btnReiniciar.addEventListener('click', cargarBD);
 }
 var fech = [],
   inves = [];
@@ -24,6 +26,7 @@ function cargarBD() {
     const informacion = JSON.parse(xhr.responseText);
     if (this.status === 200) {
       const contenedor = document.querySelector("div.row-container");
+      contenedor.innerHTML="";
       for (const info of informacion) {
         const contenedorGrid = document.createElement("div");
         contenedorGrid.classList.add(
@@ -107,18 +110,28 @@ function formato(fecha) {
   return fecha.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, "$3/$2/$1");
 }
 function cargarSelectaño(fech) {
+  selectAño = document.querySelector("select#año");
+  const añoDefault=document.createElement('option');
+  selectAño.innerHTML="";
+  añoDefault.setAttribute('value', 'default');
+  añoDefault.innerHTML="Año de inicio";
+  selectAño.appendChild(añoDefault);
   for (var i in fech) {
-    selectAño = document.querySelector("select#año");
     optionAño = document.createElement("option");
-    optionAño.innerHTML = "vacio";
+    optionAño.innerHTML = "";
     optionAño.setAttribute("value", fech[i]["anio"]);
     optionAño.innerHTML = fech[i]["anio"];
     selectAño.appendChild(optionAño);
   }
 }
 function cargarSelectinvestigador(inves) {
+  selectInves = document.querySelector("select#investigador");
+  const invesDefault=document.createElement('option');
+  selectInves.innerHTML="";
+  invesDefault.setAttribute('value', 'default');
+  invesDefault.innerHTML="Investigador";
+  selectInves.appendChild(invesDefault);
   for (var i in inves) {
-    selectInves = document.querySelector("select#investigador");
     optionInves = document.createElement("option");
     optionInves.innerHTML = "";
     optionInves.setAttribute("value", inves[i]["id_investigador"]);

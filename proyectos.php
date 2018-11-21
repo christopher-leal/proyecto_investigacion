@@ -9,13 +9,11 @@
             <div class="col-md filtro">
                 <h3>filtrar</h3>
                 <select name="año" id="año">
-                    <option value="default">Fecha de inicio</option>
                 </select>
                 <select name="investigador" id="investigador">
-                    <option value="default">Investigador</option>
                 </select>
                 <button class="btn" type="submit" id="aplicar">aplicar</button>
-                <button class="btn" type="button">reiniciar</button>
+                <button class="btn" type="button" id="reiniciar">reiniciar</button>
             </div>
         </div>
         <div class="row justify-content-between row-container">
