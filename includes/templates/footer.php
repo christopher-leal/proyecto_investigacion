@@ -35,6 +35,8 @@
     <script src="js/principal/principal.js"></script>
     <script src="js/proyectos/proyectos_funciones.js"></script>
     <script src="js/proyectos/descripcion_proyecto.js"></script>
+    <script src="js/proyectos/congresos.js"></script>
+    <script src="js/proyectos/publicaciones.js"></script>
 
 </body>
 
