@@ -262,6 +262,7 @@ div.filtro button:hover {
 
 div.imagen-proyecto img {
     width: 100%;
+    height: 175px;
     overflow: hidden;
     border-radius: 5px;
     filter: gray;
