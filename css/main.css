@@ -591,3 +591,8 @@ div.lineas_investigacion div h5 {
     color: var(--colorPrimario);
 
 }
+/*estilos*/
+.paginacion{
+  background-color:var(--colorPrimario);
+  color:white;
+}
