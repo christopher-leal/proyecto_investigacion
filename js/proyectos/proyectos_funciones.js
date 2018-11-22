@@ -10,11 +10,6 @@ var fech = [],
   inves = [];
 $(function() {
   "use strict";
-
-  const script = document.createElement("script");
-  script.src = "js/proyectos/descripcion_proyecto.js";
-  document.body.appendChild(script);
-
   cargarBD();
 });
 function cargarBD() {
@@ -59,7 +54,6 @@ function cargarBD() {
         const jefeProyecto = document.createElement("h3");
         const fechaProyecto = document.createElement("h3");
         const colaboradores = document.createElement("h3");
-        const resumen = document.createElement("p");
         tituloProyecto.innerHTML = `Titulo del proyecto:<br>${
           info.titulo_proyecto
         }`;
@@ -94,11 +88,9 @@ function cargarBD() {
           });
         }
         fechaProyecto.innerHTML = `del ${fechaInicio} al ${fechaFin}`;
-        resumen.innerHTML = info.resumen;
         infoProyecto.appendChild(tituloProyecto);
         infoProyecto.appendChild(jefeProyecto);
         infoProyecto.appendChild(fechaProyecto);
-        infoProyecto.appendChild(resumen);
       }
     }
     cargarSelectaño(fech);
@@ -181,7 +173,6 @@ function aplicarFiltro() {
             const jefeProyecto = document.createElement("h3");
             const fechaProyecto = document.createElement("h3");
             const colaboradores = document.createElement("h3");
-            const resumen = document.createElement("p");
             tituloProyecto.innerHTML = `Titulo del proyecto:<br>${
               info.titulo_proyecto
             }`;
@@ -191,11 +182,9 @@ function aplicarFiltro() {
             const fechaInicio = formato(info.fecha_inicio);
             const fechaFin = formato(info.fecha_fin);
             fechaProyecto.innerHTML = `del ${fechaInicio} al ${fechaFin}`;
-            resumen.innerHTML = info.resumen;
             infoProyecto.appendChild(tituloProyecto);
             infoProyecto.appendChild(jefeProyecto);
             infoProyecto.appendChild(fechaProyecto);
-            infoProyecto.appendChild(resumen);
           }
         } else {
           alert("No hay ningun proyecto que cumpla con tu criterio de busqueda");

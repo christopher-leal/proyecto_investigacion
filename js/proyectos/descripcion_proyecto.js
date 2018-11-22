@@ -1,7 +1,7 @@
 $(function() {
   "use strict";
-  const id = window.location.href.split("?")[1].split('=')[1]
-  const xhr = new XMLHttpRequest()
+  const id = window.location.href.split("?")[1].split('=')[1];
+  const xhr = new XMLHttpRequest();
 
   xhr.open("GET", `includes/funciones/descripcion_proyectobd.php?id=${id}`, true);
 

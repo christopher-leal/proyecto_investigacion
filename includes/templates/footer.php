@@ -3,28 +3,30 @@
         <div class="container-fluid text-center text-md-left">
             <div class="row">
                 <div class="col-md-6 mt-md-0 mt-3">
-                    <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla,
-                        nihil
-                        repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam
-                        recusandae harum esse fugiat. Itaque, culpa?</p>
+                    <h5 class="text-uppercase font-weight-bold">Instituto Tecnológico de Morelia</h5>
+                    <p>
+                        
+
+                        <i class="fas fa-map-marker-alt"></i> Av. Tecnológico No. 1500. Col. Lomas de Santiaguito. C.P. 58120. <br>
+                        <i class="fas fa-phone"></i> Tel. (443) 312 15 70, ext. 233. Morelia, Michoacán. <br>
+                        <i class="far fa-envelope"></i> dsc@itmorelia.edu.mx <br>
+                        <i class="fas fa-user"></i> Jefe de Departamento: M.C. Benito Sánchez Raya, bsanchez@itmorelia.edu.mx                    
+                    </p>
                 </div>
                 <hr class="clearfix w-100 d-md-none pb-3">
                 <div class="col-md-6 mb-md-0 mb-3">
-                    <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis
-                        modi
-                        earum commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos
-                        ipsam,
-                        aspernatur id excepturi hic.</p>
+                    <h5 class="text-uppercase font-weight-bold align-self-md-end">Ligas de Interés</h5>
+                    <p>
+                        Tecnológico Nacional de México <br>
+                        Instituto Tecnológico de Morelia <br>
+                        Maestría en Sistemas Computacionales <br>
+                        Aviso de Privacidad <br>
+                        Directorio Tec Morelia
+                    </p>
 
                 </div>
             </div>
 
-        </div>
-
-        <div class="footer-copyright text-center py-3">© 2018 Copyright:
-            <!--<a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>-->
         </div>
 
     </footer>
@@ -33,10 +35,6 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/all.min.js"></script>
     <script src="js/principal/principal.js"></script>
-    <script src="js/proyectos/proyectos_funciones.js"></script>
-    <script src="js/proyectos/descripcion_proyecto.js"></script>
-    <script src="js/proyectos/congresos.js"></script>
-    <script src="js/proyectos/publicaciones.js"></script>
 
 </body>
 

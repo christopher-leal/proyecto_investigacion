@@ -12,8 +12,8 @@
                 </select>
                 <select name="investigador" id="investigador">
                 </select>
-                <button class="btn" type="submit" id="aplicar">aplicar</button>
-                <button class="btn" type="button" id="reiniciar">reiniciar</button>
+                <button class="btn" type="submit" id="aplicar">aplicar filtro</button>
+                <button class="btn" type="button" id="reiniciar">quitar filtro</button>
             </div>
         </div>
         <div class="row justify-content-between row-container">
@@ -21,3 +21,4 @@
         </div>
     </div>
 <?php include_once "includes/templates/footer.php";?>
+<script src="js/proyectos/proyectos_funciones.js"></script>

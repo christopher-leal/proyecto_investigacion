@@ -74,36 +74,36 @@
     <!-- /Carrousel principal -->
 
     <!-- seccion de eventos proyectos publicaciones e investigadores  -->
-    <div class="contenido_principal">    
+    <div class="oficina_investigacion">    
         <div class="container">
             <div class="row">
-            <div id="titulo_secundario" class="col-lg-12">
-            <h1>Oficina de Ivestigacion</h1>
+            <div id="titulo_secundario" class="col-lg-12 ">
+            <h1>Oficina de Investigación</h1>
             </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 ">
+                <div class="col-lg-3 col-md-6 col-sm-12 ">
                     <h5 class="card-title">Proyectos</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
                         <a href=""><img id="img_proyecto" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-12">
                     <h5 class="card-title ">Investigadores</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
                         <a href=""><img id="img_investigador" class="card-img-top " src="img\fondo codigo.jpg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-12">
                     <h5 class="card-title">Congresos</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
                         <a href=""><img id="img_congreso" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-12">
                     <h5 class="card-title">publicaciones</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
                         <a href=""><img id="img_publicacion" class="card-img-top" src="https://cdn4.educacion2.com/wp-content/uploads/libros10.jpg" alt="Card image cap"></a>
@@ -116,16 +116,18 @@
     <!-- /seccion de eventos proyectos publicaciones e investigadores  -->
 
     <!-- seccion de lineas de investigacion-->
-    <div class="contenido_principal">
+    <div class="parallax ">
         <div class="row">
-            <div  id="img_lineas_inv"  class="col-lg-12">
+            <div  id="img_lineas_inv">
             </div>
         </div>
+    </div>
+    <div class="container lineas_investigacion">
         <div class="row">
-                <div id="titulo_secundario" class="col-lg-12">
-                <h1>Lineas de investigación</h1>
-                </div>
+            <div id="titulo_secundario" class="col-lg-12">
+            <h1>Lineas de Investigación</h1>
             </div>
+        </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 ">
                 <h5 class="card-title">Ingenieria de Software</h5>

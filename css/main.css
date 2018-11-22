@@ -6,6 +6,7 @@
 
 div.row-container {
     min-height: 400px;
+    margin-bottom: 20px;
 }
 
 html {
@@ -122,6 +123,18 @@ div.imagenes-carousel div p {
     letter-spacing: 2px;
     font-size: 1rem;
 }
+/**Footer**/
+footer {
+    padding: 30px;
+}
+footer div h5{
+    text-align: left;
+    margin: 20px 0;
+    letter-spacing: 2px;
+}
+footer div p{
+    letter-spacing: 2px;
+}
 
 /*Formularios*/
 button.Entrar {
@@ -200,6 +213,7 @@ div.imagen:hover img {
 div.contenedor-info h4 {
     text-align: center;
     overflow: initial;
+    font-size: .8rem;
 }
 
 div.contenedor-info h4#correo {
@@ -462,11 +476,6 @@ div h4.card-title {
     font-size: 1.2rem;
 }
 
-div.contenido_principal {
-    margin-bottom: 3em;
-}
-
-
 /*contenido*/
 img.contenido {
     margin-left: 1em;
@@ -497,12 +506,13 @@ footer.color {
     text-align: center;
 }
 
-#img_lineas_inv {
-    width: 100%;
+div.parallax #img_lineas_inv {
+    width: 100vw !important;
     height: 300px;
     background-image: url(../img/callum-shaw-555357-unsplash.jpg);
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .bor_texto {
@@ -550,4 +560,33 @@ footer.color {
 
 #publicaciones li a:hover:before {
     right: 0;
+}
+
+/***Index oficina de investigacion***/
+div.oficina_investigacion {
+    padding: 30px 0 ;
+    height: 90vh;
+}
+div.oficina_investigacion div h5 {
+    color: var(--colorPrimario);
+    text-transform: capitalize;
+    text-align: center;
+}
+div.oficina_investigacion div {
+    width: 100% !important;
+}
+
+/***Index lineas de investigacion***/
+div.lineas_investigacion {
+    padding: 30px 0 ;
+    height: 90vh;
+}
+div.lineas_investigacion div {
+    width: 100% !important;
+}
+div.lineas_investigacion div h5 {
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--colorPrimario);
+
 }

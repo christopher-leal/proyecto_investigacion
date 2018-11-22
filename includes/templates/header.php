@@ -21,7 +21,7 @@
             <ul class="sidebar-nav">
                 <a id="menu_ocultar" href="#"><i class="fas fa-times"></i></a>
                 <li class="sidebar-brand">
-                    <a class="nav-item nav-link" href="#"><i class="fas fa-home"></i></a>
+                    <a class="nav-item nav-link" href="index.php"><i class="fas fa-home"></i></a>
                 </li>
                 <li>
                     <a href="#">Dashboard</a>
@@ -60,7 +60,7 @@
         </button>
         <div class="collapse navbar-collapse">
             <div class="navbar-nav navegacion">
-                <a class="nav-item nav-link" href="#"><i class="fas fa-home"></i></a>
+                <a class="nav-item nav-link" href="index.php"><i class="fas fa-home"></i></a>
                 <a class="nav-item nav-link" href="#">¿Quiénes somos?</a>
                 <a class="nav-item nav-link" href="#">Oferta educativa</a>
                 <a class="nav-item nav-link" href="#">Comunidad Tec</a>

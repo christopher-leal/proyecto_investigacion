@@ -13,5 +13,5 @@
             
         </div>
     </div>
-    
 <?php include_once "includes/templates/footer.php";?>
+<script src="js/proyectos/congresos.js"></script>

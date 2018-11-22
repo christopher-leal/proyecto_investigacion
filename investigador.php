@@ -14,8 +14,8 @@
                   <select name="investigador" id="investigador">
                       <option value="default">Linea de investigacion</option>
                   </select>
-                  <button class="btn" type="button" onclick="filtrar()">aplicar</button>
-                  <button class="btn" type="button" onclick="reiniciar()">reiniciar</button>
+                  <button class="btn" type="button" onclick="filtrar()">aplicar filtro</button>
+                  <button class="btn" type="button" onclick="reiniciar()">quitar filtro</button>
                 </form>
             </div>
         </div>

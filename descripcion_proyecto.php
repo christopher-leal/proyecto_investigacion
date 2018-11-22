@@ -32,5 +32,5 @@
             </div>
         </div>
     </div>
-
 <?php include_once 'includes/templates/footer.php';?>
+<script src="js/proyectos/descripcion_proyecto.js"></script>
