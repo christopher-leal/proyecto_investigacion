@@ -19,7 +19,7 @@
                 </form>
             </div>
         </div>
-        <div id="output" class="col-md-12 row-container" ></div>
+        <div id="output" class="col-md-12 row-container"></div>
         <br>
     </div>
 

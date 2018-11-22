@@ -162,4 +162,3 @@
     <!-- /seccion de lineas de investigacion-->
 
 <?php include 'includes/templates/footer.php'; ?>
-<script src="js/principal/principal.js"></script>
