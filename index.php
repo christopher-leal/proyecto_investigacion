@@ -74,8 +74,8 @@
     <!-- /Carrousel principal -->
 
     <!-- seccion de eventos proyectos publicaciones e investigadores  -->
-    <div class="oficina_investigacion">    
-        <div class="container">
+    <div class="container">    
+        <div class="oficina_investigacion">
             <div class="row">
             <div id="titulo_secundario" class="col-lg-12 ">
             <h1>Oficina de Investigación</h1>
@@ -110,55 +110,55 @@
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </div>
     <!-- /seccion de eventos proyectos publicaciones e investigadores  -->
+    <div class="parallax">
+        <div id="img_lineas_inv">
+        </div>
+    </div>
 
     <!-- seccion de lineas de investigacion-->
-    <div class="parallax ">
-        <div class="row">
-            <div  id="img_lineas_inv">
+    <div class="container">
+        <div class="lineas_investigacion">
+            <div class="row">
+                <div id="titulo_secundario" class="col-lg-12">
+                <h1>Lineas de Investigación</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 ">
+                    <h5 class="card-title">Ingenieria de Software</h5>
+                    <div class="card imagen-proyecto" style="width: 18rem;">
+                        <a href=""><img id="img_proyecto" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <h3>Ver mas...</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <h5 class="card-title">Seguridad Informatica</h5>
+                    <div class="card imagen-proyecto" style="width: 18rem;">
+                        <a href=""><img id="img_investigador" class="card-img-top " src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <h3>Ver mas...</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <h5 class="card-title">Tecnologias Web</h5>
+                    <div class="card imagen-proyecto" style="width: 18rem;">
+                        <a href="#"><img id="img_congreso" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <h3>Ver mas...</h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <h5 class="card-title">Educativa</h5>
+                    <div class="card imagen-proyecto" style="width: 18rem;">
+                        <a href="#"><img id="img_publicacion" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <h3>Ver mas...</h3>
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- /seccion de lineas de investigacion-->
     </div>
-    <div class="container lineas_investigacion">
-        <div class="row">
-            <div id="titulo_secundario" class="col-lg-12">
-            <h1>Lineas de Investigación</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 ">
-                <h5 class="card-title">Ingenieria de Software</h5>
-                <div class="card imagen-proyecto" style="width: 18rem;">
-                    <a href=""><img id="img_proyecto" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
-                    <h3>Ver mas...</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <h5 class="card-title">Seguridad Informatica</h5>
-                <div class="card imagen-proyecto" style="width: 18rem;">
-                    <a href=""><img id="img_investigador" class="card-img-top " src="img\fondo ciudad.jpg" alt="Card image cap"></a>
-                    <h3>Ver mas...</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <h5 class="card-title">Tecnologias Web</h5>
-                <div class="card imagen-proyecto" style="width: 18rem;">
-                    <a href="#"><img id="img_congreso" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
-                    <h3>Ver mas...</h3>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <h5 class="card-title">Educativa</h5>
-                <div class="card imagen-proyecto" style="width: 18rem;">
-                    <a href="#"><img id="img_publicacion" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
-                    <h3>Ver mas...</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /seccion de lineas de investigacion-->
 
 <?php include 'includes/templates/footer.php'; ?>

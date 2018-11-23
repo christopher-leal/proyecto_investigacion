@@ -569,7 +569,7 @@ div.parallax #img_lineas_inv {
 /***Index oficina de investigacion***/
 div.oficina_investigacion {
     padding: 30px 0;
-    height: 90vh;
+    margin-bottom: 150px;
 }
 
 div.oficina_investigacion div h5 {
@@ -585,7 +585,7 @@ div.oficina_investigacion div {
 /***Index lineas de investigacion***/
 div.lineas_investigacion {
     padding: 30px 0;
-    height: 90vh;
+    margin-bottom: 150px;
 }
 
 div.lineas_investigacion div {
@@ -601,24 +601,24 @@ div.lineas_investigacion div h5 {
 
 
 /***Proyectos por linea de investigacion***/
-div.proyectos_linea {
+div.contenedor-links {
     text-align: center;
     list-style: none;
 }
-div.proyectos_linea ul {
+div.contenedor-links ul {
     padding: 0;
 }
-div.proyectos_linea ul li{
+div.contenedor-links ul li{
     display: inline-block;
     margin: 20px;
 }
-div.proyectos_linea ul li a{
+div.contenedor-links ul li a{
     text-decoration: none;
     color: var(--colorPrimario);
     letter-spacing: 2px;
     display: inline-block;
 }
-div.proyectos_linea ul li a.link::after {
+div.contenedor-links ul li a.link::after {
     content: '';
     display: block;
     width: 0;
@@ -627,7 +627,7 @@ div.proyectos_linea ul li a.link::after {
     transition: width .5s;
 
 }
-div.proyectos_linea ul li a.link:hover::after {
+div.contenedor-links ul li a.link:hover::after {
     width: 100%;
     transition: width .5s;
 
