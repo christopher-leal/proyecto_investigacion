@@ -1,8 +1,9 @@
 <?php include_once "includes/templates/header.php";?>
+
     <div class="container">
         <div class="row">
             <div class="col-md titulo">
-                <h2>linea de investigación seleccionada</h2>
+                <h2></h2>
             </div>
         </div>
         <div class="row">
@@ -16,7 +17,7 @@
                 <button class="btn" type="button" id="reiniciar">quitar filtro</button>
             </div>
         </div>
-        <div class="row justify-content-between row-container">
+        <div class="row row-container">
             
         </div>
     </div>

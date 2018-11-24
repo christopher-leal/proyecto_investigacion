@@ -1,34 +1,54 @@
+/**declaracion de elementos globales los botones del dom */
 const btnAplicar = document.querySelector("button#aplicar");
 const btnReiniciar = document.querySelector("button#reiniciar");
+
+/**cargar el inicializador de los eventos */
 eventListeners();
 
+const id = window.location.href.split("?")[1].split('=')[1];
+console.log(id);
+
+/**asigna los eventos a los botones previamente definidos */
 function eventListeners() {
   btnAplicar.addEventListener("click", aplicarFiltro);
   btnReiniciar.addEventListener('click', cargarBD);
 }
+/**arreglos de forma global para poder hacer un filtrado de fechas y año
+ * y no repetir los datos
+ */
 var fech = [],
   inves = [];
-$(function() {
+/**funcion principal que se ejecuta cuando el dom carga */
+$(function () {
   "use strict";
+  /**metodo de carga para cargar los elementos por default */
   cargarBD();
 });
+
+/**funcion para cargar la base de datos cada vez que se 
+ * ingrese a la pagina
+ */
 function cargarBD() {
+  /**inicializacion de elemento para el ajax */
   const xhr = new XMLHttpRequest();
 
-  xhr.open("POST", "includes/funciones/proyectos_bd.php", true);
+  /**apertura de la peticion ajax por metodo post asinchrono */
+  xhr.open("GET", `includes/funciones/proyectos_bd.php?id=${id}`, true);
 
-  xhr.onload = function() {
+  /**se acepta la respuesta de la peticion ajax y se manipulan los datos */
+  xhr.onload = function () {
     const informacion = JSON.parse(xhr.responseText);
     if (this.status === 200) {
       const contenedor = document.querySelector("div.row-container");
-      contenedor.innerHTML="";
+      contenedor.innerHTML = "";
       for (const info of informacion) {
+        const tituloLinea = document.querySelector('div.titulo h2');
+        tituloLinea.innerHTML = info['nombre_linea'];
         const contenedorGrid = document.createElement("div");
         contenedorGrid.classList.add(
           "col-md-4",
           "col-sm-12",
-          "col-12",
-          "proyectos"
+          "col-12"
         );
         contenedor.appendChild(contenedorGrid);
         const contenedorTitulo = document.createElement("div");
@@ -69,7 +89,9 @@ function cargarBD() {
           if (ban) break;
         }
         if (!ban) {
-          fech.push({ anio: info.anio });
+          fech.push({
+            anio: info.anio
+          });
         }
 
         var ban = false;
@@ -93,20 +115,27 @@ function cargarBD() {
         infoProyecto.appendChild(fechaProyecto);
       }
     }
+    /**llamado a metodo para cargar el select de año de filtro */
     cargarSelectaño(fech);
+    /**metodo para cargar el select de investigador de filtro */
     cargarSelectinvestigador(inves);
   };
+  /**se envian los datos por la peticion ajax, aunque no mandemos nada
+   * se debe declarar (se usa puro js en vez de usar jquery)
+   */
   xhr.send();
 }
+/**funcion para cambiarle el formato a la fecha */
 function formato(fecha) {
   return fecha.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, "$3/$2/$1");
 }
+/** metodo para cargar el select año*/
 function cargarSelectaño(fech) {
   selectAño = document.querySelector("select#año");
-  const añoDefault=document.createElement('option');
-  selectAño.innerHTML="";
+  const añoDefault = document.createElement('option');
+  selectAño.innerHTML = "";
   añoDefault.setAttribute('value', 'default');
-  añoDefault.innerHTML="Año de inicio";
+  añoDefault.innerHTML = "Año de inicio";
   selectAño.appendChild(añoDefault);
   for (var i in fech) {
     optionAño = document.createElement("option");
@@ -116,12 +145,14 @@ function cargarSelectaño(fech) {
     selectAño.appendChild(optionAño);
   }
 }
+
+/** funcion para cargar el select investigador*/
 function cargarSelectinvestigador(inves) {
   selectInves = document.querySelector("select#investigador");
-  const invesDefault=document.createElement('option');
-  selectInves.innerHTML="";
+  const invesDefault = document.createElement('option');
+  selectInves.innerHTML = "";
   invesDefault.setAttribute('value', 'default');
-  invesDefault.innerHTML="Investigador";
+  invesDefault.innerHTML = "Investigador";
   selectInves.appendChild(invesDefault);
   for (var i in inves) {
     optionInves = document.createElement("option");
@@ -131,6 +162,8 @@ function cargarSelectinvestigador(inves) {
     selectInves.appendChild(optionInves);
   }
 }
+
+/**funcion para aplicar el filtro cada vez que se de click en el boton */
 function aplicarFiltro() {
   const selectAño = document.querySelector("select#año").value;
   const selectInves = document.querySelector("select#investigador").value;
@@ -140,9 +173,10 @@ function aplicarFiltro() {
     const datosFiltro = new FormData();
     datosFiltro.append("fecha", selectAño);
     datosFiltro.append("id_investigador", selectInves);
+    datosFiltro.append("linea_investigacion", id);
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "includes/funciones/proyectos_bd.php", true);
-    xhr.onload = function() {
+    xhr.onload = function () {
       if (this.readyState == 4 && this.status == 200) {
         const informacion = JSON.parse(xhr.responseText);
         if (informacion && informacion.length) {
