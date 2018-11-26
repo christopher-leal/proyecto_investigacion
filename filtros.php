@@ -24,7 +24,7 @@
       break;
 
     default:
-      // code...
+      $respuesta = "Error al cargar la lineas";
       break;
   }
   //Se llama a la funcion consultarLineas

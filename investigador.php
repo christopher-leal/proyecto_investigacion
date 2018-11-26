@@ -1,6 +1,6 @@
 <?php include 'includes/templates/header.php'; ?>
     <!--investigadores-->
-    <div class="container">
+    <div id="row" class="container">
         <div class="row">
             <div class="col-md titulo">
                 <h2>Investigadores</h2>
@@ -21,6 +21,42 @@
         </div>
         <div id="output" class="col-md-12 row-container"></div>
         <br>
+    </div>
+    <!--Investigador-->
+    <div id="inv" >
+      <div class="container">
+          <div class="row">
+              <div class="col-md titulo">
+                  <h2>Investigador</h2>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md fecha">
+                  <h3></h3>
+              </div>
+          </div>
+          <div class="row">
+              <div id="titulo" class="col-md-7 contenedor resumen">
+                  <br>
+              </div>
+              <div class="col-md-4 offset-md-1">
+                  <div id="img" class="imagen">
+
+                  </div>
+                  <div id="cont-info" class="contenedor-info">
+                      <h3 id="jefe_proyecto"></h3>
+                      <h3 id="colaboradores"></h3>
+                      <h3 id="financiamiento"></h3>
+                  </div>
+                  <div id="datos" class="contenedor-info">
+                      <h3>Datos de contacto</h3><br>
+                      <h4 id="nombre"></h4>
+                      <h4 id="correo"></h4>
+                      <h4 id="ubicacion"></h4>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
 
 <?php include 'includes/templates/footer.php';?>
