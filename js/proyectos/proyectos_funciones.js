@@ -5,8 +5,12 @@ const btnReiniciar = document.querySelector("button#reiniciar");
 /**cargar el inicializador de los eventos */
 eventListeners();
 
-const id = window.location.href.split("?")[1].split('=')[1];
-console.log(id);
+const id = window.location.href.split("?")[1].split('=')[1].split('%')[0];
+var pagina =( window.location.href.split("?")[1].split('=')[2]);
+if(pagina==null){
+  pagina=1;
+}
+
 
 /**asigna los eventos a los botones previamente definidos */
 function eventListeners() {
@@ -17,7 +21,9 @@ function eventListeners() {
  * y no repetir los datos
  */
 var fech = [],
-  inves = [];
+  inves = [],
+  paginas;
+
 /**funcion principal que se ejecuta cuando el dom carga */
 $(function () {
   "use strict";
@@ -33,15 +39,18 @@ function cargarBD() {
   const xhr = new XMLHttpRequest();
 
   /**apertura de la peticion ajax por metodo post asinchrono */
-  xhr.open("GET", `includes/funciones/proyectos_bd.php?id=${id}`, true);
+  xhr.open("GET", `includes/funciones/proyectos_bd.php?id=${id}&pagina=${pagina}`, true);
 
   /**se acepta la respuesta de la peticion ajax y se manipulan los datos */
   xhr.onload = function () {
+    console.log(xhr.responseText);
     const informacion = JSON.parse(xhr.responseText);
     if (this.status === 200) {
+
       const contenedor = document.querySelector("div.row-container");
       contenedor.innerHTML = "";
       for (const info of informacion) {
+        paginas = info['numeroPaginas'];
         const tituloLinea = document.querySelector('div.titulo h2');
         tituloLinea.innerHTML = info['nombre_linea'];
         const contenedorGrid = document.createElement("div");
@@ -119,6 +128,8 @@ function cargarBD() {
     cargarSelectaño(fech);
     /**metodo para cargar el select de investigador de filtro */
     cargarSelectinvestigador(inves);
+
+    cargarPaginacion(paginas);
   };
   /**se envian los datos por la peticion ajax, aunque no mandemos nada
    * se debe declarar (se usa puro js en vez de usar jquery)
@@ -163,6 +174,54 @@ function cargarSelectinvestigador(inves) {
   }
 }
 
+function cargarPaginacion(paginas) {
+  const contenedorPaginacion = document.querySelector('nav ul');
+  contenedorPaginacion.innerHTML="";
+  const paginaAnterior=document.createElement('li');
+  paginaAnterior.classList.add('page-item');
+  const linkAnterior=document.createElement('a');
+  linkAnterior.classList.add('page-link');
+  linkAnterior.setAttribute('href', `?id=${id}%26pagina=${pagina-1}`);
+  linkAnterior.innerHTML="Anterior";
+  paginaAnterior.appendChild(linkAnterior);
+  contenedorPaginacion.appendChild(paginaAnterior);
+  if((pagina-1)<=0){
+    paginaAnterior.classList.add('disabled');
+  } else {
+    paginaAnterior.classList.remove('disabled');
+  }
+  for (let i = 0; i < paginas; i++) {
+    const paginaLi = document.createElement('li');
+    paginaLi.classList.add('page-item','paginas');
+    paginaLi.setAttribute('id', `pagina${i+1}`);
+    if(paginaLi.id==`pagina${pagina}`){
+      paginaLi.classList.add('active');
+    }
+    const paginaLink = document.createElement('a');
+    paginaLink.classList.add('page-link');
+    paginaLink.setAttribute('href', `?id=${id}%26pagina=${i+1}`);
+    paginaLink.innerHTML = i + 1;
+    paginaLi.appendChild(paginaLink);
+    contenedorPaginacion.appendChild(paginaLi);    
+  }
+
+  
+  const paginaSiguiente=document.createElement('li');
+  paginaSiguiente.classList.add('page-item');
+  const linkSiguiente=document.createElement('a');
+  linkSiguiente.classList.add('page-link');
+  console.log(pagina);
+  linkSiguiente.setAttribute('href', `?id=${id}%26pagina=${parseInt(pagina)+1}`);
+  linkSiguiente.innerHTML="Siguiente";
+  paginaSiguiente.appendChild(linkSiguiente);
+  contenedorPaginacion.appendChild(paginaSiguiente);
+  if(pagina<paginas){
+    paginaSiguiente.classList.remove('disabled');
+  } else {
+    paginaSiguiente.classList.add('disabled');
+  }
+
+}
 /**funcion para aplicar el filtro cada vez que se de click en el boton */
 function aplicarFiltro() {
   const selectAño = document.querySelector("select#año").value;
@@ -174,6 +233,7 @@ function aplicarFiltro() {
     datosFiltro.append("fecha", selectAño);
     datosFiltro.append("id_investigador", selectInves);
     datosFiltro.append("linea_investigacion", id);
+    // datosFiltro.append("pagina", pagina);
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "includes/funciones/proyectos_bd.php", true);
     xhr.onload = function () {
@@ -191,16 +251,16 @@ function aplicarFiltro() {
             btnImg.setAttribute(
               "href",
               `descripcion_proyecto.php?id=${info.id_proyecto}`
-            );
-            btnImg.setAttribute("id", info.id_proyecto);
-            contenedorTitulo.appendChild(btnImg);
-            const imagenProyecto = document.createElement("img");
-            imagenProyecto.setAttribute("src", info.link_imagen);
-            btnImg.appendChild(imagenProyecto);
-            const verMas = document.createElement("h3");
-            verMas.innerHTML = "Ver más";
-            contenedorTitulo.appendChild(verMas);
-            const infoProyecto = document.createElement("div");
+              );
+              btnImg.setAttribute("id", info.id_proyecto);
+              contenedorTitulo.appendChild(btnImg);
+              const imagenProyecto = document.createElement("img");
+              imagenProyecto.setAttribute("src", info.link_imagen);
+              btnImg.appendChild(imagenProyecto);
+              const verMas = document.createElement("h3");
+              verMas.innerHTML = "Ver más";
+              contenedorTitulo.appendChild(verMas);
+              const infoProyecto = document.createElement("div");
             infoProyecto.classList.add("info-proyecto");
             contenedorGrid.appendChild(infoProyecto);
             const tituloProyecto = document.createElement("h3");

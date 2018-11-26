@@ -85,7 +85,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 ">
                     <h5 class="card-title">Proyectos</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_proyecto" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap"></a>
+                        <a href="proyectos_linea.php"><img id="img_proyecto" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>

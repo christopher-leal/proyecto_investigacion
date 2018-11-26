@@ -20,6 +20,11 @@
         <div class="row row-container">
             
         </div>
+        <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+        </ul>
+        </nav>
+
     </div>
 <?php include_once "includes/templates/footer.php";?>
 <script src="js/proyectos/proyectos_funciones.js"></script>
