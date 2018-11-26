@@ -72,7 +72,7 @@ function cargar_carousel() {
         data: { funcion: "consulta_proyectos_recientes" },
         dataType: "json"
     }).done(function (jsonObjet) {
-        console.log(jsonObjet);
+        // console.log(jsonObjet);
         if (jsonObjet.length > 0) {
             $("#contenido_carrousel_1").empty();
             $("#contenido_carrousel_3").empty();
@@ -96,7 +96,7 @@ function cargar_carousel() {
         data: { funcion: "consulta_congresos_recientes" },
         dataType: "json"
     }).done(function (jsonObjet) {
-        console.log(jsonObjet);
+        // console.log(jsonObjet);
         if (jsonObjet.length > 0) {
             $("#contenido_carrousel_2").empty();
             $("#contenido_carrousel_4").empty();
