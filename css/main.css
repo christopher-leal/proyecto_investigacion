@@ -637,3 +637,12 @@ div.proyectos_linea ul li a.link:hover::after {
   background-color: var(--colorPrimario);
   color: white;
 }
+#inv{
+  display: none;
+}
+.mini-cont>h4{
+  text-align:left;
+}
+.mini-cont{
+  border-bottom: 2px solid var(--colorPrimario);
+}
