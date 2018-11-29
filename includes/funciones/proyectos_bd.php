@@ -17,7 +17,28 @@ if(isset($_POST['fecha'])&&$_POST['fecha']!='default'&& isset($_POST['id_investi
             include_once 'bdconexion.php';
             $info=[];
             try {
-                $sql = "select p.id_proyecto, p.titulo_proyecto,p.lider_proyecto, p.linea_investigacion, p.fecha_inicio,year(p.fecha_inicio) as anio,p.fecha_fin, p.link_imagen, p.resumen, i.nombre, i.apellido_paterno, i.apellido_materno, linea.nombre_linea from proyectos p inner join investigadores i on p.lider_proyecto=i.id_investigador inner join lineas_investigacion linea on linea.id_linea=p.linea_investigacion where linea_investigacion=".$lineaInvestigacion.";";
+                $totalSql="select p.id_proyecto, p.titulo_proyecto,p.lider_proyecto, p.linea_investigacion, p.fecha_inicio,year(p.fecha_inicio) as anio,p.fecha_fin, p.link_imagen, p.resumen, i.nombre, i.apellido_paterno, i.apellido_materno, linea.nombre_linea from proyectos p inner join investigadores i on p.lider_proyecto=i.id_investigador inner join lineas_investigacion linea on linea.id_linea=p.linea_investigacion where linea_investigacion=".$lineaInvestigacion.";";
+
+                $pageSize=3;
+                if($sentencia= $conn->query($totalSql)){
+
+                    $totalDatos=$sentencia->num_rows;
+    
+    
+                    $numeroPaginas=ceil($totalDatos/$pageSize);
+
+                }
+                $iniciar=0;
+                if(isset($_GET['pagina'])){
+                    $iniciar=($_GET['pagina']-1)*$pageSize;
+                } else {
+                    $iniciar=0;
+                }
+
+
+
+
+                $sql = "select p.id_proyecto, p.titulo_proyecto,p.lider_proyecto, p.linea_investigacion, p.fecha_inicio,year(p.fecha_inicio) as anio,p.fecha_fin, p.link_imagen, p.resumen, i.nombre, i.apellido_paterno, i.apellido_materno, linea.nombre_linea from proyectos p inner join investigadores i on p.lider_proyecto=i.id_investigador inner join lineas_investigacion linea on linea.id_linea=p.linea_investigacion where linea_investigacion=".$lineaInvestigacion." limit ".$iniciar.",". $pageSize.";";
                 if($datos = $conn->query($sql)){
 
                     while($dato=$datos->fetch_assoc()){
@@ -34,7 +55,9 @@ if(isset($_POST['fecha'])&&$_POST['fecha']!='default'&& isset($_POST['id_investi
                             'resumen'=>$dato['resumen'],
                             'nombre'=>$dato['nombre'],
                             'apellido_paterno'=>$dato['apellido_paterno'],
-                            'apellido_materno'=>$dato['apellido_materno']           );
+                            'apellido_materno'=>$dato['apellido_materno'],      
+                            'numeroPaginas'=>$numeroPaginas           
+                        );
                        $info[]=$informacion;
                     }
                     echo json_encode($info);
@@ -70,7 +93,8 @@ function filtroAño() {
                     'resumen'=>$dato['resumen'],
                     'nombre'=>$dato['nombre'],
                     'apellido_paterno'=>$dato['apellido_paterno'],
-                    'apellido_materno'=>$dato['apellido_materno']           );
+                    'apellido_materno'=>$dato['apellido_materno']          
+                );
                $info[]=$informacion;
             }
             echo json_encode($info);
@@ -102,7 +126,8 @@ function filtroInvestigador(){
                     'resumen'=>$dato['resumen'],
                     'nombre'=>$dato['nombre'],
                     'apellido_paterno'=>$dato['apellido_paterno'],
-                    'apellido_materno'=>$dato['apellido_materno']           );
+                    'apellido_materno'=>$dato['apellido_materno']           
+                );
                $info[]=$informacion;
             }
             echo json_encode($info);
@@ -135,7 +160,8 @@ function filtroAmbos() {
                     'resumen'=>$dato['resumen'],
                     'nombre'=>$dato['nombre'],
                     'apellido_paterno'=>$dato['apellido_paterno'],
-                    'apellido_materno'=>$dato['apellido_materno']           );
+                    'apellido_materno'=>$dato['apellido_materno']           
+                );
                $info[]=$informacion;
             }
             echo json_encode($info);

@@ -1,7 +1,8 @@
 /***Globales***/
 :root {
     --colorPrimario: rgb(30, 53, 94);
-    --fuentePrimaria: 'Open Sans', sans-serif, 'Segoe UI', Geneva, Verdana;
+    --fuenteTitulos: 'Chakra Petch', sans-serif, 'Segoe UI', Geneva, Verdana;
+    --fuenteCuerpo: 'Titillium Web', sans-serif, 'Segoe UI', Geneva, Verdana;
 }
 
 div.row-container {
@@ -20,7 +21,7 @@ html {
 }
 
 h1 {
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     color: var(--colorPrimario);
     letter-spacing: .1em;
     font-weight: bold;
@@ -29,7 +30,7 @@ h1 {
 }
 
 h2 {
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     font-size: 1.3em;
     color: var(--colorPrimario);
     text-align: center;
@@ -38,7 +39,7 @@ h2 {
 }
 
 h3 {
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     font-size: 1em;
     color: var(--colorPrimario);
     letter-spacing: .2em;
@@ -46,7 +47,7 @@ h3 {
 }
 
 h4 {
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     font-size: .7em;
     color: var(--colorPrimario);
     letter-spacing: .2em;
@@ -70,7 +71,7 @@ div.encabezado>img {
 
 /*Navegacion*/
 div.navegacion a {
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteCuerpo);
     text-decoration: none;
     list-style: none;
     color: var(--colorPrimario) !important;
@@ -105,21 +106,21 @@ div.imagenes-carousel img {
 
 div.imagenes-carousel div h5 {
     text-align: left;
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     letter-spacing: 2px;
     font-size: 2rem;
 }
 
 div.imagenes-carousel div h4 {
     text-align: left;
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     letter-spacing: 2px;
     font-size: 1.4rem;
 }
 
 div.imagenes-carousel div p {
     text-align: left;
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteCuerpo);
     letter-spacing: 2px;
     font-size: 1rem;
 }
@@ -136,6 +137,7 @@ footer div h5 {
 }
 
 footer div p {
+    font-family: var(--fuenteCuerpo);
     letter-spacing: 2px;
 }
 
@@ -182,7 +184,7 @@ div.contenedor {
 }
 
 div.contenedor p {
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteCuerpo);
     color: var(--colorPrimario);
     padding: 20px 20px;
     letter-spacing: 1px;
@@ -311,7 +313,7 @@ div.info-proyecto h3 {
 }
 
 div.info-proyecto p {
-    font-family: 'Open Sans', sans-serif, Geneva, Verdana;
+    font-family: var(--fuenteCuerpo);
     color: var(--colorPrimario);
     letter-spacing: 1px;
     text-align: justify;
@@ -334,7 +336,7 @@ div.info-proyecto p {
     font-size: 1.2rem;
     line-height: 18px;
     text-align: center;
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     letter-spacing: 1px;
     text-transform: uppercase;
 
@@ -366,7 +368,7 @@ body {
 }
 
 #sidebar-wrapper {
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     letter-spacing: .2em;
     z-index: 1000;
     position: fixed;
@@ -424,6 +426,7 @@ body {
 }
 
 .sidebar-nav li a {
+    font-family: var(--fuenteCuerpo);
     display: block;
     text-decoration: none;
     color: #999999;
@@ -448,6 +451,7 @@ body {
 
 .sidebar-nav>.sidebar-brand a {
     color: #999999;
+    font-family: var(--fuenteCuerpo);
 }
 
 .sidebar-nav>.sidebar-brand a:hover {
@@ -493,7 +497,7 @@ img.contenido {
 footer.color {
     background-color: var(--colorPrimario);
     color: white;
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     letter-spacing: 1px;
 }
 
@@ -537,14 +541,15 @@ div.parallax #img_lineas_inv {
 #publicaciones li {
     list-style: none;
     display: block;
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
 }
 
 #publicaciones li a {
+    font-family: var(--fuenteCuerpo);
     text-decoration: none;
     position: relative;
     color: var(--colorPrimario);
-    font-family: var(--fuentePrimaria);
+    font-family: var(--fuenteTitulos);
     display: block;
     overflow: hidden;
     transition: 0.7s all;
@@ -617,6 +622,7 @@ div.contenedor-links ul li a{
     color: var(--colorPrimario);
     letter-spacing: 2px;
     display: inline-block;
+    font-family: var(--fuenteCuerpo);
 }
 div.contenedor-links ul li a.link::after {
     content: '';

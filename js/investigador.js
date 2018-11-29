@@ -91,6 +91,7 @@ function buscarDatos(){
           dataType: "json",
           success: function(response)
           {
+            console.log(response);
             var pags;
             var n = response.length;
             pags = n / 9;
