@@ -25,7 +25,7 @@ $(function () {
   cargarBD();
 });
 
-/**funcion para cargar la base de datos cada vez que se 
+/**funcion para cargar la base de datos cada vez que se
  * ingrese a la pagina
  */
 function cargarBD() {
