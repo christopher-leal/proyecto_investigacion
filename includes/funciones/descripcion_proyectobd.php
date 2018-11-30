@@ -6,18 +6,18 @@ try {
         $datos = $conn->query($sql);
         while($dato=$datos->fetch_assoc()){
             $informacion=array(
-                'titulo_proyecto'=>$dato['titulo_proyecto'],
-                'linea_investigacion'=>$dato['linea_investigacion'],
-                'fecha_inicio'=>$dato['fecha_inicio'],
-                'fecha_fin'=>$dato['fecha_fin'],
-                'financiamiento'=>$dato['financiamiento'],
-                'link_imagen'=>$dato['link_imagen'],
-                'resumen'=>$dato['resumen'],
-                'nombre'=>$dato['nombre'],
-                'apellido_paterno'=>$dato['apellido_paterno'],
-                'apellido_materno'=>$dato['apellido_materno'],
-                'correo'=>$dato['correo'],
-                'ubicacion'=>$dato['ubicacion']
+                'titulo_proyecto'=>utf8_encode($dato['titulo_proyecto']),
+                'linea_investigacion'=>utf8_encode($dato['linea_investigacion']),
+                'fecha_inicio'=>utf8_encode($dato['fecha_inicio']),
+                'fecha_fin'=>utf8_encode($dato['fecha_fin']),
+                'financiamiento'=>utf8_encode($dato['financiamiento']),
+                'link_imagen'=>utf8_encode($dato['link_imagen']),
+                'resumen'=>utf8_encode($dato['resumen']),
+                'nombre'=>utf8_encode($dato['nombre']),
+                'apellido_paterno'=>utf8_encode($dato['apellido_paterno']),
+                'apellido_materno'=>utf8_encode($dato['apellido_materno']),
+                'correo'=>utf8_encode($dato['correo']),
+                'ubicacion'=>utf8_encode($dato['ubicacion'])
             );
         
         }

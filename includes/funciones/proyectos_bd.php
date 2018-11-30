@@ -43,19 +43,19 @@ if(isset($_POST['fecha'])&&$_POST['fecha']!='default'&& isset($_POST['id_investi
 
                     while($dato=$datos->fetch_assoc()){
                         $informacion=array(
-                            'id_proyecto'=>$dato['id_proyecto'],
-                            'titulo_proyecto'=>$dato['titulo_proyecto'],
-                            'lider_proyecto'=>$dato['lider_proyecto'],
-                            'linea_investigacion'=>$dato['linea_investigacion'],
-                            'nombre_linea'=>$dato['nombre_linea'],
-                            'fecha_inicio'=>$dato['fecha_inicio'],
-                            'anio'=>$dato['anio'],
-                            'fecha_fin'=>$dato['fecha_fin'],
-                            'link_imagen'=>$dato['link_imagen'],
-                            'resumen'=>$dato['resumen'],
-                            'nombre'=>$dato['nombre'],
-                            'apellido_paterno'=>$dato['apellido_paterno'],
-                            'apellido_materno'=>$dato['apellido_materno'],      
+                            'id_proyecto'=>utf8_encode($dato['id_proyecto']),
+                            'titulo_proyecto'=>utf8_encode($dato['titulo_proyecto']),
+                            'lider_proyecto'=>utf8_encode($dato['lider_proyecto']),
+                            'linea_investigacion'=>utf8_encode($dato['linea_investigacion']),
+                            'nombre_linea'=>utf8_encode($dato['nombre_linea']),
+                            'fecha_inicio'=>utf8_encode($dato['fecha_inicio']),
+                            'anio'=>utf8_encode($dato['anio']),
+                            'fecha_fin'=>utf8_encode($dato['fecha_fin']),
+                            'link_imagen'=>utf8_encode($dato['link_imagen']),
+                            'resumen'=>utf8_encode($dato['resumen']),
+                            'nombre'=>utf8_encode($dato['nombre']),
+                            'apellido_paterno'=>utf8_encode($dato['apellido_paterno']),
+                            'apellido_materno'=>utf8_encode($dato['apellido_materno']),      
                             'numeroPaginas'=>$numeroPaginas           
                         );
                        $info[]=$informacion;
@@ -81,20 +81,20 @@ function filtroAño() {
         if($datos = $conn->query($sql)) {
             while($dato=$datos->fetch_assoc()){
                 $informacion=array(
-                    'id_proyecto'=>$dato['id_proyecto'],
-                    'titulo_proyecto'=>$dato['titulo_proyecto'],
-                    'lider_proyecto'=>$dato['lider_proyecto'],
-                    'linea_investigacion'=>$dato['linea_investigacion'],
-                    'nombre_linea'=>$dato['nombre_linea'],
-                    'fecha_inicio'=>$dato['fecha_inicio'],
-                    'anio'=>$dato['anio'],
-                    'fecha_fin'=>$dato['fecha_fin'],
-                    'link_imagen'=>$dato['link_imagen'],
-                    'resumen'=>$dato['resumen'],
-                    'nombre'=>$dato['nombre'],
-                    'apellido_paterno'=>$dato['apellido_paterno'],
-                    'apellido_materno'=>$dato['apellido_materno']          
-                );
+                    'id_proyecto'=>utf8_encode($dato['id_proyecto']),
+                    'titulo_proyecto'=>utf8_encode($dato['titulo_proyecto']),
+                    'lider_proyecto'=>utf8_encode($dato['lider_proyecto']),
+                    'linea_investigacion'=>utf8_encode($dato['linea_investigacion']),
+                    'nombre_linea'=>utf8_encode($dato['nombre_linea']),
+                    'fecha_inicio'=>utf8_encode($dato['fecha_inicio']),
+                    'anio'=>utf8_encode($dato['anio']),
+                    'fecha_fin'=>utf8_encode($dato['fecha_fin']),
+                    'link_imagen'=>utf8_encode($dato['link_imagen']),
+                    'resumen'=>utf8_encode($dato['resumen']),
+                    'nombre'=>utf8_encode($dato['nombre']),
+                    'apellido_paterno'=>utf8_encode($dato['apellido_paterno']),
+                    'apellido_materno'=>utf8_encode($dato['apellido_materno']),      
+        );
                $info[]=$informacion;
             }
             echo json_encode($info);
@@ -114,20 +114,20 @@ function filtroInvestigador(){
         if($datos = $conn->query($sql)) {
             while($dato=$datos->fetch_assoc()){
                 $informacion=array(
-                    'id_proyecto'=>$dato['id_proyecto'],
-                    'titulo_proyecto'=>$dato['titulo_proyecto'],
-                    'lider_proyecto'=>$dato['lider_proyecto'],
-                    'linea_investigacion'=>$dato['linea_investigacion'],
-                    'nombre_linea'=>$dato['nombre_linea'],
-                    'fecha_inicio'=>$dato['fecha_inicio'],
-                    'anio'=>$dato['anio'],
-                    'fecha_fin'=>$dato['fecha_fin'],
-                    'link_imagen'=>$dato['link_imagen'],
-                    'resumen'=>$dato['resumen'],
-                    'nombre'=>$dato['nombre'],
-                    'apellido_paterno'=>$dato['apellido_paterno'],
-                    'apellido_materno'=>$dato['apellido_materno']           
-                );
+                    'id_proyecto'=>utf8_encode($dato['id_proyecto']),
+                    'titulo_proyecto'=>utf8_encode($dato['titulo_proyecto']),
+                    'lider_proyecto'=>utf8_encode($dato['lider_proyecto']),
+                    'linea_investigacion'=>utf8_encode($dato['linea_investigacion']),
+                    'nombre_linea'=>utf8_encode($dato['nombre_linea']),
+                    'fecha_inicio'=>utf8_encode($dato['fecha_inicio']),
+                    'anio'=>utf8_encode($dato['anio']),
+                    'fecha_fin'=>utf8_encode($dato['fecha_fin']),
+                    'link_imagen'=>utf8_encode($dato['link_imagen']),
+                    'resumen'=>utf8_encode($dato['resumen']),
+                    'nombre'=>utf8_encode($dato['nombre']),
+                    'apellido_paterno'=>utf8_encode($dato['apellido_paterno']),
+                    'apellido_materno'=>utf8_encode($dato['apellido_materno']),      
+        );
                $info[]=$informacion;
             }
             echo json_encode($info);
@@ -148,20 +148,20 @@ function filtroAmbos() {
         if($datos = $conn->query($sql)) {
             while($dato=$datos->fetch_assoc()){
                 $informacion=array(
-                    'id_proyecto'=>$dato['id_proyecto'],
-                    'titulo_proyecto'=>$dato['titulo_proyecto'],
-                    'lider_proyecto'=>$dato['lider_proyecto'],
-                    'linea_investigacion'=>$dato['linea_investigacion'],
-                    'nombre_linea'=>$dato['nombre_linea'],
-                    'fecha_inicio'=>$dato['fecha_inicio'],
-                    'anio'=>$dato['anio'],
-                    'fecha_fin'=>$dato['fecha_fin'],
-                    'link_imagen'=>$dato['link_imagen'],
-                    'resumen'=>$dato['resumen'],
-                    'nombre'=>$dato['nombre'],
-                    'apellido_paterno'=>$dato['apellido_paterno'],
-                    'apellido_materno'=>$dato['apellido_materno']           
-                );
+                    'id_proyecto'=>utf8_encode($dato['id_proyecto']),
+                    'titulo_proyecto'=>utf8_encode($dato['titulo_proyecto']),
+                    'lider_proyecto'=>utf8_encode($dato['lider_proyecto']),
+                    'linea_investigacion'=>utf8_encode($dato['linea_investigacion']),
+                    'nombre_linea'=>utf8_encode($dato['nombre_linea']),
+                    'fecha_inicio'=>utf8_encode($dato['fecha_inicio']),
+                    'anio'=>utf8_encode($dato['anio']),
+                    'fecha_fin'=>utf8_encode($dato['fecha_fin']),
+                    'link_imagen'=>utf8_encode($dato['link_imagen']),
+                    'resumen'=>utf8_encode($dato['resumen']),
+                    'nombre'=>utf8_encode($dato['nombre']),
+                    'apellido_paterno'=>utf8_encode($dato['apellido_paterno']),
+                    'apellido_materno'=>utf8_encode($dato['apellido_materno']),      
+        );
                $info[]=$informacion;
             }
             echo json_encode($info);

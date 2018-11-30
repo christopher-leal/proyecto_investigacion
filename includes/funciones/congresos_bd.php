@@ -16,14 +16,14 @@
 
                     while($dato=$datos->fetch_assoc()){
                         $informacion=array(
-                            'id_evento'=>$dato['id_evento'],
-                            'nombre_evento'=>$dato['nombre_evento'],
-                            'descripcion'=>$dato['descripcion'],
-                            'lugar'=>$dato['lugar'],
-                            'fecha_evento'=>$dato['fecha_evento'],
-                            'link_imagen'=>$dato['link_imagen'],
-                            'fecha_registro'=>$dato['fecha_registro'],
-                            'link_externo'=>$dato['link_externo'],
+                            'id_evento'=>utf8_encode($dato['id_evento']),
+                            'nombre_evento'=>utf8_encode($dato['nombre_evento']),
+                            'descripcion'=>utf8_encode($dato['descripcion']),
+                            'lugar'=>utf8_encode($dato['lugar']),
+                            'fecha_evento'=>utf8_encode($dato['fecha_evento']),
+                            'link_imagen'=>utf8_encode($dato['link_imagen']),
+                            'fecha_registro'=>utf8_encode($dato['fecha_registro']),
+                            'link_externo'=>utf8_encode($dato['link_externo'])
                                      );
                        $info[]=$informacion;
                     }

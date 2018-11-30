@@ -22,14 +22,14 @@
 
                     while($dato=$datos->fetch_assoc()){
                         $informacion=array(
-                            'titulo_publicacion'=>$dato['titulo_publicacion'],
-                            'link_publicación'=>$dato['link_publicacion'],
-                            'nombre'=>$dato['nombre'],
-                            'apellido_paterno'=>$dato['apellido_paterno'],
-                            'apellido_materno'=>$dato['apellido_materno'],
-                            'correo'=>$dato['correo'],
-                            'ubicacion'=>$dato['ubicacion'],
-                            'url_foto'=>$dato['url_foto']
+                            'titulo_publicacion'=>utf8_encode($dato['titulo_publicacion']),
+                            'link_publicación'=>utf8_encode($dato['link_publicacion']),
+                            'nombre'=>utf8_encode($dato['nombre']),
+                            'apellido_paterno'=>utf8_encode($dato['apellido_paterno']),
+                            'apellido_materno'=>utf8_encode($dato['apellido_materno']),
+                            'correo'=>utf8_encode($dato['correo']),
+                            'ubicacion'=>utf8_encode($dato['ubicacion']),
+                            'url_foto'=>utf8_encode($dato['url_foto'])
                            
                                  );
                        $info[]=$informacion;
