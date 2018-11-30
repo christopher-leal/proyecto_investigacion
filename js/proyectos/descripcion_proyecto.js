@@ -15,9 +15,7 @@ $(function() {
     var informacion = JSON.parse(xhr.responseText);
     const tituloProyecto = document.querySelector("div.titulo h2"),
       fecha = document.querySelector("div.fecha h3"),
-      financiamiento = document.querySelector(
-        "div.contenedor-info h3#financiamiento"
-      ),
+      financiamiento = document.querySelector("div.contenedor-info #financiamiento"),
       resumen = document.querySelector("div.resumen p"),
       nombre_investigador = document.querySelector(
         "div.contenedor-info h4#nombre"
@@ -31,9 +29,11 @@ $(function() {
     fecha.innerHTML = `del ${fechaInicio} al ${fechaFin}`;
     resumen.innerHTML = informacion.resumen;
     if (informacion["financiamiento"] == 1) {
-      financiamiento.innerHTML = "Financiado";
+      financiamiento.checked = true;
+      financiamiento.disabled=true;
     } else {
-      financiamiento.innerHTML = "No financiado";
+      financiamiento.checked = false;
+      financiamiento.disabled=true;
     }
     nombre_investigador.innerHTML = `Nombre: ${informacion.nombre} ${
       informacion.apellido_paterno
