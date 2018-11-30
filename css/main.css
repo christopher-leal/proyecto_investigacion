@@ -200,6 +200,12 @@ div.contenedor-info {
     padding: 20px 20px;
     text-transform: capitalize;
 }
+div.contenedor-info span {
+    color: var(--colorPrimario);
+    font-size: 1rem;
+    font-family: var(--fuenteTitulos);
+    font-weight: bolder;
+}
 
 div.imagen img {
     max-width: 100%;
