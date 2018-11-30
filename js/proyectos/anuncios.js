@@ -75,11 +75,11 @@ function cargarDatos(datos,paginas,puntero){
   //se llena un grid con un rango de datos si puntero = 2, se mostrara de 9 -> 10
   for (var i = x; i < d; i++) {
       $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
-      "<div class='imagen-proyecto' onclick='verInvestigador("+i+")'>"+
+      "<div class='imagen-proyecto' onclick='verProyecto("+matriz[i][5]+")'>"+
       "<img src='"+matriz[i][6]+"'>"+
       "<h3>Ver más"+
      "</h3></div>"+"<div class='info-proyecto'><h3>"+
-      matriz[i][7]+" requiere alumnos<br><br>Lugares: "+matriz[i][1]+"<br><br>Perfil: "+matriz[i][2]+
+      matriz[i][7]+" requiere alumnos <br><br>Lugares: "+matriz[i][1]+"<br><br>Perfil: "+matriz[i][2]+
       "<br><br>Semestre: "+ matriz[i][3]+" </h3><h3>Recompensa: "+
       matriz[i][4]+"</h3></div></div>");
   }
@@ -93,4 +93,8 @@ function cargarDatos(datos,paginas,puntero){
     }
 
   }
+}
+function verProyecto(i){
+  var url = "http://localhost/proyecto_investigacion/descripcion_proyecto.php?id="+i;
+  window.open(url);
 }
