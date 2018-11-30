@@ -12,9 +12,9 @@
       session_start();
       $_SESSION['usuario'] = $usuario;
       //indica aqui la ruta a donde te redireccionara en caso que el login sea correcto
-      header("Location: ../../anuncios.php");
+      header("Location: ../../administracion");
     }else{
-      header("Location: ../../investigador.php");
+      header("Location: ../../");
     }
   }
  ?>

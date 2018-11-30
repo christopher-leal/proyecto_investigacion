@@ -27,3 +27,12 @@ function consultaSQL($consunta){
   }
   return $datos;
 }
+
+function querySQL($consunta){
+  $conexionMySQL = iniciaConexion();
+  if (@mysqli_query($conexionMySQL,$consunta) === TRUE) {
+    echo "Exito";
+  } else {
+    echo "Error " . $conn->error;
+  }
+}
