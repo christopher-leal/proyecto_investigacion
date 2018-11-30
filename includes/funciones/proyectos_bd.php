@@ -19,7 +19,7 @@ if(isset($_POST['fecha'])&&$_POST['fecha']!='default'&& isset($_POST['id_investi
             try {
                 $totalSql="select p.id_proyecto, p.titulo_proyecto,p.lider_proyecto, p.linea_investigacion, p.fecha_inicio,year(p.fecha_inicio) as anio,p.fecha_fin, p.link_imagen, p.resumen, i.nombre, i.apellido_paterno, i.apellido_materno, linea.nombre_linea from proyectos p inner join investigadores i on p.lider_proyecto=i.id_investigador inner join lineas_investigacion linea on linea.id_linea=p.linea_investigacion where linea_investigacion=".$lineaInvestigacion.";";
 
-                $pageSize=3;
+                $pageSize=9;
                 if($sentencia= $conn->query($totalSql)){
 
                     $totalDatos=$sentencia->num_rows;
