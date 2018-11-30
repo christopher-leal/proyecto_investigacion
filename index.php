@@ -92,21 +92,21 @@
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <h5 class="card-title ">Investigadores</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_investigador" class="card-img-top " src="img\fondo codigo.jpg" alt="Card image cap"></a>
+                        <a href="investigador.php"><img id="img_investigador" class="card-img-top " src="img\fondo codigo.jpg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <h5 class="card-title">Congresos</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_congreso" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap"></a>
+                        <a href="congresos.php"><img id="img_congreso" class="card-img-top" src="img\fondo codigo.jpg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12">
-                    <h5 class="card-title">publicaciones</h5>
+                    <h5 class="card-title">Anuncios</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_publicacion" class="card-img-top" src="https://cdn4.educacion2.com/wp-content/uploads/libros10.jpg" alt="Card image cap"></a>
+                        <a href="anuncios.php"><img id="img_publicacion" class="card-img-top" src="https://cdn4.educacion2.com/wp-content/uploads/libros10.jpg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
@@ -131,28 +131,28 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
                     <h5 class="card-title">Ingenieria de Software</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_proyecto" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <a href=""><img id="img_proyecto" class="card-img-top" src="img\software.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <h5 class="card-title">Seguridad Informatica</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_investigador" class="card-img-top " src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <a href=""><img id="img_investigador" class="card-img-top " src="img\seguridad.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <h5 class="card-title">Tecnologias Web</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href="#"><img id="img_congreso" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <a href="#"><img id="img_congreso" class="card-img-top" src="img\web.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <h5 class="card-title">Educativa</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href="#"><img id="img_publicacion" class="card-img-top" src="img\fondo ciudad.jpg" alt="Card image cap"></a>
+                        <a href="#"><img id="img_publicacion" class="card-img-top" src="img\educativa.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
