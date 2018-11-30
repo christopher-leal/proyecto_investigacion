@@ -19,15 +19,14 @@
                     <img id="imagen"alt="investigador">
                 </div>
                 <div class="contenedor-info">
-                    <h3 id="jefe_proyecto"></h3>
-                    <h3 id="colaboradores"></h3>
-                    <h3 id="financiamiento"></h3>
-                </div>
-                <div class="contenedor-info">
                     <h3>Datos de contacto</h3><br>
                     <h4 id="nombre"></h4>
                     <h4 id="correo"></h4>
                     <h4 id="ubicacion"></h4>
+                </div>
+                <div class="contenedor-info">
+                    <input type="checkbox" id="financiamiento"><span>Financiamiento</span>
+                    <h4 id="colaboradores"></h4>
                 </div>
             </div>
         </div>
