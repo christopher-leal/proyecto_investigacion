@@ -17,11 +17,13 @@
                 <div class="col-md-6 mb-md-0 mb-3">
                     <h5 class="text-uppercase font-weight-bold align-self-md-end">Ligas de Interés</h5>
                     <p>
-                        Tecnológico Nacional de México <br>
-                        Instituto Tecnológico de Morelia <br>
-                        Maestría en Sistemas Computacionales <br>
-                        Aviso de Privacidad <br>
-                        Directorio Tec Morelia
+                       
+                    <a target="_blank" href="https://www.tecnm.mx/">Tecnológico Nacional de México</a> <br>
+                    <a target="_black" href="http://itmorelia.edu.mx/">Instituto Tecnológico de Morelia</a> <br>
+                    <a target="_black" href="http://dsc.itmorelia.edu.mx/msc/">Maestría en Sistemas Computacionales</a> <br>
+                    <a target="_black" href="http://itmorelia.edu.mx/">Aviso de Privacidad</a> <br>
+                   
+
                     </p>
 
                 </div>
