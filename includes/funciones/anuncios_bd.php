@@ -8,11 +8,24 @@ function consultarAnuncios(){
 
     $query = "SELECT id_anuncio, Cantidad_alumnos, Perfil,Semestre,Recompensa, anuncios.id_proyecto,link_imagen,titulo_proyecto from anuncios inner join proyectos on anuncios.id_proyecto = proyectos.id_proyecto";
 
-    $resultado = mysqli_query($conn,$query);
+    $resultado =$conn->query($query);
+
     //los datos son almacenados en un arreglo y se retorna test
-    while($row = mysqli_fetch_assoc($resultado))
-      $test[] = $row;
-    return $test;
+    while($dato=$resultado->fetch_assoc()){
+        $informacion=array(
+            'id_anuncio'=>utf8_encode($dato['id_anuncio']),
+            'Cantidad_alumnos'=>utf8_encode($dato['Cantidad_alumnos']),
+            'Perfil'=>utf8_encode($dato['Perfil']),
+            'Semestre'=>utf8_encode($dato['Semestre']),
+            'Recompensa'=>utf8_encode($dato['Recompensa']),
+            'id_proyecto'=>utf8_encode($dato['id_proyecto']),
+            'link_imagen'=>utf8_encode($dato['link_imagen']),
+            'titulo_proyecto'=>utf8_encode($dato['titulo_proyecto'])
+
+        );
+        $info[]=$informacion;
+    }
+    return $info;
   } catch(Exception $e) {
     echo $e->getMessage();
     return $e;

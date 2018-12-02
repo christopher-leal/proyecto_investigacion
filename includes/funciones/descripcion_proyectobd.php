@@ -22,7 +22,7 @@ try {
         
         }
         echo json_encode($informacion);
-        
+
     } catch(Exception $e) {
     echo $e->getMessage();
     }

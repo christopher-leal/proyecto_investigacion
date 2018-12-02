@@ -6,12 +6,16 @@
       require_once('includes/funciones/bdconexion.php');
       //Se genera y envia la consulta
       $query = "SELECT nombre_linea FROM lineas_investigacion";
-      $resultado = mysqli_query($conn, $query);
+      $resultado =$conn->query($query);
 
       //los datos son almacenados en un arreglo y se retorna test
-      while($row = mysqli_fetch_assoc($resultado))
-        $test[] = $row;
-      return $test;
+      while($dato=$resultado->fetch_assoc()){
+          $informacion=array(
+              'nombre_linea'=>utf8_encode($dato['nombre_linea'])
+          );
+          $info[]=$informacion;
+      }
+      return $info;
     } catch(Exception $e) {
       echo $e->getMessage();
       return $e;
