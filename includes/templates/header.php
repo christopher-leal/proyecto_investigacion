@@ -44,8 +44,8 @@
 
     <!-- Encabezado -->
     <div class="encabezado">
-        <img src="img/imagenes tec/logos.png" alt="Nombre del Tec" >
-        <img src="img/imagenes tec/letras.png" alt="Nombre del Tec" >
+        <img class="imagenes-encabezado" src="img/imagenes tec/logos.png" alt="Nombre del Tec" >
+        <img class="imagenes-encabezado" src="img/imagenes tec/letras.png" alt="Nombre del Tec" >
         <img src="img/imagenes tec/escudo.png" alt="Nombre del Tec" >
     </div>
     <!-- /Encabezado -->
