@@ -77,9 +77,6 @@ function cargar_carousel() {
             $("#contenido_carrousel_1").empty();
             $("#contenido_carrousel_3").empty();
             $("#contenido_carrousel_5").empty();
-            $("#enlace_img1").click(function (event){
-                alert("caca"+jsonObjet[0].titulo_proyecto);
-            })
             $("#contenido_carrousel_1").append("<h5 class='bor_texto'>Proyecto: "+jsonObjet[0].titulo_proyecto+"</h5><h4 class='bor_texto'>Lider: "+jsonObjet[0].nombre_completo+"</h4><p class='bor_texto'>"+jsonObjet[0].resumen+"</p>");
             $("#contenido_carrousel_3").append("<h5 class='bor_texto'>Proyecto: "+jsonObjet[1].titulo_proyecto+"</h5><h4 class='bor_texto'>Lider: "+jsonObjet[1].nombre_completo+"</h4><p class='bor_texto'>"+jsonObjet[1].resumen+"</p>");
             $("#contenido_carrousel_5").append("<h5 class='bor_texto'>Proyecto: "+jsonObjet[2].titulo_proyecto+"</h5><h4 class='bor_texto'>Lider: "+jsonObjet[2].nombre_completo+"</h4><p class='bor_texto'>"+jsonObjet[2].resumen+"</p>");
