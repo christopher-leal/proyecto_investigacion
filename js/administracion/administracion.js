@@ -469,7 +469,7 @@ $("#btn_nuevo_anuncio").click(function (evt) {
     accion = "reg_anun";
 });
 
-var com_form=$("#registrar_congreso");
+/*var com_form=$("#registrar_congreso");
 com_form.bind("submit", function(){
     var formdata = new FormData;
     formdata.append("img_congreso", $("input [name=img_congreso]")[0].files[0]);
@@ -488,7 +488,7 @@ com_form.bind("submit", function(){
     });
 
     return false;
-});
+});*/
 
 //Eventos para actualizar la lista de investigadores
 //Evento para cambio de invetigadores activos a inactivos o visceversa

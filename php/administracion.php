@@ -1,13 +1,6 @@
 <?php
     include 'conexion.php';
 
-     $ruta="img/".pathinfo($_FILES["img_congreso"]["name"]);
-            if(move_uploaded_file($_FILES["img_congreso"]["tmp_name"],$ruta)){
-                echo "Subido";
-            }else{
-                echo "no subido";
-            }
-
     $funcion = $_REQUEST["funcion"];
     
     //consultas a la base de datos administrador
