@@ -15,6 +15,7 @@ function iniciaConexion(){
 function consultaSQL($consunta){
   $datos=array();
   $conexionMySQL = iniciaConexion();
+  mysqli_set_charset($conexionMySQL,"utf8");
   if(!$resultado = @mysqli_query($conexionMySQL, $consunta)){
     return null;
     die();
@@ -33,6 +34,6 @@ function querySQL($consunta){
   if (@mysqli_query($conexionMySQL,$consunta) === TRUE) {
     echo "Exito";
   } else {
-    echo "Error " . $conn->error;
+    echo "Error " . $conexionMySQL->error;
   }
 }

@@ -1,9 +1,18 @@
 <?php
     include 'conexion.php';
-    
+
+     $ruta="img/".pathinfo($_FILES["img_congreso"]["name"]);
+            if(move_uploaded_file($_FILES["img_congreso"]["tmp_name"],$ruta)){
+                echo "Subido";
+            }else{
+                echo "no subido";
+            }
+
     $funcion = $_REQUEST["funcion"];
     
     //consultas a la base de datos administrador
+    //como patametro recibe la funcion que realiza
+    //el resultado que devuelve es el resultado de la accion en el caso de sentencia y un jsonobjet en caso de consutla
     switch ($funcion){
         //consulta de proyectos
         case 'consulta_proyectos_adm':
@@ -27,7 +36,7 @@
             $palabra_clave=$_REQUEST["palabra_clave"];
             $id_linea_investigacion=$_REQUEST["id_linea_investigacion"];
             $activo=$_REQUEST["activo"];
-            $respuesta = consultaSQL("SELECT * FROM publicaciones AS P INNER JOIN lineas_investigacion AS L ON P.linea_investigacion=L.id_linea WHERE titulo_publicacion LIKE '%".$palabra_clave."%' AND linea_investigacion LIKE'%".$id_linea_investigacion."%' AND status=".$activo.";");
+            $respuesta = consultaSQL("SELECT * FROM publicaciones AS P INNER JOIN lineas_investigacion AS L ON P.linea_invetigacion=L.id_linea WHERE titulo_publicacion LIKE '%".$palabra_clave."%' AND linea_invetigacion LIKE'%".$id_linea_investigacion."%' AND status=".$activo.";");
             echo json_encode($respuesta);
         break;
         //consulta de congresos
@@ -35,6 +44,11 @@
             $palabra_clave=$_REQUEST["palabra_clave"];
             $id_linea_investigacion=$_REQUEST["id_linea_investigacion"];
             $respuesta = consultaSQL("SELECT * FROM congresos as C INNER JOIN lineas_investigacion AS L ON C.linea_investigacion=L.id_linea  WHERE nombre_evento LIKE '%".$palabra_clave."%' AND linea_investigacion LIKE'%".$id_linea_investigacion."%';");
+            echo json_encode($respuesta);
+        break;
+        //consulta de 
+        case 'consulta_anuncios_adm':
+            $respuesta = consultaSQL("SELECT * FROM anuncios AS A INNER JOIN proyectos AS P ON A.id_proyecto=P.id_proyecto;");
             echo json_encode($respuesta);
         break;
         //consulta solo el id y nombre de los investigadores
@@ -50,7 +64,7 @@
         //consluta colboradores proyecto
         case 'consulta_lista_colaboradores':
             $id_proyecto=$_REQUEST["id_proyecto"];
-            $respuesta = consultaSQL("SELECT CONCAT(I.nivel_estudios, ' ', I.nombre, ' ', I.apellido_paterno, ' ', I.apellido_materno) AS nombre FROM colaboradores AS C INNER JOIN investigadores AS I ON C.id_investigador=I.id_investigador WHERE id_proyecto=".$id_proyecto.";");
+            $respuesta = consultaSQL("SELECT CONCAT(I.nivel_estudios, ' ', I.nombre, ' ', I.apellido_paterno, ' ', I.apellido_materno) AS nombre , id_proyecto FROM colaboradores AS C INNER JOIN investigadores AS I ON C.id_investigador=I.id_investigador WHERE id_proyecto=".$id_proyecto.";");
             echo json_encode($respuesta);
         break;
         //Cunsulta las lineas de investigacion multiples de un investigadoras
@@ -85,6 +99,41 @@
             $id_congreso=$_REQUEST["id_congreso"];
             $respuesta = querySQL("DELETE FROM congresos WHERE id_evento=".$id_congreso.";");
             echo $respuesta;
+        break;
+        //Elimina un anuncio
+        case 'eliminar_anuncio':
+        $id_anuncio=$_REQUEST["id_anuncio"];
+        $respuesta = querySQL("DELETE FROM anuncios WHERE id_anuncio=".$id_anuncio.";");
+        echo $respuesta;
+        break;
+        //Editar un anuncio
+        case 'editar_anuncio':
+        $id_anuncio=$_REQUEST["id_anuncio"];
+        $cantidad=$_REQUEST["cantidad"];
+        $semestre=$_REQUEST["semestre"];
+        $id_proyecto=$_REQUEST["id_proyecto"];
+        $recompensa=$_REQUEST["recompensa"];
+        $perfil=$_REQUEST["perfil"];
+        $respuesta = querySQL("UPDATE anuncios SET Cantidad_alumnos=".$cantidad.", Perfil='".$perfil."' , Recompensa='".$recompensa."' , Semestre=".$semestre.", id_proyecto=".$id_proyecto." WHERE id_anuncio=".$id_anuncio.";");
+        echo $respuesta;
+        break;
+        //Registrar un anuncio
+        case 'registrar_anuncio':
+        $cantidad=$_REQUEST["cantidad"];
+        $semestre=$_REQUEST["semestre"];
+        $id_proyecto=$_REQUEST["id_proyecto"];
+        $recompensa=$_REQUEST["recompensa"];
+        $perfil=$_REQUEST["perfil"];
+        $respuesta = querySQL("INSERT INTO anuncios (Cantidad_alumnos, Perfil, Semestre, Recompensa, id_proyecto) VALUES (".$cantidad.", '".$perfil."', ".$semestre.", '".$recompensa."', ".$id_proyecto.");");
+        echo $respuesta;
+        break;
+        case 'subir_ejemplo':
+            $ruta="img/".$pathinfo($_FILES["img_congreso"]["name"]);
+            if(move_uploaded_file($_FILES["img_congreso"]["tmp_name"],$ruta)){
+                echo "Subido";
+            }else{
+                echo "no subido";
+            }
         break;
     }
 ?>

@@ -36,6 +36,10 @@
             <a class="nav-link list-group-item-action" id="congresos-tab" data-toggle="tab" href="#congresos" role="tab"
                 aria-controls="contact" aria-selected="false">Congresos</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link list-group-item-action" id="anuncios-tab" data-toggle="tab" href="#anuncios" role="tab"
+                aria-controls="contact" aria-selected="false">Anuncios</a>
+        </li>
     </ul>
 
     <!--seccion de gestion-->
@@ -73,7 +77,7 @@
                 </div>
             </div>
             <div class="container" style="margin-top:1em;">
-                <div id="contenedor_proyectos" class="card-columns">
+                <div id="contenedor_proyectos" class="row">
 
                 </div>
             </div>
@@ -108,9 +112,7 @@
                 </div>
             </div>
             <div class="container" style="margin-top:1em;">
-                <div id="contenedor_investigadores" class="card-columns">
-
-                </div>
+                <div id="contenedor_investigadores" class="row"></div>
             </div>
         </div>
 
@@ -143,7 +145,7 @@
                 </div>
             </div>
             <div class="container" style="margin-top:1em;">
-                <div id="contenedor_publicaciones" class="card-columns"></div>
+                <div id="contenedor_publicaciones" class="row"></div>
             </div>
         </div>
 
@@ -170,7 +172,20 @@
                 </div>
             </div>
             <div class="container" style="margin-top:1em;">
-                <div id="contenedor_congresos" class="card-columns"></div>
+                <div id="contenedor_congresos" class="row"></div>
+            </div>
+        </div>
+
+        <!--Seccion de Anuncios-->
+        <div class="tab-pane fade" id="anuncios" role="tabpanel" aria-labelledby="congresos-tab">
+            <div class="row">
+                <div class="col-lg-6">
+                    <button id="btn_nuevo_anuncio" href="#registrar_anuncio" style="margin-left:2em" type="button"
+                        class="btn btn-md btn-outline-primary" data-toggle='modal'>Nuevo</button>
+                </div>
+            </div>
+            <div class="container" style="margin-top:1em;">
+                <div id="contenedor_anuncios" class="row"></div>
             </div>
         </div>
 
@@ -482,7 +497,7 @@
                 </div>
                 <!--Pie del modal-->
                 <div class="modal-footer">
-                    <button id="btn_guardar_publicacion" class="btn btn-md btn-outline-success">Guardar</button>
+                    <button id="btn_guardar" class="btn btn-md btn-outline-success">Guardar</button>
                 </div>
             </div>
         </div>
@@ -490,7 +505,7 @@
     <!--/Modal de nuevo publicacion-->
 
     <!--Modal de nuevo congreso-->
-    <form class="modal fade" id="registrar_congreso">
+    <form class="modal fade" id="registrar_congreso" <!--action="../php/administracion.php"--> method="POST" role="form" enctype="multipart/form-data">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!--Cabecera del modal-->
@@ -516,11 +531,11 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
-                            <label class="font-weight-bold">Documento</label>
+                            <label class="font-weight-bold">Imagen</label>
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-outline-info">
-                                        Buscar&hellip; <input type="file" style="display: none;" accept="image/png, image/jpeg">
+                                        Buscar&hellip; <input type="file" name="img_congreso" id="img_congreso" style="display: none;" accept="image/png, image/jpeg">
                                     </span>
                                 </label>
                                 <input id="in_img_congreso" type="text" class="form-control" readonly>
@@ -534,12 +549,65 @@
                 </div>
                 <!--Cabecera del modal-->
                 <div class="modal-footer">
-                    <button id="btn_guardar" class="btn btn-md btn-outline-success">Guardad</button>
+                    <button type="submit" class="btn btn-md btn-outline-success">Guardad</button>
                 </div>
             </div>
         </div>
     </form>
-    <!--/Modal de nuevo publicacion-->
+    <!--/Modal de nuevo congreso-->
+
+    <!--Modal de nuevo anuncio-->
+    <div class="modal fade" id="registrar_anuncio">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!--Cabecera del modal-->
+                <div class="modal-header">
+                    <h3 id="titulo_registro_anuncio" class="modal-title">Titulo A</h3>
+                    <button id="btn_cerrar_registro_anuncio" tyle="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                </div>
+                <!--Cuerpo del modal-->
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-lg-4 col-md-12">
+                            <label for="in_cantidad_alumno" class="font-weight-bold">Cantidad de alumnos</label>
+                            <input type="number" id="in_cantidad_alumno" class="form-control">
+                        </div>
+                        <div class="form-group col-lg-4 col-md-12">
+                            <label for="in_semestre_alumno" class="font-weight-bold">Semestre</label>
+                            <input type="number" id="in_semestre_alumno" class="form-control">
+                        </div>
+                        <div class="form-group col-lg-4 col-md-12">
+                            <label for="select_proyecto_anuncio" class="font-weight-bold">Proyecto</label>
+                            <select id="select_proyecto_anuncio" class="custom-select">
+                                <option value="" selected>Linea</option>
+                                <option value="1">One</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label for="txt_perfil_anuncio" class="font-weight-bold">Perfil alumno(s):</label>
+                            <textarea class="form-control" id="txt_perfil_anuncio" rows="3"></textarea>
+                        </div>
+                        <div class="form-group col-lg-4 col-md-12">
+                            <label for="in_recompensa_alumno" class="font-weight-bold">Recompensa</label>
+                            <select id="in_recompensa_alumno" class="custom-select">
+                                <option value="Credito complementario" selected>Credito complementario</option>
+                                <option value="Servicio Social">Servicio Social</option>
+                                <option value="Residencias">Residencias</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--Cabecera del modal-->
+                <div class="modal-footer">
+                    <button id="btn_guardar_anuncio" class="btn btn-md btn-outline-success">Guardad</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Modal de nuevo anuncio-->
 
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
