@@ -5,7 +5,7 @@
       //importamos la conexion a la base de datos
       require_once('includes/funciones/bdconexion.php');
       //Se genera y envia la consulta
-      $query = "SELECT nombre_linea FROM lineas_investigacion";
+      $query = "SELECT id_linea, nombre_linea FROM lineas_investigacion";
       $resultado =$conn->query($query);
 
       //los datos son almacenados en un arreglo y se retorna test

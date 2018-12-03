@@ -32,7 +32,7 @@ function filtrar(){
       //se crea y rellena la matriz
       matriz = new Array(response.length);
       for (var i = 0; i < matriz.length; i++) {
-        matriz[i] =  new Array(5);
+        matriz[i] =  new Array(9);
       }
       var a=0;
       $.each(response,function(key, registro) {
@@ -41,6 +41,10 @@ function filtrar(){
         matriz[a][2] = registro.apellido_paterno;
         matriz[a][3] = registro.apellido_materno;
         matriz[a][4] = registro.nombre_linea;
+        matriz[a][5] = registro.nivel_estudios;
+        matriz[a][6] = registro.correo;
+        matriz[a][7] = registro.ubicacion;
+        matriz[a][8] = registro.id_investigador;
         a++;
       });
       cargarDatos(datos,paginas,puntero);
@@ -71,8 +75,9 @@ function buscarLineas(){
           dataType: "json",
           success: function(response)
           {
+
             $.each(response,function(key, registro) {
-                $("#investigador").append("<option value='"+registro.nombre_linea+"'>"+registro.nombre_linea+"</option>");
+                $("#investigador").append("<option value='"+registro.id_linea+"'>"+registro.nombre_linea+"</option>");
             });
           },
           error: function(jqXHR, textStatus, errorThrown){
@@ -115,7 +120,7 @@ function buscarDatos(){
               matriz[a][5] = registro.nivel_estudios;
               matriz[a][6] = registro.correo;
               matriz[a][7] = registro.ubicacion;
-              matriz[a][9] = registro.id_investigador;
+              matriz[a][8] = registro.id_investigador;
               a++;
             });
             //se envian a cargarDatos para su presentacion en pantalla
@@ -162,7 +167,7 @@ function cargarDatos(datos,paginas,puntero){
   for (var i = x; i < d; i++) {
       $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
       "<div class='imagen-proyecto' onclick='verInvestigador("+i+")'>"+
-      "<img src='"+matriz[i][0]+"'>"+
+      "<img src=''>"+
       "<h3>Ver más"+
      "</h3></div>"+"<div class='info-proyecto'><h3>Investigador:<br>"+
       matriz[i][1]+" "+matriz[i][2]+" "+matriz[i][3]+
@@ -196,7 +201,7 @@ function verInvestigador(i){
   );
   $("#titulo").append("<h3>Publicaciones</h3>");
   var my_arr = new Array('id',i);
-  var x= matriz[i][9];
+  var x= matriz[i][8];
   $.ajax({
           type: "POST",
           async: true,

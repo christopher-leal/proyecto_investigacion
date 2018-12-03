@@ -20,8 +20,8 @@
               'ubicacion'=>utf8_encode($dato['ubicacion']),
               'url_foto'=>utf8_encode($dato['url_foto']),
               'status'=>utf8_encode($dato['status']),
-              'id_linea'=>utf8_encode($dato['id_linea']),
-              'id_investigador'=>utf8_encode($dato['id_investigador']),
+              //'id_linea'=>utf8_encode($dato['id_linea']),
+              //'id_investigador'=>utf8_encode($dato['id_investigador']),
               'id_linea'=>utf8_encode($dato['id_linea']),
               'nombre_linea'=>utf8_encode($dato['nombre_linea']),
               'descripcion'=>utf8_encode($dato['descripcion'])
@@ -37,8 +37,8 @@
     }
   }
   //Se llama a la funcion consultarInvestigador
-  $informacion = consultarInvestigador();
+  $infor = consultarInvestigador();
 
   //se envia al cliente la consulta
-  echo json_encode($informacion);
+  echo json_encode($infor);
  ?>
