@@ -198,7 +198,7 @@ function cargar_proyectos(palabra_clave_proyecto, id_investigador, id_linea_inve
                 data: { funcion: "consulta_lista_colaboradores", id_proyecto: element["id_proyecto"] },
                 dataType: "json"
             }).done(function (jsonObjet2) {
-                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Lider: " + element["nombre_completo"] + "</p><p>Inicio: " + element["fecha_inicio"] + " Fin: " + element["fecha_fin"] + "</p><p>Linea: " + element["nombre_linea"] + "</p><p>Financiado: " + ((element["financiamiento"] == '1') ? "Si" : "No") + "</p><p class='card-text cortar'>Colaboradores<br>"
+                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Lider: " + element["nombre_completo"] + "</p><p>Inicio: " + element["fecha_inicio"] + " Fin: " + element["fecha_fin"] + "</p><p>Linea: " + element["nombre_linea"] + "</p><p>Financiado: " + ((element["financiamiento"] == '1') ? "Si" : "No") + "</p><p class='card-text cortar'>Colaboradores<br>"
                 jsonObjet2.forEach(element2 => {
                     cad += element2["nombre"] + "<br>";
                 });
@@ -244,7 +244,7 @@ function cargar_investigadores(palabra_clave_invetigador, id_linea_investigacion
                 data: { funcion: "consultar_lineas_investigador", id_investigador: element["id_investigador"] },
                 dataType: "json"
             }).done(function (jsonObjet2) {
-                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["url_foto"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nivel_estudios"] + " " + element["nombre"] + " " + element["apellido_paterno"] + " " + element["apellido_materno"] + " " + "</h5><p>" + element["correo"] + "</p><p>" + element["ubicacion"] + "</p><p class='cortar'>Linea(s):<br>";
+                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["url_foto"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nivel_estudios"] + " " + element["nombre"] + " " + element["apellido_paterno"] + " " + element["apellido_materno"] + " " + "</h5><p>" + element["correo"] + "</p><p>" + element["ubicacion"] + "</p><p class='cortar'>Linea(s):<br>";
                 jsonObjet2.forEach(element2 => {
                     cad += element2["nombre_linea"] + "<br>";
                 });
@@ -329,7 +329,7 @@ function cargar_anuncios() {
         btn_texto = "Eliminar";
         $("#contenedor_anuncios").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_anuncios").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title'>" + element["titulo_proyecto"] + "</h5><p>Cantidad alumnos: " + element["Cantidad_alumnos"] + "</p><p>Semestre " + element["Semestre"] + "</p><p>Recompensa: " + element["Recompensa"] + "</p><p class='cortar'>Perfil: <br>" + element["Perfil"] + "</p> </div><div class='card-footer text-right blanco'><button href='#registrar_anuncio' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_anun\"," + element["id_anuncio"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_anun\"," + element["id_anuncio"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_anuncios").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Cantidad alumnos: " + element["Cantidad_alumnos"] + "</p><p>Semestre " + element["Semestre"] + "</p><p>Recompensa: " + element["Recompensa"] + "</p><p class='cortar'>Perfil: <br>" + element["Perfil"] + "</p> </div><div class='card-footer text-right blanco'><button href='#registrar_anuncio' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_anun\"," + element["id_anuncio"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_anun\"," + element["id_anuncio"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
