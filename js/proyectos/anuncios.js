@@ -95,6 +95,6 @@ function cargarDatos(datos,paginas,puntero){
   }
 }
 function verProyecto(i){
-  var url = "http://localhost/proyecto_investigacion/descripcion_proyecto.php?id="+i;
+  var url = "https://pgpi.herokuapp.com/descripcion_proyecto.php?id="+i;
   window.open(url);
 }
