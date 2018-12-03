@@ -2,6 +2,14 @@ phpPath = "../php/administracion.php";
 var elemento = "";
 var accion = "";
 
+var proyectos_lista;
+var colaboradores_lista;
+var invesstigadores_lista;
+var linea_lista;
+var publicaciones_lista;
+var congresos_lista;
+var anuncios_lista;
+
 inicializacion();
 
 //constructor de la pagina
@@ -11,13 +19,28 @@ function inicializacion() {
     cargar_investigadores("", "", 1);
     cargar_publicaciones("", "", 1);
     cargar_congresos("", "");
+    cargar_anuncios();
 }
 
 //Funcion que selecciona un id y la accion realiza
 function seleccion(opcion, id) {
     accion = opcion;
     elemento = id;
-    console.log(accion, elemento);
+    switch (opcion) {
+        case "edt_anun":
+            $("#titulo_registro_anuncio").text("Editar anuncio");
+            anuncios_lista.forEach(element => {
+                if (element["id_anuncio"] == id) {
+                    $("#in_cantidad_alumno").val(element["Cantidad_alumnos"]);
+                    $("#in_semestre_alumno").val(element["Semestre"]);
+                    $("#select_proyecto_anuncio").val(element["id_proyecto"]);
+                    $("#txt_perfil_anuncio").val(element["Perfil"]);
+                    $("#in_recompensa_alumno").val(element["Recompensa"]);
+                }
+            });
+            break;
+    }
+    //console.log(accion, elemento);
 }
 
 //Evento de confirmacion de accion seleccionada 
@@ -85,6 +108,62 @@ function realizar_accion() {
             break;
         case "edt_cong":
             break;
+        case "elm_anun":
+            console.log('eliminado');
+            $.ajax({
+                method: "POST",
+                url: phpPath,
+                data: { funcion: "eliminar_anuncio", id_anuncio: elemento }
+            }).done(function (resultado) {
+                if (resultado == "Exito") alert("Accion realizada exitosamente");
+                cargar_anuncios();
+            }).fail(function () {
+                console.log("Error");
+            });
+            break;
+        case "edt_anun":
+            $.ajax({
+                method: "POST",
+                url: phpPath,
+                data: {
+                    funcion: "editar_anuncio",
+                    id_anuncio: elemento,
+                    cantidad: $("#in_cantidad_alumno").val(),
+                    semestre: $("#in_semestre_alumno").val(),
+                    id_proyecto: $("#select_proyecto_anuncio option:selected").val(),
+                    perfil: $("#txt_perfil_anuncio").val(),
+                    recompensa: $("#in_recompensa_alumno option:selected").text()
+                }
+            }).done(function (resultado) {
+                console.log(resultado);
+                if (resultado == "Exito") alert("Accion realizada exitosamente");
+                cargar_anuncios();
+            }).fail(function () {
+                console.log("Error");
+            });
+            $("#btn_cerrar_registro_anuncio").click();
+            break;
+            case "reg_anun":
+            $.ajax({
+                method: "POST",
+                url: phpPath,
+                data: {
+                    funcion: "registrar_anuncio",
+                    cantidad: $("#in_cantidad_alumno").val(),
+                    semestre: $("#in_semestre_alumno").val(),
+                    id_proyecto: $("#select_proyecto_anuncio option:selected").val(),
+                    perfil: $("#txt_perfil_anuncio").val(),
+                    recompensa: $("#in_recompensa_alumno option:selected").text()
+                }
+            }).done(function (resultado) {
+                console.log(resultado);
+                if (resultado == "Exito") alert("Accion realizada exitosamente");
+                cargar_anuncios();
+            }).fail(function () {
+                console.log("Error");
+            });
+            $("#btn_cerrar_registro_anuncio").click();
+            break;
     }
 }
 
@@ -96,7 +175,8 @@ function cargar_proyectos(palabra_clave_proyecto, id_investigador, id_linea_inve
         data: { funcion: "consulta_proyectos_adm", palabra_clave: palabra_clave_proyecto, id_inv: id_investigador, id_linea_investigacion: id_linea_investigacion_proyecto, activo: proyecto_activo },
         dataType: "json"
     }).done(function (jsonObjet) {
-        console.log(jsonObjet);
+        proyectos_lista = jsonObjet;
+        //console.log(jsonObjet);
         var btn_color;
         var btn_texto;
         if (proyecto_activo == 1) {
@@ -109,20 +189,22 @@ function cargar_proyectos(palabra_clave_proyecto, id_investigador, id_linea_inve
             btn_texto = "Activar";
         }
         $("#contenedor_proyectos").empty();
-        var proy = "";
+        $("#select_proyecto_anuncio").empty();
         jsonObjet.forEach(element => {
+            $("#select_proyecto_anuncio").append("<option value=" + element["id_proyecto"] + ">" + element["titulo_proyecto"] + "</option>");
             $.ajax({
                 method: "POST",
                 url: phpPath,
                 data: { funcion: "consulta_lista_colaboradores", id_proyecto: element["id_proyecto"] },
                 dataType: "json"
             }).done(function (jsonObjet2) {
-                cad="<div class='card'><img class='card-img-top' src='" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Lider: " + element["nombre_completo"] + "</p><p>Inicio: " + element["fecha_inicio"] + " Fin: " + element["fecha_fin"] + "</p><p>Linea: " + element["nombre_linea"] + "</p><p>Financiado: " + ((element["financiamiento"] == '1') ? "Si" : "No") + "</p><p class='card-text cortar'>Colaboradores<br>"
+                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Lider: " + element["nombre_completo"] + "</p><p>Inicio: " + element["fecha_inicio"] + " Fin: " + element["fecha_fin"] + "</p><p>Linea: " + element["nombre_linea"] + "</p><p>Financiado: " + ((element["financiamiento"] == '1') ? "Si" : "No") + "</p><p class='card-text cortar'>Colaboradores<br>"
                 jsonObjet2.forEach(element2 => {
                     cad += element2["nombre"] + "<br>";
                 });
-                cad+="</p><p class='card-text cortar'>" + element["resumen"] + "</p></div><div class='card-footer text-right blanco'><button class='btn btn-outline-success' type='button' data-toggle='modal' href='#registrar_proyecto' onclick='seleccion(\"edt_proy\"," + element["id_proyecto"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_proy\"," + element["id_proyecto"] + ");'>" + btn_texto + "</button></div></div>"
+                cad += "</p><p class='card-text cortar'>" + element["resumen"] + "</p></div><div class='card-footer text-right blanco'><button class='btn btn-outline-success' type='button' data-toggle='modal' href='#registrar_proyecto' onclick='seleccion(\"edt_proy\"," + element["id_proyecto"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_proy\"," + element["id_proyecto"] + ");'>" + btn_texto + "</button></div></div>"
                 $("#contenedor_proyectos").append(cad);
+
             }).fail(function () {
                 console.log("Error");
             });
@@ -140,7 +222,8 @@ function cargar_investigadores(palabra_clave_invetigador, id_linea_investigacion
         data: { funcion: "consulta_investigadores_adm", palabra_clave: palabra_clave_invetigador, id_linea_investigacion: id_linea_investigacion_ivestigador, activo: investigador_activo },
         dataType: "json"
     }).done(function (jsonObjet) {
-        console.log(jsonObjet);
+        invesstigadores_lista = jsonObjet;
+        //console.log(jsonObjet);
         var btn_color;
         var btn_texto;
         if (investigador_activo == 1) {
@@ -161,7 +244,7 @@ function cargar_investigadores(palabra_clave_invetigador, id_linea_investigacion
                 data: { funcion: "consultar_lineas_investigador", id_investigador: element["id_investigador"] },
                 dataType: "json"
             }).done(function (jsonObjet2) {
-                cad = "<div class='card'><img class='card-img-top' src='" + element["url_foto"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nivel_estudios"] + " " + element["nombre"] + " " + element["apellido_paterno"] + " " + element["apellido_materno"] + " " + "</h5><p>" + element["correo"] + "</p><p>" + element["ubicacion"] + "</p><p class='cortar'>Linea(s):<br>";
+                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["url_foto"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nivel_estudios"] + " " + element["nombre"] + " " + element["apellido_paterno"] + " " + element["apellido_materno"] + " " + "</h5><p>" + element["correo"] + "</p><p>" + element["ubicacion"] + "</p><p class='cortar'>Linea(s):<br>";
                 jsonObjet2.forEach(element2 => {
                     cad += element2["nombre_linea"] + "<br>";
                 });
@@ -199,7 +282,7 @@ function cargar_publicaciones(palabra_clave_publicacion, id_linea_investigacion_
         }
         $("#contenedor_publicaciones").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_publicaciones").append("<div class='card'><div class='card-body'><h5 class='card-title'>" + element["titulo_publicacion"] + "</h5><p>" + element["fecha_publicacion"] + "</p><p>" + element["foro_publicacion"] + "</p><a class='btn btn-link cortar_t' href='" + element["link_publicacion"] + "'>" + element["link_publicacion"] + "</a><p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_publicacion' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_publicaciones"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_publ\"," + element["id_publicaciones"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_publicaciones").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title'>" + element["titulo_publicacion"] + "</h5><p>" + element["fecha_publicacion"] + "</p><p>" + element["foro_publicacion"] + "</p><a class='btn btn-link cortar_t' href='" + element["link_publicacion"] + "'>" + element["link_publicacion"] + "</a><p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_publicacion' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_publicaciones"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_publ\"," + element["id_publicaciones"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
@@ -214,7 +297,7 @@ function cargar_congresos(palabra_clave_congreso, id_linea_investigacion_congres
         data: { funcion: "consulta_congresos_adm", palabra_clave: palabra_clave_congreso, id_linea_investigacion: id_linea_investigacion_congreso },
         dataType: "json"
     }).done(function (jsonObjet) {
-        console.log(jsonObjet);
+        congresos_lista = jsonObjet;
         var btn_color;
         var btn_texto;
         btn_color = "btn btn-outline-danger";
@@ -222,12 +305,41 @@ function cargar_congresos(palabra_clave_congreso, id_linea_investigacion_congres
         btn_texto = "Eliminar";
         $("#contenedor_congresos").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_congresos").append("<div class='card'><img class='card-img-top' src='" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "''>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_congresos").append("<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "''>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
     });
 }
+
+//funcion que carga los anuncios
+function cargar_anuncios() {
+    $.ajax({
+        method: "POST",
+        url: phpPath,
+        data: { funcion: "consulta_anuncios_adm" },
+        dataType: "json"
+    }).done(function (jsonObjet) {
+        anuncios_lista = jsonObjet;
+        console.log(jsonObjet);
+        var btn_color;
+        var btn_texto;
+        btn_color = "btn btn-outline-danger";
+        $("#btn_si").attr("class", "btn btn-lg btn-outline-danger")
+        btn_texto = "Eliminar";
+        $("#contenedor_anuncios").empty();
+        jsonObjet.forEach(element => {
+            $("#contenedor_anuncios").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title'>" + element["titulo_proyecto"] + "</h5><p>Cantidad alumnos: " + element["Cantidad_alumnos"] + "</p><p>Semestre " + element["Semestre"] + "</p><p>Recompensa: " + element["Recompensa"] + "</p><p class='cortar'>Perfil: <br>" + element["Perfil"] + "</p> </div><div class='card-footer text-right blanco'><button href='#registrar_anuncio' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_anun\"," + element["id_anuncio"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_anun\"," + element["id_anuncio"] + ");'>" + btn_texto + "</button></div></div>");
+        });
+    }).fail(function () {
+        console.log("Error");
+    });
+}
+
+$("#btn_guardar_anuncio").click(function (evt) {
+    realizar_accion();
+});
+
 
 //funcion para inicializar los checkbox y cargar las las listas de los selects
 function cargar_componentes() {
@@ -317,17 +429,17 @@ function recargar_proyectos() {
 $('#check_financiado').change(function (event) {
     if (this.value == 1) {
         $('#check_financiado').val("0");
-        console.log("No financiado");
+        //console.log("No financiado");
     } else {
         $('#check_financiado').val("1");
-        console.log("Financiado")
+        //console.log("Financiado")
     }
 });
 
 //evento para crear un nuevo proyecto
+$("#titulo_modal_proyecto").text("Registrar Proyecto");
+//$("#in_titulo_proyecto").val("");
 $("#btn_nuevo_proyecto").click(function (evt) {
-    $("#titulo_modal_proyecto").text("Registrar Proyecto");
-    //$("#in_titulo_proyecto").val("");
     $("#select_lider_proyecto_registro").val("");
     $("#in_img_proyecto").val("");
     $("#select_linea_proyecto_registro").val("");
@@ -346,6 +458,37 @@ $("#btn_nuevo_proyecto").click(function (evt) {
 
 
 });
+
+$("#btn_nuevo_anuncio").click(function (evt) {
+    $("#titulo_registro_anuncio").text("Nuevo anuncio");
+    $("#txt_perfil_anuncio").val("");
+    $("#in_cantidad_alumno").val("1");
+    $("#in_semestre_alumno").val("1");
+    $("#select_proyecto_anuncio").val("1");
+    $("#in_recompensa_alumno option:selected").val("Credito complementario")
+    accion = "reg_anun";
+});
+
+/*var com_form=$("#registrar_congreso");
+com_form.bind("submit", function(){
+    var formdata = new FormData;
+    formdata.append("img_congreso", $("input [name=img_congreso]")[0].files[0]);
+
+    $.ajax({
+        method: "POST",
+        url: com_form.attr("action"),
+        type:com_form.attr("method"),
+        data: { formdata},
+        processData: false,
+        contentType:false,
+        cache:false, 
+        success: function(data){
+            alert("subido");
+        }
+    });
+
+    return false;
+});*/
 
 //Eventos para actualizar la lista de investigadores
 //Evento para cambio de invetigadores activos a inactivos o visceversa

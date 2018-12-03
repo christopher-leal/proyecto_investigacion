@@ -68,6 +68,11 @@ div.encabezado {
 div.encabezado>img {
     padding-right: 3%;
 }
+@media (max-width:768px){
+    div.encabezado img.imagenes-encabezado{
+        width: 95%;
+    }
+}
 
 /*Navegacion*/
 div.navegacion a {

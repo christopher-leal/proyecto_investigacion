@@ -24,19 +24,16 @@
                     <a class="nav-item nav-link" href="index.php"><i class="fas fa-home"></i></a>
                 </li>
                 <li>
-                    <a href="#">Dashboard</a>
+                    <a href="proyectos_linea.php">Proyectos</a>
                 </li>
                 <li>
-                    <a href="#">¿Quiénes somos?</a>
+                    <a href="investigador.php">Investigadores</a>
                 </li>
                 <li>
-                    <a href="#">Oferta educativa</a>
+                    <a href="congresos.php">Congresos</a>
                 </li>
                 <li>
-                    <a href="#">Comunidad Tec</a>
-                </li>
-                <li>
-                    <a href="#">Servicios</a>
+                    <a href="anuncios.php">Anuncios</a>
                 </li>
                 <li>
                 </li>
@@ -47,8 +44,8 @@
 
     <!-- Encabezado -->
     <div class="encabezado">
-        <img src="img/imagenes tec/logos.png" alt="Nombre del Tec" >
-        <img src="img/imagenes tec/letras.png" alt="Nombre del Tec" >
+        <img class="imagenes-encabezado" src="img/imagenes tec/logos.png" alt="Nombre del Tec" >
+        <img class="imagenes-encabezado" src="img/imagenes tec/letras.png" alt="Nombre del Tec" >
         <img src="img/imagenes tec/escudo.png" alt="Nombre del Tec" >
     </div>
     <!-- /Encabezado -->
@@ -61,10 +58,10 @@
         <div class="collapse navbar-collapse">
             <div class="navbar-nav navegacion">
                 <a class="nav-item nav-link" href="index.php"><i class="fas fa-home"></i></a>
-                <a class="nav-item nav-link" href="#">¿Quiénes somos?</a>
-                <a class="nav-item nav-link" href="#">Oferta educativa</a>
-                <a class="nav-item nav-link" href="#">Comunidad Tec</a>
-                <a class="nav-item nav-link" href="#">Servicios</a>
+                <a class="nav-item nav-link" href="proyectos_linea.php">Proyectos</a>
+                <a class="nav-item nav-link" href="investigador.php">Investigadores</a>
+                <a class="nav-item nav-link" href="congresos.php">Congresos</a>
+                <a class="nav-item nav-link" href="anuncios.php">Anuncios</a>
             </div>
         </div>
     </nav>
