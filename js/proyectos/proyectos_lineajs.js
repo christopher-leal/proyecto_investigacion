@@ -58,7 +58,7 @@ $(function () {
                 btnVertodo.classList.add('btn');
                 btnVertodo.setAttribute('name', 'id');
                 btnVertodo.setAttribute('value', linea['id_linea']);
-                btnVertodo.innerHTML='Ver todo';
+                btnVertodo.innerHTML = 'Ver todo';
                 contenedor.appendChild(btnVertodo);
 
 
@@ -97,9 +97,11 @@ $(function () {
                 tituloProyecto.innerHTML = `Titulo del proyecto:<br>${
                     proyecto['informacion']['titulo_proyecto']
                   }`;
+                tituloProyecto.classList.add('cortar_t');
                 jefeProyecto.innerHTML = `Jefe del Proyecto: <br> ${proyecto['informacion']['nombre']} ${
                     proyecto['informacion']['apellido_paterno']
                   } ${proyecto['informacion']['apellido_materno']}`;
+                jefeProyecto.classList.add('cortar_t');
                 const fechaInicio = formato(proyecto['informacion']['fecha_inicio']);
                 const fechaFin = formato(proyecto['informacion']['fecha_fin']);
                 fechaProyecto.innerHTML = `del ${fechaInicio} al ${fechaFin}`;
@@ -112,7 +114,7 @@ $(function () {
     xhr.send();
 
 });
+
 function formato(fecha) {
     return fecha.replace(/^(\d{4})-(\d{2})-(\d{2})$/g, "$3/$2/$1");
-  }
-  
+}
