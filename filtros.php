@@ -1,6 +1,8 @@
 <?php
   $nombre = $_POST['id'];
+
   function consultarLineas(){
+    $info =[];
     try {
       //importamos la conexion a la base de datos
       require_once('includes/funciones/bdconexion.php');
@@ -11,6 +13,7 @@
       //los datos son almacenados en un arreglo y se retorna test
       while($dato=$resultado->fetch_assoc()){
           $informacion=array(
+              'id_linea'=>utf8_encode($dato['id_linea']),
               'nombre_linea'=>utf8_encode($dato['nombre_linea'])
           );
           $info[]=$informacion;

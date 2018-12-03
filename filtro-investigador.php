@@ -29,14 +29,13 @@ function consultarInvestigador($filtro){
             'url_foto'=>utf8_encode($dato['url_foto']),
             'status'=>utf8_encode($dato['status']),
             'id_linea'=>utf8_encode($dato['id_linea']),
-            //'id_investigador'=>utf8_encode($dato['id_investigador']),
-            //'id_linea'=>utf8_encode($dato['id_linea']),
+            
             'nombre_linea'=>utf8_encode($dato['nombre_linea']),
             'descripcion'=>utf8_encode($dato['descripcion'])
         );
         $info[]=$informacion;
     }
-    return isset($info);
+    return $info;
   } catch(Exception $e) {
     echo $e->getMessage();
     return $e;

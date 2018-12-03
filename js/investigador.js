@@ -167,7 +167,7 @@ function cargarDatos(datos,paginas,puntero){
   for (var i = x; i < d; i++) {
       $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
       "<div class='imagen-proyecto' onclick='verInvestigador("+i+")'>"+
-      "<img src=''>"+
+      "<img src='"+matriz[i][0]+"'>"+
       "<h3>Ver más"+
      "</h3></div>"+"<div class='info-proyecto'><h3>Investigador:<br>"+
       matriz[i][1]+" "+matriz[i][2]+" "+matriz[i][3]+
