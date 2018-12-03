@@ -129,30 +129,31 @@
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 ">
-                    <h5 class="card-title">Ingenieria de Software</h5>
+                    <h5 class="card-title" >Ingenieria de Software e Infraestructura Tecnológica </h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_proyecto" class="card-img-top" src="img\software.jpeg" alt="Card image cap"></a>
+                        <a href="proyectos.php?id=1"><img id="img_proyecto" class="card-img-top" src="img\software.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <h5 class="card-title">Seguridad Informatica</h5>
+                    <h5 class="card-title">Seguridad de la Información</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href=""><img id="img_investigador" class="card-img-top " src="img\seguridad.jpeg" alt="Card image cap"></a>
+                        <a href="proyectos.php?id=2"><img id="img_investigador" class="card-img-top " src="img\seguridad.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <h5 class="card-title">Tecnologias Web</h5>
+                    <h5 class="card-title">Aplicaciones y servicios sobre Internet
+                    </h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href="#"><img id="img_congreso" class="card-img-top" src="img\web.jpeg" alt="Card image cap"></a>
+                        <a href="proyectos.php?id=3"><img id="img_congreso" class="card-img-top" src="img\web.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <h5 class="card-title">Educativa</h5>
+                    <h5 class="card-title">Linea de investigación Educativa</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
-                        <a href="#"><img id="img_publicacion" class="card-img-top" src="img\educativa.jpeg" alt="Card image cap"></a>
+                        <a href="proyectos.php?id=4"><img id="img_publicacion" class="card-img-top" src="img\educativa.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
                     </div>
                 </div>
