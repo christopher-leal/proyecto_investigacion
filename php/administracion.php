@@ -212,7 +212,7 @@
             if(file_exists($_FILES['archivo']['tmp_name'])){
                     if($_FILES["archivo"]["type"]=="image/png" || $_FILES["archivo"]["type"]=="image/jpeg"){
                         if($_FILES["archivo"]["type"]=="image/png" ){
-                            $nombre_archivo = $_POST["nombre"].$_POST["nombre"].date("dmY").".png";
+                            $nombre_archivo = $_POST["nombre"].$_POST["apellido_paterno"].date("dmY").".png";
                         }else if($_FILES["archivo"]["type"]=="image/jpeg"){
                             $nombre_archivo = $_POST["nombre"].$_POST["nombre"].date("dmY_Hms").".jpeg";
                         }
@@ -229,6 +229,37 @@
                             $ubicacion= $_POST["ubicacion"];
                             $id= consultaSQL("SELECT (COUNT(*)+1) AS total from investigadores");
                             $respuesta = querySQL("INSERT INTO investigadores (id_investigador, nombre, apellido_paterno, apellido_materno, nivel_estudios, correo, ubicacion, url_foto, status) VALUES (".$id[0]['total'].", '".$nombre."', '".$apellido_paterno."', '".$apellido_materno."', '".$nivel_estudios."', '".$correo."', '".$ubicacion."', '".$url_foto."', 1);");
+                            echo $respuesta;
+                        } else {
+                            echo "¡Error archivo muy grande!\n";
+                        }
+                    }else{
+                        echo "el documeto ingresado es muy grande o no tiene el formato incorrecto";
+                    }
+                }else{
+                    echo "no seleccionaste archivo";
+                }
+            }else{
+                echo "LLena todos los campos porfavor";
+            }
+        break;
+        case 'registrar_congreso':
+        if($_POST["nombre_evento"] != "" && $_POST["link_externo"] != ""){
+            if(file_exists($_FILES['archivo']['tmp_name'])){
+                if($_FILES["archivo"]["type"]=="image/png" || $_FILES["archivo"]["type"]=="image/jpeg"){
+                        if($_FILES["archivo"]["type"]=="image/png" ){
+                            $nombre_archivo = $_POST["nombre_evento"].date("dmY").".png";
+                        }else if($_FILES["archivo"]["type"]=="image/jpeg"){
+                            $nombre_archivo = $_POST["nombre_evento"].date("dmY_Hms").".jpeg";
+                        }
+                        $tmp_archivo = $_FILES["archivo"]["tmp_name"];
+                        $archivador = "../".$ruta_congresos . "/" . $nombre_archivo;
+                        $link_imagen=$ruta_congresos . "/" . $nombre_archivo;
+                        if (move_uploaded_file($tmp_archivo, $archivador)) {
+                            $nombre_evento= $_POST["nombre_evento"];
+                            $link_externo= $_POST["link_externo"];
+                            $linea_investigacion= $_POST["linea_investigacion"];
+                            $respuesta = querySQL("INSERT INTO congresos (id_evento, nombre_evento, descripcion, lugar, fecha_evento, link_imagen, link_externo, linea_investigacion, fecha_registro, id_proyecto) VALUES (NULL, '".$nombre_evento."', '1', '1', '0000-00-00', '$link_imagen', '$link_externo', '$linea_investigacion', '0000-00-00', NULL);");
                             echo $respuesta;
                         } else {
                             echo "¡Error archivo muy grande!\n";

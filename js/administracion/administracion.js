@@ -264,6 +264,29 @@ function realizar_accion() {
                 });
             }
             break;
+            case "reg_cong":
+            var inputFileImage = document.getElementById("img_congreso_reg");
+                var file = inputFileImage.files[0];
+                var data = new FormData();
+
+                data.append("archivo", file);
+                data.append("funcion", "registrar_congreso")
+                data.append("nombre_evento", $("#in_titulo_congreso").val());
+                data.append("linea_investigacion", $("#select_linea_congreso_registro").val());
+                data.append("link_externo", $("#in_link_congreso").val());
+                $.ajax({
+                    url: phpPath,
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+                    processData: false,
+                    cache: false
+                }).done(function (jsonObjet) {
+                    alert(jsonObjet);
+                }).fail(function () {
+                    console.log("Error");
+                });
+            break;
         case "elm_cong":
             $.ajax({
                 method: "POST",
@@ -438,7 +461,7 @@ function cargar_publicaciones(palabra_clave_publicacion, id_linea_investigacion_
         data: { funcion: "consulta_publicaciones_adm", palabra_clave: palabra_clave_publicacion, id_linea_investigacion: id_linea_investigacion_publicacion, activo: publicacion_activa },
         dataType: "json"
     }).done(function (jsonObjet) {
-        console.log(jsonObjet);
+        //console.log(jsonObjet);
         publicaciones_lista=jsonObjet;
         var btn_color;
         var btn_texto;
@@ -468,6 +491,7 @@ function cargar_congresos(palabra_clave_congreso, id_linea_investigacion_congres
         data: { funcion: "consulta_congresos_adm", palabra_clave: palabra_clave_congreso, id_linea_investigacion: id_linea_investigacion_congreso },
         dataType: "json"
     }).done(function (jsonObjet) {
+        console.log(jsonObjet);
         congresos_lista = jsonObjet;
         var btn_color;
         var btn_texto;
@@ -476,7 +500,7 @@ function cargar_congresos(palabra_clave_congreso, id_linea_investigacion_congres
         btn_texto = "Eliminar";
         $("#contenedor_congresos").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_congresos").append("<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "''>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_congresos").append("<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "''>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
@@ -511,6 +535,11 @@ $("#btn_guardar_anuncio").click(function (evt) {
     realizar_accion();
 });
 
+$("#btn_guardar_congreso").click(function (evt) {
+    realizar_accion();
+});
+
+
 $("#btn_guardar_publicacion").click(function (evt) {
     realizar_accion();
 });
@@ -527,7 +556,7 @@ function cargar_componentes() {
     $("#in_palabra_proyecto").val("");
     $("#in_nombre_investigador").val("");
     $("#in_palabra_publicacion").val("");
-
+    
     $.ajax({
         method: "POST",
         url: phpPath,
@@ -551,7 +580,6 @@ function cargar_componentes() {
         data: { funcion: "consulta_lista_lineas" },
         dataType: "json"
     }).done(function (jsonObjet) {
-        linea_lista_no_selec = [];
         $("#select_linea_proyecto").empty();
         $("#select_linea_investigador").empty();
         $("#select_linea_congreso").empty();
@@ -563,9 +591,10 @@ function cargar_componentes() {
         $("#select_lineas_investigacion_registro").empty();
         $("#select_lineas_investigacion_registro").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_publicacion_registro").empty();
-        jsonObjet.forEach(element => {
-            linea_lista_no_selec.push(element["id_linea"]);
-            $("#select_lineas_investigacion_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
+        $("#select_linea_congreso_registro").empty();
+        jsonObjet.forEach(element => {;
+            $("#select_lineas_investigacion_registro").append("<option  value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
+            $("#select_linea_congreso_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_proyecto").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_publicacion_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_investigador").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
@@ -645,6 +674,18 @@ $("#btn_nuevo_proyecto").click(function (evt) {
 
 
 });
+
+$("#btn_nuevo_congreso").click(function (evt) {
+    $("#tutulo_reg_congreso").text("Nuevo congreso");
+    $("#in_img_congreso").val("");
+    $("#select_linea_congreso_registro").val("1");
+    $("#in_titulo_congreso").val("");
+    $("#img_congreso_reg").val("");
+    $("#in_link_congreso").val("");
+    elemento = "";
+    accion = "reg_cong";
+});
+
 
 $("#btn_nuevo_anuncio").click(function (evt) {
     $("#titulo_registro_anuncio").text("Nuevo anuncio");

@@ -153,7 +153,7 @@
         <div class="tab-pane fade" id="congresos" role="tabpanel" aria-labelledby="congresos-tab">
             <div class="row">
                 <div class="col-lg-6">
-                    <button id="btn_nuevocongreso" href="#registrar_congreso" style="margin-left:2em" type="button"
+                    <button id="btn_nuevo_congreso" href="#registrar_congreso" style="margin-left:2em" type="button"
                         class="btn btn-md btn-outline-primary" data-toggle='modal'>Nuevo</button>
                 </div>
                 <div class="col-lg-6">
@@ -505,12 +505,12 @@
     <!--/Modal de nuevo publicacion-->
 
     <!--Modal de nuevo congreso-->
-    <form class="modal fade" id="registrar_congreso" <!--action="../php/administracion.php"-->  method="POST" role="form" enctype="multipart/form-data">
+    <div class="modal fade" id="registrar_congreso" <!--action="../php/administracion.php"-->  method="POST" role="form" enctype="multipart/form-data">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!--Cabecera del modal-->
                 <div class="modal-header">
-                    <h3 id="" class="modal-title">Titulo C</h3>
+                    <h3 id="tutulo_reg_congreso" class="modal-title">Titulo C</h3>
                     <button id="btn_cerrar_registrar_proyectos" tyle="button" class="close" data-dismiss="modal"
                         aria-hidden="true">&times;</button>
                 </div>
@@ -522,10 +522,9 @@
                             <input type="text" id="in_titulo_congreso" class="form-control">
                         </div>
                         <div class="form-group col-lg-6 col-md-12">
-                            <label for="select_linea_congreso_registro" class="font-weight-bold">Autor</label>
+                            <label for="select_linea_congreso_registro" class="font-weight-bold">Linea de investigación</label>
                             <select id="select_linea_congreso_registro" class="custom-select">
-                                <option value="" selected>Linea</option>
-                                <option value="1">One</option>
+                                <option value="1" selected>Linea</option>
                             </select>
                         </div>
                     </div>
@@ -535,7 +534,7 @@
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-outline-info">
-                                        Buscar&hellip; <input type="file" name="img_congreso" id="img_congreso" style="display: none;" accept="image/png, image/jpeg">
+                                        Buscar&hellip; <input id="img_congreso_reg" name="img_congreso_reg" type="file" name="img_congreso" id="img_congreso" style="display: none;" accept="image/png, image/jpeg">
                                     </span>
                                 </label>
                                 <input id="in_img_congreso" type="text" class="form-control" readonly>
@@ -547,13 +546,13 @@
                         </div>
                     </div>
                 </div>
-                <!--Cabecera del modal-->
+                <!--pie del modal-->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-md btn-outline-success">Guardad</button>
+                    <button id="btn_guardar_congreso" class="btn btn-md btn-outline-success">Guardad</button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <!--/Modal de nuevo congreso-->
 
     <!--Modal de nuevo anuncio-->
