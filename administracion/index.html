@@ -225,10 +225,10 @@
                     <div class="row">
                         <div class="form-group col-lg-6 col-md-12">
                             <label for="in_titulo_proyecto" class="font-weight-bold">Titulo</label>
-                            <input type="text" id="in_titulo_proyecto" class="form-control" required>
+                            <input type="text" id="in_titulo_proyecto" class="form-control">
                         </div>
                         <div class="form-group col-lg-6 col-md-12">
-                            <label for="select_lider_proyecto_registro" class="font-weight-bold">Lider de proyecto</label>
+                            <label for="in_titulo_proyecto" class="font-weight-bold">Lider de proyecto</label>
                             <select id="select_lider_proyecto_registro" class="custom-select">
                                 <option value="" selected>Linea</option>
                                 <option value="1">One</option>
@@ -241,7 +241,7 @@
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-outline-info">
-                                        Buscar&hellip; <input type="file" style="display: none;" accept="image/png, image/jpeg">
+                                        Buscar&hellip; <input id="img_proyecto_ref" name="img_proyecto_ref" type="file" style="display: none;" accept="image/png, image/jpeg">
                                     </span>
                                 </label>
                                 <input id="in_img_proyecto" type="text" class="form-control" readonly>
@@ -260,7 +260,7 @@
                             <div class="form-group">
                                 <label for="fecha_inicio" class="font-weight-bold">Fecha inicio</label>
                                 <div class='input-group date' id='fecha_inicio'>
-                                    <input id="in_fecha_inicio" type='text' class="form-control" required>
+                                    <input id="in_fecha_inicio" type='text' class="form-control">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                                     </span>
@@ -271,7 +271,7 @@
                             <div class="form-group">
                                 <label for="fecha_fin" class="font-weight-bold">Fecha inicio</label>
                                 <div class='input-group date' id='fecha_fin'>
-                                    <input id="in_fecha_fin" type='text' class="form-control" required>
+                                    <input id="in_fecha_fin" type='text' class="form-control">
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                                     </span>
@@ -290,8 +290,8 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-12">
-                            <label for="txt_resumen_proyecto" class="font-weight-bold">Example textarea</label>
-                            <textarea class="form-control" id="txt_resumen_proyecto" rows="3" required></textarea>
+                            <label for="txt_resumen_proyecto" class="font-weight-bold">Resumen</label>
+                            <textarea class="form-control" id="txt_resumen_proyecto" rows="3"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -310,6 +310,7 @@
                             </ul>
                         </div>
                     </div>
+                    <!---
                     <div class="row">
                         <div class="form-group col-lg-6 col-md-12">
                             <label for="select_publicaciones" class="font-weight-bold">Publicaciones</label>
@@ -342,6 +343,7 @@
                             </ul>
                         </div>
                     </div>
+                    -->
                 </div>
                 <!--Pie del modal-->
                 <div class="modal-footer">

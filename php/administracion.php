@@ -20,7 +20,7 @@
             $id_inv=$_REQUEST["id_inv"];
             $id_linea_investigacion=$_REQUEST["id_linea_investigacion"];
             $activo=$_REQUEST["activo"];
-            $respuesta = consultaSQL("SELECT id_proyecto, link_imagen, titulo_proyecto, lider_proyecto, fecha_inicio, fecha_fin, nombre_linea, resumen, CONCAT(nombre, ' ', apellido_paterno, ' ', apellido_materno) AS nombre_completo, financiamiento FROM proyectos AS P INNER JOIN lineas_investigacion AS L ON P.linea_investigacion=L.id_linea INNER JOIN investigadores AS I ON I.id_investigador=P.lider_proyecto WHERE titulo_proyecto LIKE '%".$palabra_clave."%' AND lider_proyecto LIKE '%".$id_inv."%' AND linea_investigacion LIKE'%".$id_linea_investigacion."%' AND P.status=".$activo.";");
+            $respuesta = consultaSQL("SELECT id_proyecto, linea_investigacion, link_imagen, titulo_proyecto, lider_proyecto, DATE_FORMAT(fecha_inicio,'%d/%m/%Y') AS fecha_inicio, DATE_FORMAT(fecha_fin,'%d/%m/%Y') AS fecha_fin, nombre_linea, resumen, CONCAT(nombre, ' ', apellido_paterno, ' ', apellido_materno) AS nombre_completo, financiamiento FROM proyectos AS P INNER JOIN lineas_investigacion AS L ON P.linea_investigacion=L.id_linea INNER JOIN investigadores AS I ON I.id_investigador=P.lider_proyecto WHERE titulo_proyecto LIKE '%".$palabra_clave."%' AND lider_proyecto LIKE '%".$id_inv."%' AND linea_investigacion LIKE'%".$id_linea_investigacion."%' AND P.status=".$activo.";");
             echo json_encode($respuesta);
         break;
         //consulta de invetigadores
@@ -64,7 +64,7 @@
         //consluta colboradores proyecto
         case 'consulta_lista_colaboradores':
             $id_proyecto=$_REQUEST["id_proyecto"];
-            $respuesta = consultaSQL("SELECT CONCAT(I.nivel_estudios, ' ', I.nombre, ' ', I.apellido_paterno, ' ', I.apellido_materno) AS nombre , id_proyecto FROM colaboradores AS C INNER JOIN investigadores AS I ON C.id_investigador=I.id_investigador WHERE id_proyecto=".$id_proyecto.";");
+            $respuesta = consultaSQL("SELECT CONCAT(I.nivel_estudios, ' ', I.nombre, ' ', I.apellido_paterno, ' ', I.apellido_materno) AS nombre , id_proyecto, C.id_investigador FROM colaboradores AS C INNER JOIN investigadores AS I ON C.id_investigador=I.id_investigador WHERE id_proyecto=".$id_proyecto.";");
             echo json_encode($respuesta);
         break;
         //Cunsulta las lineas de investigacion multiples de un investigadoras
@@ -133,18 +133,43 @@
             $respuesta = querySQL("INSERT INTO lineas_investigadores (id_linea, id_investigador) VALUES ('".$id_linea."', '".$id[0]["total"]."');");
             echo $respuesta;
             break;
+        case 'registrar_colaboradores':
+            $id_investigador=$_REQUEST["id_investigador"];
+            $id= consultaSQL("SELECT COUNT(*) AS total from proyectos");
+            $respuesta = querySQL("INSERT INTO colaboradores (id_investigador, id_proyecto) VALUES ('".$id_investigador."', '".$id[0]["total"]."');");
+            echo $respuesta;
+            break;
+        case 'editar_colaboradores':
+            $id_investigador=$_REQUEST["id_investigador"];
+            $id_proyecto=$_REQUEST["id_proyecto"];
+            //$respuesta = querySQL("DELETE FROM colaboradores WHERE id_proyecto = ".$id_proyecto.";");
+            $respuesta = querySQL("INSERT INTO colaboradores (id_investigador, id_proyecto) VALUES ('".$id_investigador."', '".$id_proyecto."');");
+            echo $respuesta;
+            break;
+        case 'eliminar_colaboradores':
+            $id_proyecto=$_REQUEST["id_proyecto"];
+            $respuesta = querySQL("DELETE FROM colaboradores WHERE id_proyecto = ".$id_proyecto.";");
+            //$respuesta = querySQL("INSERT INTO colaboradores (id_investigador, id_proyecto) VALUES ('".$id_investigador."', '".$id[0]["total"]."');");
+            echo $respuesta;
+            break;
         case 'editar_lineas_inv':
             $id_linea=$_REQUEST["id_linea"];
             $id_investigador= $_REQUEST["id_investigador"];
-            $respuesta = querySQL("DELETE FROM lineas_investigadores WHERE id_investigador =".$id_investigador." ;");
+            //$respuesta = querySQL("DELETE FROM lineas_investigadores WHERE id_investigador =".$id_investigador." ;");
             $respuesta = querySQL("INSERT INTO lineas_investigadores (id_linea, id_investigador) VALUES ('".$id_linea."', '".$id_investigador."');");
+            echo $respuesta;
+            break;
+        case 'eliminar_lineas_inv':
+            $id_investigador= $_REQUEST["id_investigador"];
+            $respuesta = querySQL("DELETE FROM lineas_investigadores WHERE id_investigador =".$id_investigador." ;");
+            //$respuesta = querySQL("INSERT INTO lineas_investigadores (id_linea, id_investigador) VALUES ('".$id_linea."', '".$id_investigador."');");
             echo $respuesta;
             break;
         case 'registrar_publicacion':
         if($_POST["titulo_publicacion"] != "" && $_POST["foro_publicacion"] != "" && $_POST["fecha_publicacion"] != ""){
             if(file_exists($_FILES['archivo']['tmp_name'])){
                     if($_FILES["archivo"]["type"]=="application/pdf"){
-                        $nombre_archivo = $_POST["titulo_publicacion"].date("dmY_Hms").".pdf";
+                        $nombre_archivo = date("dmY_Hms").".pdf";
                         $tmp_archivo = $_FILES["archivo"]["tmp_name"];
                         $archivador = "../".$ruta_publicaciones . "/" . $nombre_archivo;
                         $link_publicacion=$ruta_publicaciones . "/" . $nombre_archivo;
@@ -174,7 +199,7 @@
         if($_POST["titulo_publicacion"] != "" && $_POST["foro_publicacion"] != "" && $_POST["fecha_publicacion"] != ""){
             if(file_exists($_FILES['archivo']['tmp_name'])){
                     if($_FILES["archivo"]["type"]=="application/pdf"){
-                        $nombre_archivo = $_POST["titulo_publicacion"].date("dmY_Hms").".pdf";
+                        $nombre_archivo = date("dmY_Hms").".pdf";
                         $tmp_archivo = $_FILES["archivo"]["tmp_name"];
                         $archivador = "../".$ruta_publicaciones . "/" . $nombre_archivo;
                         $link_publicacion=$ruta_publicaciones . "/" . $nombre_archivo;
@@ -221,7 +246,7 @@
                         if($_FILES["archivo"]["type"]=="image/png" ){
                             $nombre_archivo = $_POST["nombre"].$_POST["apellido_paterno"].date("dmY").".png";
                         }else if($_FILES["archivo"]["type"]=="image/jpeg"){
-                            $nombre_archivo = $_POST["nombre"].$_POST["nombre"].date("dmY_Hms").".jpeg";
+                            $nombre_archivo =date("dmY_Hms").".jpeg";
                         }
                         $tmp_archivo = $_FILES["archivo"]["tmp_name"];
                         $archivador = "../".$ruta_investigadores . "/" . $nombre_archivo;
@@ -250,6 +275,95 @@
                 echo "LLena todos los campos porfavor";
             }
         break;
+        case 'registrar_proyecto':
+        if($_POST["titulo_proyecto"] != "" && $_POST["lider_proyecto"] != "" && $_POST["linea_investigacion"] != "" && $_POST["fecha_inicio"] != "" && $_POST["fecha_fin"] != "" && $_POST["resumen"] != ""){
+            if(file_exists($_FILES['archivo']['tmp_name'])){
+                    if($_FILES["archivo"]["type"]=="image/png" || $_FILES["archivo"]["type"]=="image/jpeg"){
+                        if($_FILES["archivo"]["type"]=="image/png" ){
+                            $nombre_archivo = $_POST["titulo_proyecto"].date("dmY").".png";
+                        }else if($_FILES["archivo"]["type"]=="image/jpeg"){
+                            $nombre_archivo = date("dmY_Hms").".jpeg";
+                        }
+                        $tmp_archivo = $_FILES["archivo"]["tmp_name"];
+                        $archivador = "../".$ruta_proyectos . "/" . $nombre_archivo;
+                        $url_foto=$ruta_proyectos . "/" . $nombre_archivo;
+                        if (move_uploaded_file($tmp_archivo, $archivador)) {
+                            //echo "El fichero es válido y se subió con éxito.\n";
+                            $titulo_proyecto= $_POST["titulo_proyecto"];
+                            $lider_proyecto= $_POST["lider_proyecto"];
+                            $linea_investigacion= $_POST["linea_investigacion"];
+                            $fecha_inicio= $_POST["fecha_inicio"];
+                            $fecha_fin= $_POST["fecha_fin"];
+                            $financiamiento= $_POST["financiamiento"];
+                            $resumen= $_POST["resumen"];
+                            $id= consultaSQL("SELECT (COUNT(*)+1) AS total from proyectos");
+                            $respuesta = querySQL("INSERT INTO proyectos (id_proyecto, titulo_proyecto, lider_proyecto, linea_investigacion, fecha_inicio, fecha_fin, financiamiento, link_imagen, fecha_registro, resumen, status) VALUES ('".$id[0]['total']."', '".$titulo_proyecto."', '".$lider_proyecto."', '".$linea_investigacion."', DATE_FORMAT(STR_TO_DATE('".$fecha_inicio."', '%d/%m/%Y'), '%Y-%m-%d'), DATE_FORMAT(STR_TO_DATE('".$fecha_fin."', '%d/%m/%Y'), '%Y-%m-%d'), '".$financiamiento."', '".$url_foto."', '0000-00-00', '".$resumen."', '1');");
+                            echo $respuesta;
+                        } else {
+                            echo "¡Error archivo muy grande!\n";
+                        }
+                    }else{
+                        echo "el documeto ingresado es muy grande o no tiene el formato incorrecto";
+                    }
+                }else{
+                    echo "no seleccionaste archivo";
+                }
+            }else{
+                echo "LLena todos los campos porfavor";
+            }
+        break;
+        case 'editar_proyecto_con':
+        if($_POST["titulo_proyecto"] != "" && $_POST["lider_proyecto"] != "" && $_POST["linea_investigacion"] != "" && $_POST["fecha_inicio"] != "" && $_POST["fecha_fin"] != "" && $_POST["resumen"] != ""){
+            if(file_exists($_FILES['archivo']['tmp_name'])){
+                if($_FILES["archivo"]["type"]=="image/png" || $_FILES["archivo"]["type"]=="image/jpeg"){
+                    if($_FILES["archivo"]["type"]=="image/png" ){
+                        $nombre_archivo = $_POST["titulo_proyecto"].date("dmY").".png";
+                    }else if($_FILES["archivo"]["type"]=="image/jpeg"){
+                        $nombre_archivo = date("dmY_Hms").".jpeg";
+                    }
+                    $tmp_archivo = $_FILES["archivo"]["tmp_name"];
+                    $archivador = "../".$ruta_proyectos . "/" . $nombre_archivo;
+                    $url_foto=$ruta_proyectos . "/" . $nombre_archivo;
+                        if (move_uploaded_file($tmp_archivo, $archivador)) {
+                            $id_proyecto= $_POST["id_proyecto"];
+                            $titulo_proyecto= $_POST["titulo_proyecto"];
+                            $lider_proyecto= $_POST["lider_proyecto"];
+                            $linea_investigacion= $_POST["linea_investigacion"];
+                            $fecha_inicio= $_POST["fecha_inicio"];
+                            $fecha_fin= $_POST["fecha_fin"];
+                            $financiamiento= $_POST["financiamiento"];
+                            $resumen= $_POST["resumen"];
+                            $respuesta = querySQL("UPDATE proyectos SET titulo_proyecto = '".$titulo_proyecto."', lider_proyecto = '".$lider_proyecto."', linea_investigacion = '".$linea_investigacion."', fecha_inicio = DATE_FORMAT(STR_TO_DATE('".$fecha_inicio."', '%d/%m/%Y'), '%Y-%m-%d'), fecha_fin = DATE_FORMAT(STR_TO_DATE('".$fecha_fin."', '%d/%m/%Y'), '%Y-%m-%d'), financiamiento = '".$financiamiento."', link_imagen = '".$url_foto."', resumen = '".$resumen."' WHERE id_proyecto = ".$id_proyecto.";");
+                            echo $respuesta;
+                        } else {
+                            echo "¡Error archivo muy grande!\n";
+                        }
+                    }else{
+                        echo "el documeto ingresado es muy grande o no tiene el formato incorrecto";
+                    }
+                }else{
+                    echo "no seleccionaste archivo";
+                }
+            }else{
+                echo "LLena todos los campos porfavor";
+            }
+        break;
+        case 'editar_proyecto_sin':
+        if($_POST["titulo_proyecto"] != "" && $_POST["lider_proyecto"] != "" && $_POST["linea_investigacion"] != "" && $_POST["fecha_inicio"] != "" && $_POST["fecha_fin"] != "" && $_POST["resumen"] != ""){
+                $id_proyecto= $_POST["id_proyecto"];
+                $titulo_proyecto= $_POST["titulo_proyecto"];
+                $lider_proyecto= $_POST["lider_proyecto"];
+                $linea_investigacion= $_POST["linea_investigacion"];
+                $fecha_inicio= $_POST["fecha_inicio"];
+                $fecha_fin= $_POST["fecha_fin"];
+                $financiamiento= $_POST["financiamiento"];
+                $resumen= $_POST["resumen"];
+                $respuesta = querySQL("UPDATE proyectos SET titulo_proyecto = '".$titulo_proyecto."', lider_proyecto = '".$lider_proyecto."', linea_investigacion = '".$linea_investigacion."', fecha_inicio = DATE_FORMAT(STR_TO_DATE('".$fecha_inicio."', '%d/%m/%Y'), '%Y-%m-%d'), fecha_fin = DATE_FORMAT(STR_TO_DATE('".$fecha_fin."', '%d/%m/%Y'), '%Y-%m-%d'), financiamiento = '".$financiamiento."', resumen = '".$resumen."' WHERE id_proyecto = ".$id_proyecto.";");
+                echo $respuesta;
+            }else{
+                echo "Llena todos los campos porfavor";
+            }
+        break;
         case 'editar_investigador_sin':
         if($_POST["nivel_estudios"] != "" && $_POST["nombre"] != "" && $_POST["apellido_paterno"] != "" && $_POST["apellido_materno"] != "" && $_POST["correo"] != "" && $_POST["ubicacion"] != ""){
                             $nivel_estudios= $_POST["nivel_estudios"];
@@ -272,7 +386,7 @@
                         if($_FILES["archivo"]["type"]=="image/png" ){
                             $nombre_archivo = $_POST["nombre"].$_POST["apellido_paterno"].date("dmY").".png";
                         }else if($_FILES["archivo"]["type"]=="image/jpeg"){
-                            $nombre_archivo = $_POST["nombre"].$_POST["nombre"].date("dmY_Hms").".jpeg";
+                            $nombre_archivo =date("dmY_Hms").".jpeg";
                         }
                         $tmp_archivo = $_FILES["archivo"]["tmp_name"];
                         $archivador = "../".$ruta_investigadores . "/" . $nombre_archivo;
@@ -308,7 +422,7 @@
                         if($_FILES["archivo"]["type"]=="image/png" ){
                             $nombre_archivo = $_POST["nombre_evento"].date("dmY").".png";
                         }else if($_FILES["archivo"]["type"]=="image/jpeg"){
-                            $nombre_archivo = $_POST["nombre_evento"].date("dmY_Hms").".jpeg";
+                            $nombre_archivo = date("dmY_Hms").".jpeg";
                         }
                         $tmp_archivo = $_FILES["archivo"]["tmp_name"];
                         $archivador = "../".$ruta_congresos . "/" . $nombre_archivo;
@@ -351,7 +465,7 @@
                         if($_FILES["archivo"]["type"]=="image/png" ){
                             $nombre_archivo = $_POST["nombre_evento"].date("dmY").".png";
                         }else if($_FILES["archivo"]["type"]=="image/jpeg"){
-                            $nombre_archivo = $_POST["nombre_evento"].date("dmY_Hms").".jpeg";
+                            $nombre_archivo = date("dmY_Hms").".jpeg";
                         }
                         $tmp_archivo = $_FILES["archivo"]["tmp_name"];
                         $archivador = "../".$ruta_congresos . "/" . $nombre_archivo;

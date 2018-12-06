@@ -3,7 +3,7 @@ var elemento = "";
 var accion = "";
 
 var proyectos_lista;
-var colaboradores_lista;
+var colaboradores_lista = [];
 var investigadores_lista;
 var linea_lista = [];
 var publicaciones_lista;
@@ -28,9 +28,41 @@ function seleccion(opcion, id) {
     accion = opcion;
     elemento = id;
     switch (opcion) {
+        case "edt_proy":
+            $("#titulo_modal_proyecto").text("Editar Proyecto");
+            colaboradores_lista = [];
+            proyectos_lista.forEach(element => {
+                if (element["id_proyecto"] == id) {
+                    $("#in_titulo_proyecto").val(element["titulo_proyecto"]);
+                    $("#select_lider_proyecto_registro").val(element["lider_proyecto"]);
+                    $("#select_linea_proyecto_registro").val(element["linea_investigacion"]);
+                    $("#check_financiado").val(element["financiamiento"]);
+                    $("#img_proyecto_ref").val("");
+                    $("#in_img_proyecto").val("");
+                    $("#in_fecha_inicio").val(element["fecha_inicio"]);
+                    $("#in_fecha_fin").val(element["fecha_fin"]);
+                    $("#txt_resumen_proyecto").val(element["resumen"]);
+                    $.ajax({
+                        method: "POST",
+                        url: phpPath,
+                        data: { funcion: "consulta_lista_colaboradores", id_proyecto: element["id_proyecto"] },
+                        dataType: "json"
+                    }).done(function (jsonObjet) {
+                        console.log(jsonObjet)
+                        jsonObjet.forEach(element2 => {
+                            colaboradores_lista.push(element2["id_investigador"]);
+                        });
+                        listar_colaboradores();
+                    }).fail(function () {
+                        console.log("Error");
+                    });
+
+                }
+            });
+            break;
         case "edt_inv":
             $("#titulo_modal_investigador").text("Editar Invetigador");
-            linea_lista=[];
+            linea_lista = [];
             investigadores_lista.forEach(element => {
                 if (element["id_investigador"] == id) {
                     $("#in_titulo_investigador_registro").val(element["nivel_estudios"]);
@@ -54,7 +86,7 @@ function seleccion(opcion, id) {
                     }).fail(function () {
                         console.log("Error");
                     });
-                    
+
                 }
             });
             break;
@@ -121,7 +153,189 @@ function realizar_accion() {
                 console.log("Error");
             });
             break;
+        case "reg_proy":
+            if (colaboradores_lista.length != 0) {
+                var inputFileImage = document.getElementById("img_proyecto_ref");
+                var file = inputFileImage.files[0];
+                var data = new FormData();
+
+                data.append("archivo", file);
+                data.append("funcion", "registrar_proyecto")
+                data.append("titulo_proyecto", $("#in_titulo_proyecto").val());
+                data.append("lider_proyecto", $("#select_lider_proyecto_registro").val());
+                data.append("linea_investigacion", $("#select_linea_proyecto_registro").val());
+                data.append("fecha_inicio", $("#in_fecha_inicio").val());
+                data.append("fecha_fin", $("#in_fecha_fin").val());
+                data.append("financiamiento", $("#check_financiado").val());
+                data.append("resumen", $("#txt_resumen_proyecto").val());
+                $.ajax({
+                    url: phpPath,
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+                    processData: false,
+                    cache: false
+                }).done(function (jsonObjet) {
+                    alert(jsonObjet);
+                    if (jsonObjet == "Exito") {
+                        colaboradores_lista.forEach(element => {
+                            $.ajax({
+                                method: "POST",
+                                url: phpPath,
+                                data: {
+                                    funcion: "registrar_colaboradores",
+                                    id_investigador: element
+                                }
+                            }).done(function (resultado) {
+                                console.log(resultado);
+                            }).fail(function () {
+                                console.log("Error");
+                            });
+                        });
+                        $(function () {
+                            $('#registrar_proyecto').modal('toggle');
+                        });
+                        recargar_proyectos();
+                    }
+
+                }).fail(function () {
+                    console.log("Error");
+                });
+            } else {
+                alert("No se ha seleccionado algun de colaboradores");
+            }
+            break;
         case "edt_proy":
+            if ($("#img_proyecto_ref").val() == "") {
+                if (colaboradores_lista.length != 0) {
+                    var data = new FormData();
+
+                    data.append("funcion", "editar_proyecto_sin");
+                    data.append("id_proyecto", elemento);
+                    data.append("titulo_proyecto", $("#in_titulo_proyecto").val());
+                    data.append("lider_proyecto", $("#select_lider_proyecto_registro").val());
+                    data.append("linea_investigacion", $("#select_linea_proyecto_registro").val());
+                    data.append("fecha_inicio", $("#in_fecha_inicio").val());
+                    data.append("fecha_fin", $("#in_fecha_fin").val());
+                    data.append("financiamiento", $("#check_financiado").val());
+                    data.append("resumen", $("#txt_resumen_proyecto").val());
+                    $.ajax({
+                        url: phpPath,
+                        type: "POST",
+                        contentType: false,
+                        data: data,
+                        processData: false,
+                        cache: false
+                    }).done(function (jsonObjet) {
+                        console.log(jsonObjet);
+                        if (jsonObjet == "Exito") {
+                            $.ajax({
+                                method: "POST",
+                                url: phpPath,
+                                data: {
+                                    funcion: "eliminar_colaboradores",
+                                    id_proyecto: elemento,
+                                }
+                            }).done(function (resultado) {
+                                console.log(resultado);
+                            }).fail(function () {
+                                console.log("Error");
+                            });
+                            colaboradores_lista.forEach(element => {
+                                $.ajax({
+                                    method: "POST",
+                                    url: phpPath,
+                                    data: {
+                                        funcion: "editar_colaboradores",
+                                        id_proyecto: elemento,
+                                        id_investigador: element
+                                    }
+                                }).done(function (resultado) {
+                                    console.log(resultado);
+                                }).fail(function () {
+                                    console.log("Error");
+                                });
+                            });
+                            alert(jsonObjet);
+                            $(function () {
+                                $('#registrar_proyecto').modal('toggle');
+                            });
+                            recargar_proyectos();
+                        }
+
+                    }).fail(function () {
+                        console.log("Error");
+                    });
+                } else {
+                    alert("No se ha seleccionado alguna linea de invetigación")
+                }
+            } else {
+                if (colaboradores_lista.length != 0) {
+                    var inputFileImage = document.getElementById("img_proyecto_ref");
+                    var file = inputFileImage.files[0];
+                    var data = new FormData();
+
+                    data.append("archivo", file);
+                    data.append("funcion", "editar_proyecto_con");
+                    data.append("id_proyecto", elemento);
+                    data.append("titulo_proyecto", $("#in_titulo_proyecto").val());
+                    data.append("lider_proyecto", $("#select_lider_proyecto_registro").val());
+                    data.append("linea_investigacion", $("#select_linea_proyecto_registro").val());
+                    data.append("fecha_inicio", $("#in_fecha_inicio").val());
+                    data.append("fecha_fin", $("#in_fecha_fin").val());
+                    data.append("financiamiento", $("#check_financiado").val());
+                    data.append("resumen", $("#txt_resumen_proyecto").val());
+                    $.ajax({
+                        url: phpPath,
+                        type: "POST",
+                        contentType: false,
+                        data: data,
+                        processData: false,
+                        cache: false
+                    }).done(function (jsonObjet) {
+                        console.log(jsonObjet);
+                        if (jsonObjet == "Exito") {
+                            $.ajax({
+                                method: "POST",
+                                url: phpPath,
+                                data: {
+                                    funcion: "eliminar_colaboradores",
+                                    id_proyecto: elemento,
+                                    }
+                            }).done(function (resultado) {
+                                console.log(resultado);
+                            }).fail(function () {
+                                console.log("Error");
+                            });
+                            colaboradores_lista.forEach(element => {
+                                $.ajax({
+                                    method: "POST",
+                                    url: phpPath,
+                                    data: {
+                                        funcion: "editar_colaboradores",
+                                        id_proyecto: elemento,
+                                        id_investigador: element
+                                    }
+                                }).done(function (resultado) {
+                                    console.log(resultado);
+                                }).fail(function () {
+                                    console.log("Error");
+                                });
+                            });
+                            alert(jsonObjet);
+                            $(function () {
+                                $('#registrar_proyecto').modal('toggle');
+                            });
+                            recargar_proyectos();
+                        }
+
+                    }).fail(function () {
+                        console.log("Error");
+                    });
+                } else {
+                    alert("No se ha seleccionado alguna linea de invetigación")
+                }
+            }
             break;
         case "reg_inv":
             if (linea_lista.length != 0) {
@@ -175,11 +389,11 @@ function realizar_accion() {
                 alert("No se ha seleccionado alguna linea de invetigación")
             }
             break;
-            case "edt_inv":
-            if($("#img_investigador").val()==""){
+        case "edt_inv":
+            if ($("#img_investigador").val() == "") {
                 if (linea_lista.length != 0) {
                     var data = new FormData();
-    
+
                     data.append("id_investigador", elemento);
                     data.append("funcion", "editar_investigador_sin")
                     data.append("nivel_estudios", $("#in_titulo_investigador_registro").val());
@@ -198,6 +412,18 @@ function realizar_accion() {
                     }).done(function (jsonObjet) {
                         console.log(jsonObjet);
                         if (jsonObjet == "Exito") {
+                            $.ajax({
+                                method: "POST",
+                                url: phpPath,
+                                data: {
+                                    funcion: "eliminar_lineas_inv",
+                                    id_investigador: elemento,
+                                }
+                            }).done(function (resultado) {
+                                console.log(resultado);
+                            }).fail(function () {
+                                console.log("Error");
+                            });
                             linea_lista.forEach(element => {
                                 $.ajax({
                                     method: "POST",
@@ -219,19 +445,19 @@ function realizar_accion() {
                             });
                             recargar_investigadores();
                         }
-    
+
                     }).fail(function () {
                         console.log("Error");
                     });
                 } else {
                     alert("No se ha seleccionado alguna linea de invetigación")
                 }
-            }else{
+            } else {
                 if (linea_lista.length != 0) {
                     var inputFileImage = document.getElementById("img_investigador");
                     var file = inputFileImage.files[0];
                     var data = new FormData();
-    
+
                     data.append("archivo", file);
                     data.append("id_investigador", elemento);
                     data.append("funcion", "editar_investigador_con")
@@ -251,6 +477,18 @@ function realizar_accion() {
                     }).done(function (jsonObjet) {
                         console.log(jsonObjet);
                         if (jsonObjet == "Exito") {
+                            $.ajax({
+                                method: "POST",
+                                url: phpPath,
+                                data: {
+                                    funcion: "eliminar_lineas_inv",
+                                    id_investigador: elemento,
+                                }
+                            }).done(function (resultado) {
+                                console.log(resultado);
+                            }).fail(function () {
+                                console.log("Error");
+                            });
                             linea_lista.forEach(element => {
                                 $.ajax({
                                     method: "POST",
@@ -272,7 +510,7 @@ function realizar_accion() {
                             });
                             recargar_investigadores();
                         }
-    
+
                     }).fail(function () {
                         console.log("Error");
                     });
@@ -292,8 +530,6 @@ function realizar_accion() {
             }).fail(function () {
                 console.log("Error");
             });
-            break;
-        case "edt_inv":
             break;
         case "reg_publ":
             var inputFileImage = document.getElementById("achivo_pdf");
@@ -559,7 +795,7 @@ function cargar_proyectos(palabra_clave_proyecto, id_investigador, id_linea_inve
         dataType: "json"
     }).done(function (jsonObjet) {
         proyectos_lista = jsonObjet;
-        //console.log(jsonObjet);
+        console.log(jsonObjet);
         var btn_color;
         var btn_texto;
         if (proyecto_activo == 1) {
@@ -721,7 +957,7 @@ function cargar_anuncios() {
     });
 }
 
-$("#btn_guardar_anuncio").click(function (evt) {
+$("#btn_guardar_proyecto").click(function (evt) {
     realizar_accion();
 });
 
@@ -754,11 +990,17 @@ function cargar_componentes() {
         dataType: "json"
     }).done(function (jsonObjet) {
         $("#select_investigador_proyecto").empty();
+        $("#select_colaboradores").empty();
+        $("#select_lider_proyecto_registro").empty();
         $("#select_autor_publicacion_registro").empty();
         $("#select_investigador_proyecto").append("<option selected value=''>Investigador</option>");
+        $("#select_lider_proyecto_registro").append("<option selected value=''>Investigador</option>");
+        $("#select_colaboradores").append("<option selected value=''>Investigador</option>");
         jsonObjet.forEach(element => {
             $("#select_investigador_proyecto").append("<option value=" + element["id_investigador"] + ">" + element["nombre"] + "</option>");
+            $("#select_lider_proyecto_registro").append("<option value=" + element["id_investigador"] + ">" + element["nombre"] + "</option>");
             $("#select_autor_publicacion_registro").append("<option value=" + element["id_investigador"] + ">" + element["nombre"] + "</option>");
+            $("#select_colaboradores").append("<option value=" + element["id_investigador"] + ">" + element["nombre"] + "</option>");
         });
     }).fail(function () {
         console.log("Error");
@@ -771,6 +1013,7 @@ function cargar_componentes() {
         dataType: "json"
     }).done(function (jsonObjet) {
         $("#select_linea_proyecto").empty();
+        $("#select_linea_proyecto_registro").empty();
         $("#select_linea_investigador").empty();
         $("#select_linea_congreso").empty();
         $("#select_linea_publicacion").empty();
@@ -778,6 +1021,7 @@ function cargar_componentes() {
         $("#select_linea_investigador").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_congreso").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_publicacion").append("<option value='' selected>Linea de investigacion</option>");
+        $("#select_linea_proyecto_registro").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_lineas_investigacion_registro").empty();
         $("#select_lineas_investigacion_registro").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_publicacion_registro").empty();
@@ -785,6 +1029,7 @@ function cargar_componentes() {
         jsonObjet.forEach(element => {
             ;
             $("#select_lineas_investigacion_registro").append("<option  value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
+            $("#select_linea_proyecto_registro").append("<option  value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_congreso_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_proyecto").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_publicacion_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
@@ -844,26 +1089,50 @@ $('#check_financiado').change(function (event) {
 });
 
 //evento para crear un nuevo proyecto
-$("#titulo_modal_proyecto").text("Registrar Proyecto");
-//$("#in_titulo_proyecto").val("");
 $("#btn_nuevo_proyecto").click(function (evt) {
+    colaboradores_lista = [];
+    $("#titulo_modal_proyecto").text("Registrar Proyecto");
+    $("#in_titulo_proyecto").val("");
     $("#select_lider_proyecto_registro").val("");
     $("#in_img_proyecto").val("");
-    $("#select_linea_proyecto_registro").val("");
-    //$("#in_fecha_inicio").val("");
-    //$("#in_fecha_fin").val("");
+    $("#img_proyecto_ref").val("");
+    $("#in_fecha_inicio").val("");
+    $("#in_fecha_fin").val("");
     $("#check_financiado").prop("checked", false);
-    //$("#txt_resumen_proyecto").val("");
+    $("#txt_resumen_proyecto").val("");
     $("#select_colaboradores").val("");
     $("#lista_colaboradores").empty();
-    $("#select_publicaciones").val("");
+    /*$("#select_publicaciones").val("");
     $("#lista_publicaciones").empty();
     $("#select_congresos").val("");
-    $("#lista_congresos").empty();
+    $("#lista_congresos").empty();*/
     elemento = "";
     accion = "reg_proy";
 
 
+});
+
+function quitar_elemento_p(num) {
+    var index = colaboradores_lista.indexOf(num);
+    colaboradores_lista.splice(index, 1);
+    listar_colaboradores();
+}
+
+function listar_colaboradores() {
+    $("#lista_colaboradores").empty();
+    if (colaboradores_lista.length != 0) {
+        colaboradores_lista.forEach(element => {
+            $("#lista_colaboradores").append("<li class='list-group-item item list-group-item-success''>" + $("#select_colaboradores option[value=" + element + "]").text() + "<button onclick='quitar_elemento_p(" + element + ")' tyle='button' class='close' aria-hidden='true'>&times;</button></li>");
+        });
+    }
+}
+
+$("#select_colaboradores").change(function (evt) {
+    console.log(colaboradores_lista);
+    if (!contiene(colaboradores_lista, $("#select_colaboradores").val()) && $("#select_colaboradores").val() != "") {
+        colaboradores_lista.push($("#select_colaboradores").val())
+        listar_colaboradores();
+    }
 });
 
 $("#btn_nuevo_congreso").click(function (evt) {
