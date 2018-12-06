@@ -6,9 +6,9 @@ const btnReiniciar = document.querySelector("button#reiniciar");
 eventListeners();
 
 const id = window.location.href.split("?")[1].split('=')[1].split('%')[0];
-var pagina =( window.location.href.split("?")[1].split('=')[2]);
-if(pagina==null){
-  pagina=1;
+var pagina = (window.location.href.split("?")[1].split('=')[2]);
+if (pagina == null) {
+  pagina = 1;
 }
 
 
@@ -86,9 +86,11 @@ function cargarBD() {
         tituloProyecto.innerHTML = `Titulo del proyecto:<br>${
           info.titulo_proyecto
         }`;
+        tituloProyecto.classList.add('cortar_t');
         jefeProyecto.innerHTML = `Jefe del Proyecto: <br> ${info.nombre} ${
           info.apellido_paterno
         } ${info.apellido_materno}`;
+        jefeProyecto.classList.add('cortar_t');
         const fechaInicio = formato(info.fecha_inicio);
         const fechaFin = formato(info.fecha_fin);
 
@@ -176,25 +178,25 @@ function cargarSelectinvestigador(inves) {
 
 function cargarPaginacion(paginas) {
   const contenedorPaginacion = document.querySelector('nav ul');
-  contenedorPaginacion.innerHTML="";
-  const paginaAnterior=document.createElement('li');
+  contenedorPaginacion.innerHTML = "";
+  const paginaAnterior = document.createElement('li');
   paginaAnterior.classList.add('page-item');
-  const linkAnterior=document.createElement('a');
+  const linkAnterior = document.createElement('a');
   linkAnterior.classList.add('page-link');
   linkAnterior.setAttribute('href', `?id=${id}%26pagina=${pagina-1}`);
-  linkAnterior.innerHTML="Anterior";
+  linkAnterior.innerHTML = "Anterior";
   paginaAnterior.appendChild(linkAnterior);
   contenedorPaginacion.appendChild(paginaAnterior);
-  if((pagina-1)<=0){
+  if ((pagina - 1) <= 0) {
     paginaAnterior.classList.add('disabled');
   } else {
     paginaAnterior.classList.remove('disabled');
   }
   for (let i = 0; i < paginas; i++) {
     const paginaLi = document.createElement('li');
-    paginaLi.classList.add('page-item','paginas');
+    paginaLi.classList.add('page-item', 'paginas');
     paginaLi.setAttribute('id', `pagina${i+1}`);
-    if(paginaLi.id==`pagina${pagina}`){
+    if (paginaLi.id == `pagina${pagina}`) {
       paginaLi.classList.add('active');
     }
     const paginaLink = document.createElement('a');
@@ -202,20 +204,20 @@ function cargarPaginacion(paginas) {
     paginaLink.setAttribute('href', `?id=${id}%26pagina=${i+1}`);
     paginaLink.innerHTML = i + 1;
     paginaLi.appendChild(paginaLink);
-    contenedorPaginacion.appendChild(paginaLi);    
+    contenedorPaginacion.appendChild(paginaLi);
   }
 
-  
-  const paginaSiguiente=document.createElement('li');
+
+  const paginaSiguiente = document.createElement('li');
   paginaSiguiente.classList.add('page-item');
-  const linkSiguiente=document.createElement('a');
+  const linkSiguiente = document.createElement('a');
   linkSiguiente.classList.add('page-link');
   console.log(pagina);
   linkSiguiente.setAttribute('href', `?id=${id}%26pagina=${parseInt(pagina)+1}`);
-  linkSiguiente.innerHTML="Siguiente";
+  linkSiguiente.innerHTML = "Siguiente";
   paginaSiguiente.appendChild(linkSiguiente);
   contenedorPaginacion.appendChild(paginaSiguiente);
-  if(pagina<paginas){
+  if (pagina < paginas) {
     paginaSiguiente.classList.remove('disabled');
   } else {
     paginaSiguiente.classList.add('disabled');
@@ -251,16 +253,16 @@ function aplicarFiltro() {
             btnImg.setAttribute(
               "href",
               `descripcion_proyecto.php?id=${info.id_proyecto}`
-              );
-              btnImg.setAttribute("id", info.id_proyecto);
-              contenedorTitulo.appendChild(btnImg);
-              const imagenProyecto = document.createElement("img");
-              imagenProyecto.setAttribute("src", info.link_imagen);
-              btnImg.appendChild(imagenProyecto);
-              const verMas = document.createElement("h3");
-              verMas.innerHTML = "Ver más";
-              contenedorTitulo.appendChild(verMas);
-              const infoProyecto = document.createElement("div");
+            );
+            btnImg.setAttribute("id", info.id_proyecto);
+            contenedorTitulo.appendChild(btnImg);
+            const imagenProyecto = document.createElement("img");
+            imagenProyecto.setAttribute("src", info.link_imagen);
+            btnImg.appendChild(imagenProyecto);
+            const verMas = document.createElement("h3");
+            verMas.innerHTML = "Ver más";
+            contenedorTitulo.appendChild(verMas);
+            const infoProyecto = document.createElement("div");
             infoProyecto.classList.add("info-proyecto");
             contenedorGrid.appendChild(infoProyecto);
             const tituloProyecto = document.createElement("h3");
@@ -270,9 +272,11 @@ function aplicarFiltro() {
             tituloProyecto.innerHTML = `Titulo del proyecto:<br>${
               info.titulo_proyecto
             }`;
+            tituloProyecto.classList.add('cortar_t');
             jefeProyecto.innerHTML = `Jefe del Proyecto: <br> ${info.nombre} ${
               info.apellido_paterno
             } ${info.apellido_materno}`;
+            jefeProyecto.classList.add('cortar_t');
             const fechaInicio = formato(info.fecha_inicio);
             const fechaFin = formato(info.fecha_fin);
             fechaProyecto.innerHTML = `del ${fechaInicio} al ${fechaFin}`;

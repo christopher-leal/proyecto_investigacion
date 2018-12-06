@@ -25,6 +25,7 @@ $(function() {
             "href",
             `${info.link_externo}`
           );
+          btnImg.setAttribute('target','_blank');
           btnImg.setAttribute("id", info.id_evento);
           contenedorTitulo.appendChild(btnImg);
           const verMas = document.createElement("h3");
@@ -39,19 +40,13 @@ $(function() {
           const tituloEvento = document.createElement("h3");
           const fechaEvento = document.createElement("h3");
           const lugarEvento = document.createElement("h3");
-          const fechaRegistro = document.createElement("h3");
-          const descripcion= document.createElement("p");
           tituloEvento.innerHTML =info.nombre_evento;
           fechaEvento.innerHTML = `Fecha: ${info.fecha_evento}`;
-          fechaRegistro.innerHTML = `Fecha de registro: ${info.fecha_registro}`;
           lugarEvento.innerHTML = `Lugar: ${info.lugar}`;
-          descripcion.innerHTML = info.descripcion;
           infoEvento.appendChild(tituloEvento);
           
-          infoEvento.appendChild(descripcion);
           infoEvento.appendChild(fechaEvento);
           infoEvento.appendChild(lugarEvento);
-          infoEvento.appendChild(fechaRegistro);
         }
       }
     };

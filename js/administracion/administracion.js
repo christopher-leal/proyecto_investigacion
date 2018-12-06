@@ -80,6 +80,31 @@ function realizar_accion() {
             break;
         case "edt_inv":
             break;
+        case "reg_publ":
+            var inputFileImage = document.getElementById("achivo_pdf");
+            var file = inputFileImage.files[0];
+            var data = new FormData();
+
+            data.append("archivo", file);
+            data.append("funcion", "registrar_publicacion")
+            data.append("titulo_publicacion",$("#in_titulo_publicacion_registro").val());
+            data.append("id_investigador",$("#select_autor_publicacion_registro").val());
+            data.append("foro_publicacion",$("#in_foro_publicacion").val());
+            data.append("fecha_publicacion",$("#in_fecha_publicacion").val());
+            data.append("linea_invetigacion",$("#select_linea_publicacion_registro").val());
+            $.ajax({
+                url: phpPath,
+                type: "POST",
+                contentType: false,
+                data: data,
+                processData: false,
+                cache: false
+            }).done(function (jsonObjet) {
+                console.log(jsonObjet);
+            }).fail(function () {
+                console.log("Error");
+            });
+            break;
         case "elm_publ":
             $.ajax({
                 method: "POST",
@@ -143,7 +168,7 @@ function realizar_accion() {
             });
             $("#btn_cerrar_registro_anuncio").click();
             break;
-            case "reg_anun":
+        case "reg_anun":
             $.ajax({
                 method: "POST",
                 url: phpPath,
@@ -198,7 +223,7 @@ function cargar_proyectos(palabra_clave_proyecto, id_investigador, id_linea_inve
                 data: { funcion: "consulta_lista_colaboradores", id_proyecto: element["id_proyecto"] },
                 dataType: "json"
             }).done(function (jsonObjet2) {
-                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Lider: " + element["nombre_completo"] + "</p><p>Inicio: " + element["fecha_inicio"] + " Fin: " + element["fecha_fin"] + "</p><p>Linea: " + element["nombre_linea"] + "</p><p>Financiado: " + ((element["financiamiento"] == '1') ? "Si" : "No") + "</p><p class='card-text cortar'>Colaboradores<br>"
+                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Lider: " + element["nombre_completo"] + "</p><p>Inicio: " + element["fecha_inicio"] + " Fin: " + element["fecha_fin"] + "</p><p>Linea: " + element["nombre_linea"] + "</p><p>Financiado: " + ((element["financiamiento"] == '1') ? "Si" : "No") + "</p><p class='card-text cortar'>Colaboradores<br>"
                 jsonObjet2.forEach(element2 => {
                     cad += element2["nombre"] + "<br>";
                 });
@@ -244,7 +269,7 @@ function cargar_investigadores(palabra_clave_invetigador, id_linea_investigacion
                 data: { funcion: "consultar_lineas_investigador", id_investigador: element["id_investigador"] },
                 dataType: "json"
             }).done(function (jsonObjet2) {
-                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='" + element["url_foto"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nivel_estudios"] + " " + element["nombre"] + " " + element["apellido_paterno"] + " " + element["apellido_materno"] + " " + "</h5><p>" + element["correo"] + "</p><p>" + element["ubicacion"] + "</p><p class='cortar'>Linea(s):<br>";
+                cad = "<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["url_foto"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nivel_estudios"] + " " + element["nombre"] + " " + element["apellido_paterno"] + " " + element["apellido_materno"] + " " + "</h5><p>" + element["correo"] + "</p><p>" + element["ubicacion"] + "</p><p class='cortar'>Linea(s):<br>";
                 jsonObjet2.forEach(element2 => {
                     cad += element2["nombre_linea"] + "<br>";
                 });
@@ -282,7 +307,7 @@ function cargar_publicaciones(palabra_clave_publicacion, id_linea_investigacion_
         }
         $("#contenedor_publicaciones").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_publicaciones").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title'>" + element["titulo_publicacion"] + "</h5><p>" + element["fecha_publicacion"] + "</p><p>" + element["foro_publicacion"] + "</p><a class='btn btn-link cortar_t' href='" + element["link_publicacion"] + "'>" + element["link_publicacion"] + "</a><p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_publicacion' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_publicaciones"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_publ\"," + element["id_publicaciones"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_publicaciones").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title'>" + element["titulo_publicacion"] + "</h5><p>" + element["fecha_publicacion"] + "</p><p>" + element["foro_publicacion"] + "</p><a class='btn btn-link' href='../" + element["link_publicacion"] + "'>Documento</a><p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_publicacion' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_publicaciones"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_publ\"," + element["id_publicaciones"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
@@ -321,7 +346,7 @@ function cargar_anuncios() {
         dataType: "json"
     }).done(function (jsonObjet) {
         anuncios_lista = jsonObjet;
-        console.log(jsonObjet);
+        //console.log(jsonObjet);
         var btn_color;
         var btn_texto;
         btn_color = "btn btn-outline-danger";
@@ -329,7 +354,7 @@ function cargar_anuncios() {
         btn_texto = "Eliminar";
         $("#contenedor_anuncios").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_anuncios").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title'>" + element["titulo_proyecto"] + "</h5><p>Cantidad alumnos: " + element["Cantidad_alumnos"] + "</p><p>Semestre " + element["Semestre"] + "</p><p>Recompensa: " + element["Recompensa"] + "</p><p class='cortar'>Perfil: <br>" + element["Perfil"] + "</p> </div><div class='card-footer text-right blanco'><button href='#registrar_anuncio' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_anun\"," + element["id_anuncio"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_anun\"," + element["id_anuncio"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_anuncios").append("<div class='card col-lg-4 col-md-6 col-sm-12'><div class='card-body'><h5 class='card-title cortar_t'>" + element["titulo_proyecto"] + "</h5><p>Cantidad alumnos: " + element["Cantidad_alumnos"] + "</p><p>Semestre " + element["Semestre"] + "</p><p>Recompensa: " + element["Recompensa"] + "</p><p class='cortar'>Perfil: <br>" + element["Perfil"] + "</p> </div><div class='card-footer text-right blanco'><button href='#registrar_anuncio' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_anun\"," + element["id_anuncio"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_anun\"," + element["id_anuncio"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
@@ -340,6 +365,9 @@ $("#btn_guardar_anuncio").click(function (evt) {
     realizar_accion();
 });
 
+$("#btn_guardar_publicacion").click(function (evt) {
+    realizar_accion();
+});
 
 //funcion para inicializar los checkbox y cargar las las listas de los selects
 function cargar_componentes() {
@@ -357,9 +385,11 @@ function cargar_componentes() {
         dataType: "json"
     }).done(function (jsonObjet) {
         $("#select_investigador_proyecto").empty();
+        $("#select_autor_publicacion_registro").empty();
         $("#select_investigador_proyecto").append("<option selected value=''>Investigador</option>");
         jsonObjet.forEach(element => {
             $("#select_investigador_proyecto").append("<option value=" + element["id_investigador"] + ">" + element["nombre"] + "</option>");
+            $("#select_autor_publicacion_registro").append("<option value=" + element["id_investigador"] + ">" + element["nombre"] + "</option>");
         });
     }).fail(function () {
         console.log("Error");
@@ -379,8 +409,10 @@ function cargar_componentes() {
         $("#select_linea_investigador").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_congreso").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_publicacion").append("<option value='' selected>Linea de investigacion</option>");
+        $("#select_linea_publicacion_registro").empty();
         jsonObjet.forEach(element => {
             $("#select_linea_proyecto").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
+            $("#select_linea_publicacion_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_investigador").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_congreso").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_publicacion").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
@@ -469,27 +501,6 @@ $("#btn_nuevo_anuncio").click(function (evt) {
     accion = "reg_anun";
 });
 
-/*var com_form=$("#registrar_congreso");
-com_form.bind("submit", function(){
-    var formdata = new FormData;
-    formdata.append("img_congreso", $("input [name=img_congreso]")[0].files[0]);
-
-    $.ajax({
-        method: "POST",
-        url: com_form.attr("action"),
-        type:com_form.attr("method"),
-        data: { formdata},
-        processData: false,
-        contentType:false,
-        cache:false, 
-        success: function(data){
-            alert("subido");
-        }
-    });
-
-    return false;
-});*/
-
 //Eventos para actualizar la lista de investigadores
 //Evento para cambio de invetigadores activos a inactivos o visceversa
 $('#check_investigador').change(function (event) {
@@ -559,6 +570,18 @@ $('#btn_refrescar_filtos_publicacion').click(function (evt) {
     $("#in_palabra_publicacion").val("");
     recargar_publicaciones();
 });
+$("#btn_nueva_publicacion").click(function (evt) {
+    $("#titulo_modal_publicacion").text("Nueva publicación");
+    $("#in_titulo_publicacion_registro").val("");
+    $("#in_foro_publicacion").val("");
+    $("#select_autor_publicacion_registro").val("1");
+    $("#select_linea_publicacion_registro").val("1");
+    $("#achivo_pdf").val("");
+    $("#in_doc_publicacion").val("");
+    $("#in_fecha_publicacion").val("");
+    accion = "reg_publ";
+    elemento = "";
+})
 //Funcion para recargar la pagina obteniendo los filtros que se han seleccionado
 function recargar_publicaciones() {
     cargar_publicaciones($("#in_palabra_publicacion").val(), $("#select_linea_publicacion").val(), $("#check_publicacion").val());

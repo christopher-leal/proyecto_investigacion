@@ -1,6 +1,13 @@
 <?php
     include 'conexion.php';
 
+    $ruta_congresos='img/congresos';
+    $ruta_investigadores='img/investigadores';
+    $ruta_proyectos='img/proyectos';
+    $ruta_publicaciones='docs/publicaciones';
+
+
+
     $funcion = $_REQUEST["funcion"];
     
     //consultas a la base de datos administrador
@@ -39,7 +46,7 @@
             $respuesta = consultaSQL("SELECT * FROM congresos as C INNER JOIN lineas_investigacion AS L ON C.linea_investigacion=L.id_linea  WHERE nombre_evento LIKE '%".$palabra_clave."%' AND linea_investigacion LIKE'%".$id_linea_investigacion."%';");
             echo json_encode($respuesta);
         break;
-        //consulta de 
+        //consulta de anuncios
         case 'consulta_anuncios_adm':
             $respuesta = consultaSQL("SELECT * FROM anuncios AS A INNER JOIN proyectos AS P ON A.id_proyecto=P.id_proyecto;");
             echo json_encode($respuesta);
@@ -95,37 +102,59 @@
         break;
         //Elimina un anuncio
         case 'eliminar_anuncio':
-        $id_anuncio=$_REQUEST["id_anuncio"];
-        $respuesta = querySQL("DELETE FROM anuncios WHERE id_anuncio=".$id_anuncio.";");
-        echo $respuesta;
+            $id_anuncio=$_REQUEST["id_anuncio"];
+            $respuesta = querySQL("DELETE FROM anuncios WHERE id_anuncio=".$id_anuncio.";");
+            echo $respuesta;
         break;
         //Editar un anuncio
         case 'editar_anuncio':
-        $id_anuncio=$_REQUEST["id_anuncio"];
-        $cantidad=$_REQUEST["cantidad"];
-        $semestre=$_REQUEST["semestre"];
-        $id_proyecto=$_REQUEST["id_proyecto"];
-        $recompensa=$_REQUEST["recompensa"];
-        $perfil=$_REQUEST["perfil"];
-        $respuesta = querySQL("UPDATE anuncios SET Cantidad_alumnos=".$cantidad.", Perfil='".$perfil."' , Recompensa='".$recompensa."' , Semestre=".$semestre.", id_proyecto=".$id_proyecto." WHERE id_anuncio=".$id_anuncio.";");
-        echo $respuesta;
+            $id_anuncio=$_REQUEST["id_anuncio"];
+            $cantidad=$_REQUEST["cantidad"];
+            $semestre=$_REQUEST["semestre"];
+            $id_proyecto=$_REQUEST["id_proyecto"];
+            $recompensa=$_REQUEST["recompensa"];
+            $perfil=$_REQUEST["perfil"];
+            $respuesta = querySQL("UPDATE anuncios SET Cantidad_alumnos=".$cantidad.", Perfil='".$perfil."' , Recompensa='".$recompensa."' , Semestre=".$semestre.", id_proyecto=".$id_proyecto." WHERE id_anuncio=".$id_anuncio.";");
+            echo $respuesta;
         break;
         //Registrar un anuncio
         case 'registrar_anuncio':
-        $cantidad=$_REQUEST["cantidad"];
-        $semestre=$_REQUEST["semestre"];
-        $id_proyecto=$_REQUEST["id_proyecto"];
-        $recompensa=$_REQUEST["recompensa"];
-        $perfil=$_REQUEST["perfil"];
-        $respuesta = querySQL("INSERT INTO anuncios (Cantidad_alumnos, Perfil, Semestre, Recompensa, id_proyecto) VALUES (".$cantidad.", '".$perfil."', ".$semestre.", '".$recompensa."', ".$id_proyecto.");");
-        echo $respuesta;
+            $cantidad=$_REQUEST["cantidad"];
+            $semestre=$_REQUEST["semestre"];
+            $id_proyecto=$_REQUEST["id_proyecto"];
+            $recompensa=$_REQUEST["recompensa"];
+            $perfil=$_REQUEST["perfil"];
+            $respuesta = querySQL("INSERT INTO anuncios (Cantidad_alumnos, Perfil, Semestre, Recompensa, id_proyecto) VALUES (".$cantidad.", '".$perfil."', ".$semestre.", '".$recompensa."', ".$id_proyecto.");");
+            echo $respuesta;
         break;
-        case 'subir_ejemplo':
-            $ruta="img/".$pathinfo($_FILES["img_congreso"]["name"]);
-            if(move_uploaded_file($_FILES["img_congreso"]["tmp_name"],$ruta)){
-                echo "Subido";
+        case 'registrar_publicacion':
+        if($_POST["titulo_publicacion"] != "" && $_POST["foro_publicacion"] != "" && $_POST["fecha_publicacion"] != ""){
+            if(file_exists($_FILES['archivo']['tmp_name'])){
+                    if($_FILES["archivo"]["type"]=="application/pdf"){
+                        $nombre_archivo = $_POST["titulo_publicacion"].date("d-m-Y").".pdf";
+                        $tmp_archivo = $_FILES["archivo"]["tmp_name"];
+                        $archivador = "../".$ruta_publicaciones . "/" . $nombre_archivo;
+                        $link_publicacion=$ruta_publicaciones . "/" . $nombre_archivo;
+                        if (move_uploaded_file($tmp_archivo, $archivador)) {
+                            //echo "El fichero es válido y se subió con éxito.\n";
+                            $titulo_publicacion= $_POST["titulo_publicacion"];
+                            $id_investigador= $_POST["id_investigador"];
+                            $foro_publicacion= $_POST["foro_publicacion"];
+                            $fecha_publicacion= $_POST["fecha_publicacion"];
+                            $linea_invetigacion= $_POST["linea_invetigacion"];
+                            $respuesta = querySQL("INSERT INTO publicaciones (titulo_publicacion, id_investigador, foro_publicacion, fecha_publicacion, linea_invetigacion, link_publicacion, status) VALUES ('".$titulo_publicacion."', '".$id_investigador."', '".$foro_publicacion."', DATE_FORMAT(STR_TO_DATE('".$fecha_publicacion."', '%d/%m/%Y'), '%Y-%m-%d'), ".$linea_invetigacion.", '".$link_publicacion."', 1);");
+                            echo $respuesta;
+                        } else {
+                            echo "¡Error archivo muy grande!\n";
+                        }
+                    }else{
+                        echo "el documeto ingresado es muy grande o no tiene el formato incorrecto";
+                    }
+                }else{
+                    echo "no seleccionaste archivo";
+                }
             }else{
-                echo "no subido";
+                echo "LLena todos los campos porfavor";
             }
         break;
     }

@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <h5 class="card-title">Linea de investigación Educativa</h5>
+                    <h5 class="card-title">Desarrollo De Sistemas E-Learning Y B-Learning</h5>
                     <div class="card imagen-proyecto" style="width: 18rem;">
                         <a href="proyectos.php?id=4"><img id="img_publicacion" class="card-img-top" src="img\educativa.jpeg" alt="Card image cap"></a>
                         <h3>Ver mas...</h3>
