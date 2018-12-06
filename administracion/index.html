@@ -211,7 +211,7 @@
     <!--/Moda de confirmacion-->
 
     <!--Modal de nuevo proyecto-->
-    <form class="modal fade" id="registrar_proyecto">
+    <div class="modal fade" id="registrar_proyecto">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!--Cabecera del modal-->
@@ -349,11 +349,11 @@
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <!--/Modal de nuevo proyecto-->
 
     <!--Modal de nuevo investigador-->
-    <form class="modal fade" id="registrar_investigador">
+    <div class="modal fade" id="registrar_investigador">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!--Cabecera del modal-->
@@ -367,7 +367,7 @@
                     <div class="row">
                         <div class="form-group col-lg-6 col-md-12">
                             <label for="in_titulo_investigador_registro" class="font-weight-bold">Titulo</label>
-                            <input type="text" id="in_titulo_investigador" class="form-control">
+                            <input type="text" id="in_titulo_investigador_registro" class="form-control">
                         </div>
                         <div class="form-group col-lg-6 col-md-12">
                             <label for="in_nombre_investigador_registro" class="font-weight-bold">Nombre</label>
@@ -390,7 +390,7 @@
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-outline-info">
-                                        Buscar&hellip; <input type="file" style="display: none;" accept="image/png, image/jpeg">
+                                        Buscar&hellip; <input id="img_investigador" name="img_investigador" type="file" style="display: none;" accept="image/png, image/jpeg">
                                     </span>
                                 </label>
                                 <input id="in_foto_investigador" type="text" class="form-control" readonly>
@@ -398,7 +398,7 @@
                         </div>
                         <div class="form-group col-lg-4 col-md-12">
                             <label for="in_correo_registro" class="font-weight-bold">Correo electronico</label>
-                            <input type="text" id="in_correo_registro" class="form-control">
+                            <input type="email" id="in_correo_registro" class="form-control">
                         </div>
                         <div class="form-group col-lg-4 col-md-12">
                             <label for="in_edificio_ubicacion" class="font-weight-bold">Ubicacion de cubiculo</label>
@@ -406,18 +406,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-6 col-md-12">
-                            <label for="select_lineas_investigacion_registro" class="font-weight-bold">Colaboradores</label>
+                        <div class="form-group col-lg-4 col-md-12">
+                            <label for="select_lineas_investigacion_registro" class="font-weight-bold">Lineas</label>
                             <select id="select_lineas_investigacion_registro" class="custom-select">
                                 <option value="" selected>Linea</option>
                                 <option value="1">One</option>
                             </select>
                         </div>
-                        <div class="form-group col-lg-6 col-md-12">
-                            <label for="lista_lineas_investigador" class="font-weight-bold">Colaboradores agregados</label>
+                        <div class="form-group col-lg-8 col-md-12">
+                            <label for="lista_lineas_investigador" class="font-weight-bold">Lineas agregadas</label>
                             <ul id="lista_lineas_investigador" class="list-group">
                                 <li class="list-group-item item list-group-item-success"">Dapibus ac facilisis in<button id="" tyle="
-                                    button" class="close" aria-hidden="true">&times;</button></li>
+                                    button" con class="close" aria-hidden="true">&times;</button></li>
                             </ul>
                         </div>
                     </div>
@@ -428,7 +428,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <!--/Modal de nuevo investigador-->
 
     <!--Modal de nueva publicacion-->

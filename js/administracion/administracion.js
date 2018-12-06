@@ -4,8 +4,9 @@ var accion = "";
 
 var proyectos_lista;
 var colaboradores_lista;
-var invesstigadores_lista;
-var linea_lista;
+var investigadores_lista;
+var linea_lista = [];
+var linea_lista_no_selec = [];
 var publicaciones_lista;
 var congresos_lista;
 var anuncios_lista;
@@ -66,6 +67,56 @@ function realizar_accion() {
             break;
         case "edt_proy":
             break;
+        case "reg_inv":
+            if (linea_lista.length != 0) {
+                var inputFileImage = document.getElementById("img_investigador");
+                var file = inputFileImage.files[0];
+                var data = new FormData();
+
+                data.append("archivo", file);
+                data.append("funcion", "registrar_investigador")
+                data.append("nivel_estudios", $("#in_titulo_investigador_registro").val());
+                data.append("nombre", $("#in_nombre_investigador_registro").val());
+                data.append("apellido_paterno", $("#in_apellido_patertno").val());
+                data.append("apellido_materno", $("#in_apellido_matertno").val());
+                data.append("correo", $("#in_correo_registro").val());
+                data.append("ubicacion", $("#in_edificio_ubicacion").val());
+                $.ajax({
+                    url: phpPath,
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+                    processData: false,
+                    cache: false
+                }).done(function (jsonObjet) {
+                    console.log(jsonObjet);
+                    if (jsonObjet == "Exito") {
+                        linea_lista.forEach(element => {
+                            $.ajax({
+                                method: "POST",
+                                url: phpPath,
+                                data: { funcion: "registrar_lineas_inv",
+                                id_linea: element}
+                            }).done(function (resultado) {
+                                console.log(resultado);
+                            }).fail(function () {
+                                console.log("Error");
+                            });
+                        });
+                        alert(jsonObjet);
+                        $(function () {
+                            $('#registrar_investigador').modal('toggle');
+                        });
+                        recargar_investigadores();
+                    }
+                    
+                }).fail(function () {
+                    console.log("Error");
+                });
+            } else {
+                alert("No se ha seleccionado alguna linea de invetigación")
+            }
+            break;
         case "elm_inv":
             $.ajax({
                 method: "POST",
@@ -87,11 +138,11 @@ function realizar_accion() {
 
             data.append("archivo", file);
             data.append("funcion", "registrar_publicacion")
-            data.append("titulo_publicacion",$("#in_titulo_publicacion_registro").val());
-            data.append("id_investigador",$("#select_autor_publicacion_registro").val());
-            data.append("foro_publicacion",$("#in_foro_publicacion").val());
-            data.append("fecha_publicacion",$("#in_fecha_publicacion").val());
-            data.append("linea_invetigacion",$("#select_linea_publicacion_registro").val());
+            data.append("titulo_publicacion", $("#in_titulo_publicacion_registro").val());
+            data.append("id_investigador", $("#select_autor_publicacion_registro").val());
+            data.append("foro_publicacion", $("#in_foro_publicacion").val());
+            data.append("fecha_publicacion", $("#in_fecha_publicacion").val());
+            data.append("linea_invetigacion", $("#select_linea_publicacion_registro").val());
             $.ajax({
                 url: phpPath,
                 type: "POST",
@@ -100,7 +151,13 @@ function realizar_accion() {
                 processData: false,
                 cache: false
             }).done(function (jsonObjet) {
-                console.log(jsonObjet);
+                alert(jsonObjet);
+                if (jsonObjet == "Exito") {
+                    $(function () {
+                        $('#registrar_publicacion').modal('toggle');
+                    });
+                    recargar_publicaciones();
+                }
             }).fail(function () {
                 console.log("Error");
             });
@@ -247,8 +304,8 @@ function cargar_investigadores(palabra_clave_invetigador, id_linea_investigacion
         data: { funcion: "consulta_investigadores_adm", palabra_clave: palabra_clave_invetigador, id_linea_investigacion: id_linea_investigacion_ivestigador, activo: investigador_activo },
         dataType: "json"
     }).done(function (jsonObjet) {
-        invesstigadores_lista = jsonObjet;
-        //console.log(jsonObjet);
+        investigadores_lista = jsonObjet;
+        console.log(jsonObjet);
         var btn_color;
         var btn_texto;
         if (investigador_activo == 1) {
@@ -293,7 +350,7 @@ function cargar_publicaciones(palabra_clave_publicacion, id_linea_investigacion_
         data: { funcion: "consulta_publicaciones_adm", palabra_clave: palabra_clave_publicacion, id_linea_investigacion: id_linea_investigacion_publicacion, activo: publicacion_activa },
         dataType: "json"
     }).done(function (jsonObjet) {
-        console.log(jsonObjet);
+        //console.log(jsonObjet);
         var btn_color;
         var btn_texto;
         if (publicacion_activa == 1) {
@@ -369,6 +426,10 @@ $("#btn_guardar_publicacion").click(function (evt) {
     realizar_accion();
 });
 
+$("#btn_guardar_investigador").click(function (evt) {
+    realizar_accion();
+});
+
 //funcion para inicializar los checkbox y cargar las las listas de los selects
 function cargar_componentes() {
     $("#check_investigador").prop("checked", false);
@@ -401,6 +462,7 @@ function cargar_componentes() {
         data: { funcion: "consulta_lista_lineas" },
         dataType: "json"
     }).done(function (jsonObjet) {
+        linea_lista_no_selec = [];
         $("#select_linea_proyecto").empty();
         $("#select_linea_investigador").empty();
         $("#select_linea_congreso").empty();
@@ -409,8 +471,12 @@ function cargar_componentes() {
         $("#select_linea_investigador").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_congreso").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_publicacion").append("<option value='' selected>Linea de investigacion</option>");
+        $("#select_lineas_investigacion_registro").empty();
+        $("#select_lineas_investigacion_registro").append("<option value='' selected>Linea de investigacion</option>");
         $("#select_linea_publicacion_registro").empty();
         jsonObjet.forEach(element => {
+            linea_lista_no_selec.push(element["id_linea"]);
+            $("#select_lineas_investigacion_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_proyecto").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_publicacion_registro").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
             $("#select_linea_investigador").append("<option value=" + element["id_linea"] + ">" + element["nombre_linea"] + "</option>");
@@ -532,6 +598,7 @@ function recargar_investigadores() {
 }
 //Evento para crear un nuevo proyecto
 $("#btn_nuevo_investigador").click(function (evt) {
+    linea_lista = [];
     $("#titulo_modal_investigador").text("Registrar Investigador");
     $("#in_titulo_investigador").val("");
     $("#in_nombre_investigador_registro").val("");
@@ -539,6 +606,7 @@ $("#btn_nuevo_investigador").click(function (evt) {
     $("#in_apellido_matertno").val("");
     $("#in_foto_investigador").val("");
     $("#in_correo_registro").val("");
+    $("#img_investigador").val("");
     $("#in_edificio_ubicacion").val("");
     $("#select_lineas_investigacion_registro").val("");
     $("#lista_lineas_investigador").empty();
@@ -546,6 +614,39 @@ $("#btn_nuevo_investigador").click(function (evt) {
     accion = "reg_inv";
 });
 
+function contiene(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function quitar_elemento(num) {
+    var index = linea_lista.indexOf(num);
+    linea_lista.splice(index, 1);
+    listar_lineas_investigador();
+}
+
+function listar_lineas_investigador() {
+    if (linea_lista.length != 0) {
+        $("#lista_lineas_investigador").empty();
+        linea_lista.forEach(element => {
+            $("#lista_lineas_investigador").append("<li class='list-group-item item list-group-item-success''>" + $("#select_lineas_investigacion_registro option[value=" + element + "]").text() + "<button onclick='quitar_elemento(" + element + ")' tyle='button' class='close' aria-hidden='true'>&times;</button></li>");
+        });
+    } else {
+        $("#lista_lineas_investigador").empty();
+    }
+}
+
+//Evento para actualizar lista por linea de investigacion
+$("#select_lineas_investigacion_registro").change(function (evt) {
+    if (!contiene(linea_lista, $("#select_lineas_investigacion_registro").val()) && $("#select_lineas_investigacion_registro").val() != "") {
+        linea_lista.push($("#select_lineas_investigacion_registro").val())
+        listar_lineas_investigador();
+    }
+});
 //Eventos para actualizar la lista de publicacioneas
 //Evento para cambio de publicaciones activas a inactivos o visceversa
 $('#check_publicacion').change(function (evt) {
