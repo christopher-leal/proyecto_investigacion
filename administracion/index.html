@@ -432,7 +432,7 @@
     <!--/Modal de nuevo investigador-->
 
     <!--Modal de nueva publicacion-->
-    <form class="modal fade" id="registrar_publicacion">
+    <div class="modal fade" id="registrar_publicacion">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!--Cabecera del modal-->
@@ -476,7 +476,7 @@
                             <div class="input-group">
                                 <label class="input-group-btn">
                                     <span class="btn btn-outline-info">
-                                        Buscar&hellip; <input type="file" style="display: none;" accept="application/pdf">
+                                        Buscar&hellip; <input type="file" id="achivo_pdf" name="archivo_pdf" style="display: none;" accept="application/pdf">
                                     </span>
                                 </label>
                                 <input id="in_doc_publicacion" type="text" class="form-control" readonly>
@@ -497,11 +497,11 @@
                 </div>
                 <!--Pie del modal-->
                 <div class="modal-footer">
-                    <button id="btn_guardar" class="btn btn-md btn-outline-success">Guardar</button>
+                    <button id="btn_guardar_publicacion" class="btn btn-md btn-outline-success">Guardar</button>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <!--/Modal de nuevo publicacion-->
 
     <!--Modal de nuevo congreso-->
