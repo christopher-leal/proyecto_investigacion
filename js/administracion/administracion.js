@@ -29,15 +29,15 @@ function seleccion(opcion, id) {
     accion = opcion;
     elemento = id;
     switch (opcion) {
-        case "edt_anun":
-            $("#titulo_registro_anuncio").text("Editar anuncio");
-            anuncios_lista.forEach(element => {
-                if (element["id_anuncio"] == id) {
-                    $("#in_cantidad_alumno").val(element["Cantidad_alumnos"]);
-                    $("#in_semestre_alumno").val(element["Semestre"]);
-                    $("#select_proyecto_anuncio").val(element["id_proyecto"]);
-                    $("#txt_perfil_anuncio").val(element["Perfil"]);
-                    $("#in_recompensa_alumno").val(element["Recompensa"]);
+        case "edt_cong":
+            $("#tutulo_reg_congreso").text("Editar congreso");
+            congresos_lista.forEach(element => {
+                if (element["id_evento"] == id) {
+                    $("#in_titulo_congreso").val(element["nombre_evento"]);
+                    $("#in_link_congreso").val(element["link_externo"]);
+                    $("#select_linea_congreso_registro").val(element["linea_investigacion"]);
+                    $("#img_congreso_reg").val("");
+                    $("#in_img_congreso").val("");
                 }
             });
             break;
@@ -283,6 +283,10 @@ function realizar_accion() {
                     cache: false
                 }).done(function (jsonObjet) {
                     alert(jsonObjet);
+                    $(function () {
+                        $('#registrar_congreso').modal('toggle');
+                    });
+                    recargar_congresos();
                 }).fail(function () {
                     console.log("Error");
                 });
@@ -300,6 +304,58 @@ function realizar_accion() {
             });
             break;
         case "edt_cong":
+            console.log($("#img_congreso_reg"));
+            if($("#img_congreso_reg").val()==""){
+                var data = new FormData();
+                data.append("id_evento", elemento);
+                data.append("funcion", "editar_congreso_sin")
+                data.append("nombre_evento", $("#in_titulo_congreso").val());
+                data.append("linea_investigacion", $("#select_linea_congreso_registro").val());
+                data.append("link_externo", $("#in_link_congreso").val());
+                $.ajax({
+                    url: phpPath,
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+                    processData: false,
+                    cache: false
+                }).done(function (jsonObjet) {
+                    alert(jsonObjet);
+                    $(function () {
+                        $('#registrar_congreso').modal('toggle');
+                    });
+                    recargar_congresos();
+                }).fail(function () {
+                    console.log("Error");
+                });
+            }else{
+                var inputFileImage = document.getElementById("img_congreso_reg");
+                var file = inputFileImage.files[0];
+                var data = new FormData();
+
+                data.append("archivo", file);
+                data.append("id_evento", elemento);
+                data.append("funcion", "editar_congreso_con")
+                data.append("nombre_evento", $("#in_titulo_congreso").val());
+                data.append("linea_investigacion", $("#select_linea_congreso_registro").val());
+                data.append("link_externo", $("#in_link_congreso").val());
+                $.ajax({
+                    url: phpPath,
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+                    processData: false,
+                    cache: false
+                }).done(function (jsonObjet) {
+                    alert(jsonObjet);
+                    $(function () {
+                        $('#registrar_congreso').modal('toggle');
+                    });
+                    recargar_congresos();
+                }).fail(function () {
+                    console.log("Error");
+                });
+            }
             break;
         case "elm_anun":
             console.log('eliminado');
@@ -500,7 +556,7 @@ function cargar_congresos(palabra_clave_congreso, id_linea_investigacion_congres
         btn_texto = "Eliminar";
         $("#contenedor_congresos").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_congresos").append("<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "''>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_publ\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_congresos").append("<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "''>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_cong\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
