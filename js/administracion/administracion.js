@@ -8,6 +8,7 @@ var investigadores_lista;
 var linea_lista = [];
 var linea_lista_no_selec = [];
 var publicaciones_lista;
+var link_publicacion_edt;
 var congresos_lista;
 var anuncios_lista;
 
@@ -28,6 +29,32 @@ function seleccion(opcion, id) {
     accion = opcion;
     elemento = id;
     switch (opcion) {
+        case "edt_anun":
+            $("#titulo_registro_anuncio").text("Editar anuncio");
+            anuncios_lista.forEach(element => {
+                if (element["id_anuncio"] == id) {
+                    $("#in_cantidad_alumno").val(element["Cantidad_alumnos"]);
+                    $("#in_semestre_alumno").val(element["Semestre"]);
+                    $("#select_proyecto_anuncio").val(element["id_proyecto"]);
+                    $("#txt_perfil_anuncio").val(element["Perfil"]);
+                    $("#in_recompensa_alumno").val(element["Recompensa"]);
+                }
+            });
+            break;
+        case "edt_publ":
+            $("#titulo_modal_publicacion").text("Editar publicación");
+            publicaciones_lista.forEach(element => {
+                if (element["id_publicaciones"] == id) {
+                    $("#in_titulo_publicacion_registro").val(element["titulo_publicacion"]);
+                    $("#select_autor_publicacion_registro").val(element["id_investigador"]);
+                    $("#in_foro_publicacion").val(element["foro_publicacion"]);
+                    $("#select_linea_publicacion_registro").val(element["linea_invetigacion"]);
+                    $("#achivo_pdf").val("");
+                    $("#in_doc_publicacion").val("");
+                    $("#in_fecha_publicacion").val(element["fecha_chida"]);
+                }
+            });
+            break;
         case "edt_anun":
             $("#titulo_registro_anuncio").text("Editar anuncio");
             anuncios_lista.forEach(element => {
@@ -95,8 +122,10 @@ function realizar_accion() {
                             $.ajax({
                                 method: "POST",
                                 url: phpPath,
-                                data: { funcion: "registrar_lineas_inv",
-                                id_linea: element}
+                                data: {
+                                    funcion: "registrar_lineas_inv",
+                                    id_linea: element
+                                }
                             }).done(function (resultado) {
                                 console.log(resultado);
                             }).fail(function () {
@@ -109,7 +138,7 @@ function realizar_accion() {
                         });
                         recargar_investigadores();
                     }
-                    
+
                 }).fail(function () {
                     console.log("Error");
                 });
@@ -175,6 +204,65 @@ function realizar_accion() {
             });
             break;
         case "edt_publ":
+            if ($("#achivo_pdf").val() == "") {
+                var data = new FormData();
+                data.append("funcion", "editar_publicacion_sin")
+                data.append("id_publicaciones", elemento);
+                data.append("titulo_publicacion", $("#in_titulo_publicacion_registro").val());
+                data.append("id_investigador", $("#select_autor_publicacion_registro").val());
+                data.append("foro_publicacion", $("#in_foro_publicacion").val());
+                data.append("fecha_publicacion", $("#in_fecha_publicacion").val());
+                data.append("linea_invetigacion", $("#select_linea_publicacion_registro").val());
+                $.ajax({
+                    url: phpPath,
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+                    processData: false,
+                    cache: false
+                }).done(function (jsonObjet) {
+                    alert(jsonObjet);
+                    if (jsonObjet == "Exito") {
+                        $(function () {
+                            $('#registrar_publicacion').modal('toggle');
+                        });
+                        recargar_publicaciones();
+                    }
+                }).fail(function () {
+                    console.log("Error");
+                });
+            } else {
+                var inputFileImage = document.getElementById("achivo_pdf");
+                var file = inputFileImage.files[0];
+                var data = new FormData();
+
+                data.append("archivo", file);
+                data.append("id_publicaciones", elemento);
+                data.append("funcion", "editar_publicacion_con")
+                data.append("titulo_publicacion", $("#in_titulo_publicacion_registro").val());
+                data.append("id_investigador", $("#select_autor_publicacion_registro").val());
+                data.append("foro_publicacion", $("#in_foro_publicacion").val());
+                data.append("fecha_publicacion", $("#in_fecha_publicacion").val());
+                data.append("linea_invetigacion", $("#select_linea_publicacion_registro").val());
+                $.ajax({
+                    url: phpPath,
+                    type: "POST",
+                    contentType: false,
+                    data: data,
+                    processData: false,
+                    cache: false
+                }).done(function (jsonObjet) {
+                    alert(jsonObjet);
+                    if (jsonObjet == "Exito") {
+                        $(function () {
+                            $('#registrar_publicacion').modal('toggle');
+                        });
+                        recargar_publicaciones();
+                    }
+                }).fail(function () {
+                    console.log("Error");
+                });
+            }
             break;
         case "elm_cong":
             $.ajax({
@@ -305,7 +393,7 @@ function cargar_investigadores(palabra_clave_invetigador, id_linea_investigacion
         dataType: "json"
     }).done(function (jsonObjet) {
         investigadores_lista = jsonObjet;
-        console.log(jsonObjet);
+        //console.log(jsonObjet);
         var btn_color;
         var btn_texto;
         if (investigador_activo == 1) {
@@ -350,7 +438,8 @@ function cargar_publicaciones(palabra_clave_publicacion, id_linea_investigacion_
         data: { funcion: "consulta_publicaciones_adm", palabra_clave: palabra_clave_publicacion, id_linea_investigacion: id_linea_investigacion_publicacion, activo: publicacion_activa },
         dataType: "json"
     }).done(function (jsonObjet) {
-        //console.log(jsonObjet);
+        console.log(jsonObjet);
+        publicaciones_lista=jsonObjet;
         var btn_color;
         var btn_texto;
         if (publicacion_activa == 1) {

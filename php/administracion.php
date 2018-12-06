@@ -36,7 +36,7 @@
             $palabra_clave=$_REQUEST["palabra_clave"];
             $id_linea_investigacion=$_REQUEST["id_linea_investigacion"];
             $activo=$_REQUEST["activo"];
-            $respuesta = consultaSQL("SELECT * FROM publicaciones AS P INNER JOIN lineas_investigacion AS L ON P.linea_invetigacion=L.id_linea WHERE titulo_publicacion LIKE '%".$palabra_clave."%' AND linea_invetigacion LIKE'%".$id_linea_investigacion."%' AND status=".$activo.";");
+            $respuesta = consultaSQL("SELECT * , DATE_FORMAT(fecha_publicacion,'%d/%m/%Y') AS fecha_chida FROM publicaciones AS P INNER JOIN lineas_investigacion AS L ON P.linea_invetigacion=L.id_linea WHERE titulo_publicacion LIKE '%".$palabra_clave."%' AND linea_invetigacion LIKE'%".$id_linea_investigacion."%' AND status=".$activo.";");
             echo json_encode($respuesta);
         break;
         //consulta de congresos
@@ -161,6 +161,50 @@
                 }
             }else{
                 echo "LLena todos los campos porfavor";
+            }
+        break;
+        case 'editar_publicacion_con':
+        if($_POST["titulo_publicacion"] != "" && $_POST["foro_publicacion"] != "" && $_POST["fecha_publicacion"] != ""){
+            if(file_exists($_FILES['archivo']['tmp_name'])){
+                    if($_FILES["archivo"]["type"]=="application/pdf"){
+                        $nombre_archivo = $_POST["titulo_publicacion"].date("dmY_Hms").".pdf";
+                        $tmp_archivo = $_FILES["archivo"]["tmp_name"];
+                        $archivador = "../".$ruta_publicaciones . "/" . $nombre_archivo;
+                        $link_publicacion=$ruta_publicaciones . "/" . $nombre_archivo;
+                        if (move_uploaded_file($tmp_archivo, $archivador)) {
+                            $titulo_publicacion= $_POST["titulo_publicacion"];
+                            $id_publicaciones= $_POST["id_publicaciones"];
+                            $id_investigador= $_POST["id_investigador"];
+                            $foro_publicacion= $_POST["foro_publicacion"];
+                            $fecha_publicacion= $_POST["fecha_publicacion"];
+                            $linea_invetigacion= $_POST["linea_invetigacion"];
+                            $respuesta = querySQL("UPDATE publicaciones SET titulo_publicacion = '".$titulo_publicacion."', fecha_publicacion = DATE_FORMAT(STR_TO_DATE('".$fecha_publicacion."', '%d/%m/%Y'), '%Y-%m-%d'), foro_publicacion = '".$foro_publicacion."', linea_invetigacion = '".$linea_invetigacion."', link_publicacion= '".$link_publicacion."' WHERE id_publicaciones = ".$id_publicaciones.";");
+                            echo $respuesta;
+                        } else {
+                            echo "¡Error archivo muy grande!\n";
+                        }
+                    }else{
+                        echo "el documeto ingresado es muy grande o no tiene el formato incorrecto";
+                    }
+                }else{
+                    echo "no seleccionaste archivo";
+                }
+            }else{
+                echo "LLena todos los campos porfavor";
+            }
+        break;
+        case 'editar_publicacion_sin':
+        if($_POST["titulo_publicacion"] != "" && $_POST["foro_publicacion"] != "" && $_POST["fecha_publicacion"] != ""){
+                $titulo_publicacion= $_POST["titulo_publicacion"];
+                $id_publicaciones= $_POST["id_publicaciones"];
+                $id_investigador= $_POST["id_investigador"];
+                $foro_publicacion= $_POST["foro_publicacion"];
+                $fecha_publicacion= $_POST["fecha_publicacion"];
+                $linea_invetigacion= $_POST["linea_invetigacion"];
+                $respuesta = querySQL("UPDATE publicaciones SET titulo_publicacion = '".$titulo_publicacion."', fecha_publicacion = DATE_FORMAT(STR_TO_DATE('".$fecha_publicacion."', '%d/%m/%Y'), '%Y-%m-%d'), foro_publicacion = '".$foro_publicacion."', linea_invetigacion = '".$linea_invetigacion."' WHERE id_publicaciones = ".$id_publicaciones.";");
+                echo $respuesta;
+            }else{
+                echo "Llena todos los campos porfavor";
             }
         break;
         case 'registrar_investigador':
