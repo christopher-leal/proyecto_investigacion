@@ -133,6 +133,13 @@
             $respuesta = querySQL("INSERT INTO lineas_investigadores (id_linea, id_investigador) VALUES ('".$id_linea."', '".$id[0]["total"]."');");
             echo $respuesta;
             break;
+        case 'editar_lineas_inv':
+            $id_linea=$_REQUEST["id_linea"];
+            $id_investigador= $_REQUEST["id_investigador"];
+            $respuesta = querySQL("DELETE FROM lineas_investigadores WHERE id_investigador =".$id_investigador." ;");
+            $respuesta = querySQL("INSERT INTO lineas_investigadores (id_linea, id_investigador) VALUES ('".$id_linea."', '".$id_investigador."');");
+            echo $respuesta;
+            break;
         case 'registrar_publicacion':
         if($_POST["titulo_publicacion"] != "" && $_POST["foro_publicacion"] != "" && $_POST["fecha_publicacion"] != ""){
             if(file_exists($_FILES['archivo']['tmp_name'])){
@@ -229,6 +236,57 @@
                             $ubicacion= $_POST["ubicacion"];
                             $id= consultaSQL("SELECT (COUNT(*)+1) AS total from investigadores");
                             $respuesta = querySQL("INSERT INTO investigadores (id_investigador, nombre, apellido_paterno, apellido_materno, nivel_estudios, correo, ubicacion, url_foto, status) VALUES (".$id[0]['total'].", '".$nombre."', '".$apellido_paterno."', '".$apellido_materno."', '".$nivel_estudios."', '".$correo."', '".$ubicacion."', '".$url_foto."', 1);");
+                            echo $respuesta;
+                        } else {
+                            echo "¡Error archivo muy grande!\n";
+                        }
+                    }else{
+                        echo "el documeto ingresado es muy grande o no tiene el formato incorrecto";
+                    }
+                }else{
+                    echo "no seleccionaste archivo";
+                }
+            }else{
+                echo "LLena todos los campos porfavor";
+            }
+        break;
+        case 'editar_investigador_sin':
+        if($_POST["nivel_estudios"] != "" && $_POST["nombre"] != "" && $_POST["apellido_paterno"] != "" && $_POST["apellido_materno"] != "" && $_POST["correo"] != "" && $_POST["ubicacion"] != ""){
+                            $nivel_estudios= $_POST["nivel_estudios"];
+                            $id_investigador= $_POST["id_investigador"];
+                            $nombre= $_POST["nombre"];
+                            $apellido_paterno= $_POST["apellido_paterno"];
+                            $apellido_materno= $_POST["apellido_materno"];
+                            $correo= $_POST["correo"];
+                            $ubicacion= $_POST["ubicacion"];
+                            $respuesta = querySQL("UPDATE investigadores SET nombre = '".$nombre."', apellido_paterno = '".$apellido_paterno."', apellido_materno = '".$apellido_materno."', nivel_estudios = '".$nivel_estudios."', correo = '".$correo."', ubicacion='".$ubicacion."' WHERE id_investigador = ".$id_investigador.";");
+                            echo $respuesta;
+            }else{
+                echo "LLena todos los campos porfavor";
+            }
+        break;
+        case 'editar_investigador_con':
+        if($_POST["nivel_estudios"] != "" && $_POST["nombre"] != "" && $_POST["apellido_paterno"] != "" && $_POST["apellido_materno"] != "" && $_POST["correo"] != "" && $_POST["ubicacion"] != ""){
+            if(file_exists($_FILES['archivo']['tmp_name'])){
+                    if($_FILES["archivo"]["type"]=="image/png" || $_FILES["archivo"]["type"]=="image/jpeg"){
+                        if($_FILES["archivo"]["type"]=="image/png" ){
+                            $nombre_archivo = $_POST["nombre"].$_POST["apellido_paterno"].date("dmY").".png";
+                        }else if($_FILES["archivo"]["type"]=="image/jpeg"){
+                            $nombre_archivo = $_POST["nombre"].$_POST["nombre"].date("dmY_Hms").".jpeg";
+                        }
+                        $tmp_archivo = $_FILES["archivo"]["tmp_name"];
+                        $archivador = "../".$ruta_investigadores . "/" . $nombre_archivo;
+                        $url_foto=$ruta_investigadores . "/" . $nombre_archivo;
+                        if (move_uploaded_file($tmp_archivo, $archivador)) {
+                            //echo "El fichero es válido y se subió con éxito.\n";
+                            $id_investigador= $_POST["id_investigador"];
+                            $nivel_estudios= $_POST["nivel_estudios"];
+                            $nombre= $_POST["nombre"];
+                            $apellido_paterno= $_POST["apellido_paterno"];
+                            $apellido_materno= $_POST["apellido_materno"];
+                            $correo= $_POST["correo"];
+                            $ubicacion= $_POST["ubicacion"];
+                            $respuesta = querySQL("UPDATE investigadores SET nombre = '".$nombre."', apellido_paterno = '".$apellido_paterno."', apellido_materno = '".$apellido_materno."', nivel_estudios = '".$nivel_estudios."', correo = '".$correo."', url_foto = '".$url_foto."', ubicacion='".$ubicacion."' WHERE id_investigador = ".$id_investigador.";");
                             echo $respuesta;
                         } else {
                             echo "¡Error archivo muy grande!\n";
