@@ -74,7 +74,7 @@ function cargarDatos(datos,paginas,puntero){
   d=x+c;
   //se llena un grid con un rango de datos si puntero = 2, se mostrara de 9 -> 10
   for (var i = x; i < d; i++) {
-      $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
+      $("#output").append("<div class='col-md-4'>"+
       "<div class='imagen-proyecto' onclick='verProyecto("+matriz[i][5]+")'>"+
       "<img src='"+matriz[i][6]+"'>"+
       "<h3>Ver más"+
@@ -87,9 +87,9 @@ function cargarDatos(datos,paginas,puntero){
   //se inserta el html de los botones de paginas
   for (var i = 1; i <= parseInt(paginas); i++) {
     if(i==puntero){
-      $("#output").append("<button class='btn paginacion' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
+      $("#pages").append("<button class='btn paginacion' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
     }else{
-      $("#output").append("<button class='btn' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
+      $("#pages").append("<button class='btn' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
     }
 
   }

@@ -3,6 +3,8 @@ var aux=0;
 var puntero=1;
 var paginas=1;
 var matriz;
+var op;
+var inves;
 //carga el contenido en la BD una vez que se
 $( document ).ready(function() {
   buscarDatos();
@@ -12,6 +14,7 @@ $( document ).ready(function() {
 //correspondientes a una linea
 function filtrar(){
   $("#output").empty();
+  $("#pages").empty();
   $.ajax({
     type: "POST",
     async: true,
@@ -59,6 +62,7 @@ function filtrar(){
 //limpia los contenedores para volver a hacer una consulta
 function reiniciar(){
   $("#output").empty();
+  $("#pages").empty();
   $("#investigador").empty();
   $("#investigador").append("<option value='default'>Linea de investigacion</option>");
   buscarDatos();
@@ -111,6 +115,8 @@ function buscarDatos(){
               matriz[i] =  new Array(9);
             }
             var a=0;
+
+
             $.each(response,function(key, registro) {
               matriz[a][0]= registro.url_foto;
               matriz[a][1]= registro.nombre;
@@ -121,8 +127,10 @@ function buscarDatos(){
               matriz[a][6] = registro.correo;
               matriz[a][7] = registro.ubicacion;
               matriz[a][8] = registro.id_investigador;
+
               a++;
             });
+
             //se envian a cargarDatos para su presentacion en pantalla
             cargarDatos(response,paginas,puntero);
             $("#output").append("<br><br>");
@@ -164,23 +172,37 @@ function cargarDatos(datos,paginas,puntero){
   //limite superior, d = 9 + 1 -> d =10
   d=x+c;
   //se llena un grid con un rango de datos si puntero = 2, se mostrara de 9 -> 10
+  var z = 0;
+  var ar = new Array(matriz.length);
+  var id = new Array(matriz.length);
   for (var i = x; i < d; i++) {
-      $("#output").append("<div class='col-md-4' style='display:inline-block;'>"+
-      "<div class='imagen-proyecto' onclick='verInvestigador("+i+")'>"+
-      "<img src='"+matriz[i][0]+"'>"+
-      "<h3>Ver más"+
-     "</h3></div>"+"<div class='info-proyecto'><h3>Investigador:<br>"+
-      matriz[i][1]+" "+matriz[i][2]+" "+matriz[i][3]+
-      " </h3><h3>Línea de investigación: <br>"+
-      matriz[i][4]+"</h3></div></div>");
+
+    for (var j = 0; j < matriz.length; j++) {
+      if(matriz[i][8]==matriz[j][8] && i != j){
+        ar[i] = matriz[j][4];
+        id[j]=matriz[j][8];
+      }else{
+        ar[i]="";
+      }
+    }
+    if(matriz[i][8]!=id[i])
+    $("#output").append("<div class='col-md-4'>"+
+    "<div class='imagen-proyecto' onclick='verInvestigador("+i+")'>"+
+    "<img src='"+matriz[i][0]+"'>"+
+    "<h3>Ver más"+
+    "</h3></div>"+"<div class='info-proyecto'><h3>Investigador:<br>"+
+    matriz[i][1]+" "+matriz[i][2]+" "+matriz[i][3]+
+    " </h3><h3 class='cortar_t'>Línea de investigación: <br>"+
+    matriz[i][4]+" "+ar[i]+"</h3></div></div></div>");
+
   }
   $("#output").append("<br><br>");
   //se inserta el html de los botones de paginas
   for (var i = 1; i <= parseInt(paginas); i++) {
     if(i==puntero){
-      $("#output").append("<button class='btn paginacion' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
+      $("#pages").append("<button class='btn paginacion' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
     }else{
-      $("#output").append("<button class='btn' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
+      $("#pages").append("<button class='btn' type='button' style='margin-right:5px;' onclick='cambioPagina("+i+")'>"+i+"</button>");
     }
 
   }
@@ -189,9 +211,14 @@ function cargarDatos(datos,paginas,puntero){
 function verInvestigador(i){
   var out = document.getElementById("output");
   var c =  document.getElementById("row");
+  var v = document.getElementById("atras");
+  v.style.display = "block";
+  op=out.style.display;
+  inves = c.style.display;
   out.style.display = "none";
   c.style.display = "none";
   var contenedor = document.getElementById("inv");
+
   contenedor.style.display = "block";
   $("#img").append("<img src='"+ matriz[i][0]+ "'>");
   $("#cont-info").append("<h3>"+matriz[i][5]+" "+matriz[i][1]+
@@ -223,4 +250,19 @@ function verInvestigador(i){
           }
 
     });
+
+}
+function regresar(){
+  var out = document.getElementById("output");
+  var c =  document.getElementById("row");
+  var contenedor = document.getElementById("inv");
+  var v = document.getElementById("atras");
+  v.style.display="none";
+  contenedor.style.display= "none";
+  out.style.display = op;
+  c.style.display = inves;
+  $("#img").empty();
+  $("#titulo").empty();
+  $("#cont-info").empty();
+  $("#datos").empty();
 }

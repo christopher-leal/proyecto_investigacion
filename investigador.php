@@ -19,9 +19,14 @@
                 </form>
             </div>
         </div>
-        <div id="output" class="col-md-12 row-container"></div>
+        <div id="output" class="col-md-12 row justify-content-between row-container"></div>
+        <div id="pages">
+
+        </div>
+
         <br>
     </div>
+
     <!--Investigador-->
     <div id="inv" >
       <div class="container">
@@ -56,8 +61,11 @@
                   </div>
               </div>
           </div>
+          <button class="btn" id="atras" style="display:none;" type="button" onclick="regresar()">Atrás</button>
       </div>
+
     </div>
+    <br>
 
 <?php include 'includes/templates/footer.php';?>
 <script src="js/investigador.js"></script>
