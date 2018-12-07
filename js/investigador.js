@@ -147,6 +147,7 @@ function buscarDatos(){
 function cambioPagina(i){
   //limpia el contenedor de investigadores
   $("#output").empty();
+  $("#pages").empty();
   //llama a la funcion cargarDatos
   cargarDatos(datos,paginas,i);
 }
