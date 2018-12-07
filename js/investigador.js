@@ -166,8 +166,14 @@ function cargarDatos(datos,paginas,puntero){
     }
   }else{
     //c = 9 - (18-10), c=1
-    c = 9-(p-datos.length);
+    if((datos.length - p+9)>9){
+      c=9;
+    }else{
+      c = 9-(p-datos.length);
+    }
+
   }
+
   //limite inferior, x = 18-9 -> x=9
   var x= p-9;
   //limite superior, d = 9 + 1 -> d =10
@@ -178,14 +184,7 @@ function cargarDatos(datos,paginas,puntero){
   var id = new Array(matriz.length);
   for (var i = x; i < d; i++) {
 
-    for (var j = 0; j < matriz.length; j++) {
-      if(matriz[i][8]==matriz[j][8] && i != j){
-        ar[i] = matriz[j][4];
-        id[j]=matriz[j][8];
-      }else{
-        ar[i]="";
-      }
-    }
+
     if(matriz[i][8]!=id[i])
     $("#output").append("<div class='col-md-4'>"+
     "<div class='imagen-proyecto' onclick='verInvestigador("+i+")'>"+
@@ -194,7 +193,7 @@ function cargarDatos(datos,paginas,puntero){
     "</h3></div>"+"<div class='info-proyecto'><h3>Investigador:<br>"+
     matriz[i][1]+" "+matriz[i][2]+" "+matriz[i][3]+
     " </h3><h3 class='cortar_t'>Línea de investigación: <br>"+
-    matriz[i][4]+" "+ar[i]+"</h3></div></div></div>");
+    matriz[i][4]+" "+"</h3></div></div></div>");
 
   }
   $("#output").append("<br><br>");
@@ -208,7 +207,7 @@ function cargarDatos(datos,paginas,puntero){
 
   }
 }
-
+//desaparece un panel de investigadores y carga un solo investigador
 function verInvestigador(i){
   var out = document.getElementById("output");
   var c =  document.getElementById("row");
@@ -230,6 +229,7 @@ function verInvestigador(i){
   $("#titulo").append("<h3>Publicaciones</h3>");
   var my_arr = new Array('id',i);
   var x= matriz[i][8];
+  //descarga los proyectos de investigacion
   $.ajax({
           type: "POST",
           async: true,
@@ -253,6 +253,7 @@ function verInvestigador(i){
     });
 
 }
+//vuelve a cargar el panel de investigadores
 function regresar(){
   var out = document.getElementById("output");
   var c =  document.getElementById("row");
@@ -262,6 +263,7 @@ function regresar(){
   contenedor.style.display= "none";
   out.style.display = op;
   c.style.display = inves;
+  //limpia los datos de la vieja vista de investigador
   $("#img").empty();
   $("#titulo").empty();
   $("#cont-info").empty();
