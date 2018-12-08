@@ -32,6 +32,7 @@ function consultaSQL($consunta){
 
 function querySQL($consunta){
   $conexionMySQL = iniciaConexion();
+  mysqli_set_charset($conexionMySQL,"utf8");
   if (@mysqli_query($conexionMySQL,$consunta) === TRUE) {
     echo "Exito";
   } else {

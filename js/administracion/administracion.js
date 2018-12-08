@@ -301,7 +301,7 @@ function realizar_accion() {
                                 data: {
                                     funcion: "eliminar_colaboradores",
                                     id_proyecto: elemento,
-                                    }
+                                }
                             }).done(function (resultado) {
                                 console.log(resultado);
                             }).fail(function () {
@@ -338,6 +338,7 @@ function realizar_accion() {
             }
             break;
         case "reg_inv":
+            if(validarEmail($("#in_correo_registro").val())){
             if (linea_lista.length != 0) {
                 var inputFileImage = document.getElementById("img_investigador");
                 var file = inputFileImage.files[0];
@@ -388,8 +389,12 @@ function realizar_accion() {
             } else {
                 alert("No se ha seleccionado alguna linea de invetigación")
             }
+            }else{
+                alert("correo incorrecto");
+            }
             break;
         case "edt_inv":
+        if(validarEmail($("#in_correo_registro").val())){
             if ($("#img_investigador").val() == "") {
                 if (linea_lista.length != 0) {
                     var data = new FormData();
@@ -518,6 +523,9 @@ function realizar_accion() {
                     alert("No se ha seleccionado alguna linea de invetigación")
                 }
             }
+        }else{
+            alert("correo incorrecto");
+        }
             break;
         case "elm_inv":
             $.ajax({
@@ -530,7 +538,7 @@ function realizar_accion() {
             }).fail(function () {
                 console.log("Error");
             });
-            break;
+            break;//placeholder="https://www.example.com"
         case "reg_publ":
             var inputFileImage = document.getElementById("achivo_pdf");
             var file = inputFileImage.files[0];
@@ -654,10 +662,12 @@ function realizar_accion() {
                 cache: false
             }).done(function (jsonObjet) {
                 alert(jsonObjet);
-                $(function () {
-                    $('#registrar_congreso').modal('toggle');
-                });
-                recargar_congresos();
+                if (jsonObjet == "Exito") {
+                    $(function () {
+                        $('#registrar_congreso').modal('toggle');
+                    });
+                    recargar_congresos();
+                }
             }).fail(function () {
                 console.log("Error");
             });
@@ -926,7 +936,7 @@ function cargar_congresos(palabra_clave_congreso, id_linea_investigacion_congres
         btn_texto = "Eliminar";
         $("#contenedor_congresos").empty();
         jsonObjet.forEach(element => {
-            $("#contenedor_congresos").append("<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "''>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_cong\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
+            $("#contenedor_congresos").append("<div class='card col-lg-4 col-md-6 col-sm-12'><img class='card-img-top' src='../" + element["link_imagen"] + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + element["nombre_evento"] + "</h5>" + ((element["link_externo"] != null) ? ("<a class='btn btn-link cortar_t' href='" + element["link_externo"] + "'>" + element["link_externo"] + "</a>") : "") + "<p>" + element["nombre_linea"] + "</p></div><div class='card-footer text-right blanco'><button href='#registrar_congreso' class='btn btn-outline-success' type='button' data-toggle='modal' onclick='seleccion(\"edt_cong\"," + element["id_evento"] + ");'>Editar</button><button href='#confirmacion' class='" + btn_color + " mx-sm-3' type='button' data-toggle='modal' onclick='seleccion(\"elm_cong\"," + element["id_evento"] + ");'>" + btn_texto + "</button></div></div>");
         });
     }).fail(function () {
         console.log("Error");
@@ -1324,3 +1334,124 @@ $(document).ready(function () {
 
     });
 });
+
+
+///////
+
+$("#in_apellido_patertno").keyup(function (e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+
+})
+$("#in_apellido_patertno").blur(function () {
+    var val = $("#in_apellido_patertno").val();
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            $("#in_apellido_patertno").val("");
+    }
+})
+
+///
+
+$("#in_nombre_investigador_registro").keyup(function (e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+
+})
+$("#in_nombre_investigador_registro").blur(function () {
+    var val = $("#in_nombre_investigador_registro").val();
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            $("#in_nombre_investigador_registro").val("");
+    }
+})
+
+//
+$("#in_titulo_investigador_registro").keyup(function (e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+
+})
+$("#in_titulo_investigador_registro").blur(function () {
+    var val = $("#in_titulo_investigador_registro").val();
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            $("#in_titulo_investigador_registro").val("");
+    }
+})
+
+$("#in_apellido_matertno_registro").keyup(function (e) {
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+    especiales = [8, 37, 39, 46];
+
+    tecla_especial = false
+    for (var i in especiales) {
+        if (key == especiales[i]) {
+            tecla_especial = true;
+            break;
+        }
+    }
+
+    if (letras.indexOf(tecla) == -1 && !tecla_especial)
+        return false;
+
+})
+$("#in_apellido_matertno_registro").blur(function () {
+    var val = $("#in_apellido_matertno_registro").val();
+    var tam = val.length;
+    for (i = 0; i < tam; i++) {
+        if (!isNaN(val[i]))
+            $("#in_apellido_matertno_registro").val("");
+    }
+})
+
+function validarEmail( email ) {
+    expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if ( !expr.test(email) )return false;
+    else return true;
+
+}

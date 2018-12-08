@@ -384,7 +384,7 @@
             if(file_exists($_FILES['archivo']['tmp_name'])){
                     if($_FILES["archivo"]["type"]=="image/png" || $_FILES["archivo"]["type"]=="image/jpeg"){
                         if($_FILES["archivo"]["type"]=="image/png" ){
-                            $nombre_archivo = $_POST["nombre"].$_POST["apellido_paterno"].date("dmY").".png";
+                            $nombre_archivo =date("dmY_Hms").".png";
                         }else if($_FILES["archivo"]["type"]=="image/jpeg"){
                             $nombre_archivo =date("dmY_Hms").".jpeg";
                         }
@@ -420,7 +420,7 @@
             if(file_exists($_FILES['archivo']['tmp_name'])){
                 if($_FILES["archivo"]["type"]=="image/png" || $_FILES["archivo"]["type"]=="image/jpeg"){
                         if($_FILES["archivo"]["type"]=="image/png" ){
-                            $nombre_archivo = $_POST["nombre_evento"].date("dmY").".png";
+                            $nombre_archivo =date("dmY_Hms").".png";
                         }else if($_FILES["archivo"]["type"]=="image/jpeg"){
                             $nombre_archivo = date("dmY_Hms").".jpeg";
                         }
