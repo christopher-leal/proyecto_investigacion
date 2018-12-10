@@ -11,7 +11,16 @@
          $params["secure"], $params["httponly"]
      );
   }
-  //finalmente destruimos la sesion
-  session_destroy();
+  //finalmente destruimos la sesion*/
+  // remove all session variables
+  session_unset();
+
+// destroy the session
+  if(session_destroy()){
+      echo session_status();
+  } else {
+      echo "Error al destruir la sesión";
+  }
+
   header("Location: ../../login.php");
  ?>

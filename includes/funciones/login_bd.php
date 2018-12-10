@@ -1,6 +1,6 @@
 <?php
   require_once('bdconexion.php');
-  if(isset($_POST['login'])){
+  if(isset($_POST['login'])) {
     $usuario = $_POST['txtusuario'];
     $pass = $_POST['txtpass'];
     if(empty($usuario) | empty($pass)){
@@ -12,9 +12,9 @@
       session_start();
       $_SESSION['usuario'] = $usuario;
       //indica aqui la ruta a donde te redireccionara en caso que el login sea correcto
-      header("Location: ../../");
+      header("Location: ../../administracion/index.php");
     }else{
-      header("Location: ../../administracion");
+      header("Location: ../../login.php");
     }
   }
  ?>
