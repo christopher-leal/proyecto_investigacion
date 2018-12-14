@@ -106,17 +106,6 @@ nav div.navegacion a:hover {
     border-radius: 5px;
 }
 
-div.navegacion a:nth-child(1)::after {
-    content: '';
-}
-
-div.navegacion a::after {
-    content: '\f0d7';
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    margin-left: 5px;
-}
-
 /*Carousel*/
 div.imagenes-carousel img {
     max-height: 500px;
