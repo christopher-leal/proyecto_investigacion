@@ -6,7 +6,7 @@
         </div>
     </div>
     <br>
-    <div id="output" class="col-md-12 row justify-content-between row-container"></div>
+    <div id="output" class="col-md-12 row justify-content-start row-container"></div>
     <div id="pages">
 
     </div>
